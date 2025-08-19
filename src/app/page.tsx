@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Header from "./component/Header";
-import Footer from "./component/Footer";
-import Slider from "./component/Slider";
-import Content from "./component/Content";
+import Header from "@/app/component/Header";
+import Footer from "@/app/component/Footer";
+import Slider from "@/app/component/Slider";
+import Content from "@/app/component/component/Content";
+import HomeBanner from "@/app/component/HomeBanner";
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
     <Header/>
+    <HomeBanner/>
     <main>
       
    {/*   <section className="p-8 bg-white text-blue-900">
@@ -63,7 +65,7 @@ export default function Home() {
           </div>
         </div>*/}
       {/* Wrapper cha */}
-  <div className="max-w-[1000px] mx-auto pb-12 relative z-30">
+  <div className="mx-auto max-w-[1000px] px-4 sm:px-6 lg:px-8 pb-12 relative z-30">
     {/* Mobile & Tablet: Vuốt ngang */}
     <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory md:hidden">
       {[
@@ -138,7 +140,7 @@ export default function Home() {
     </div>
   </div>
 </div>
-  <div className="mx-auto max-w-[1000px] sm:px-6 pb-12">
+  <div className="mx-auto max-w-[1000px] px-4 sm:px-6 lg:px-8 pb-12">
   {/* Tiêu đề */}
   <div className="flex justify-center mb-6">
     <h2 className="text-2xl font-semibold text-[#01274B] text-center md:text-left">
@@ -147,7 +149,7 @@ export default function Home() {
   </div>
 
   {/* Grid chia 2 cột */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:px-6">
     {/* Box 1 */}
       <div className="bg-white flex flex-col p-6 shadow-lg rounded-lg transform transition duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl">
       <h3 className="text-xl font-semibold mb-4 text-[#01274B]">Lãi suất tiết kiệm</h3>
@@ -223,7 +225,7 @@ export default function Home() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
             <div className="flex flex-col md:flex-row md:items-center w-full">
             {/* Tiêu đề */}
-            <h2 className="text-2xl font-bold text-primary-content text-center md:text-left">
+            <h2 className="text-2xl font-semibold text-[#01274B] text-center md:text-left">
               Tin tức - Sự kiện
             </h2>
 
@@ -255,7 +257,7 @@ export default function Home() {
               snap-x snap-mandatory
               sm:flex-row sm:flex-nowrap
               lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none">
-            <div className="min-w-[80%] sm:min-w-[60%] lg:min-w-0 bg-white col-span-2 shadow-lg rounded-md overflow-hidden snap-start">
+            <div className="min-w-[80%] sm:min-w-[60%] lg:min-w-0 bg-white col-span-2 shadow-lg rounded-md overflow-hidden hover:shadow-xl snap-start">
             <div className="relative ww-full h-full group cursor-pointer">
             {/* Ảnh */}
             <Image

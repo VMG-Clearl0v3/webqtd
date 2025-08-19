@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "@/app/globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import FloatingSupport from "@/app/component/FloatingSupport";
+import CrispChat from "@/app/component/CrispChat";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -39,7 +41,16 @@ export default function RootLayout({
     // </html>
     <html lang="vi">
       <link rel="icon" href="/image/logo.png" sizes="32x32" />
-      <body className="bg-white text-gray-900">{children}</body>
+      <body className="bg-white text-gray-900">{children}
+      <CrispChat />
+      <FloatingSupport
+        hotline="02293.864.329"
+        crispWebsiteId="http://localhost:3000/"  // bỏ nếu chưa dùng Crisp
+        zaloUrl="https://zalo.me/0912345678"   // tuỳ chọn
+        whatsapp="+84912345678"                // tuỳ chọn
+        position="right"                       // hoặc "left"
+      />
+      </body>
     </html>
   );
 }

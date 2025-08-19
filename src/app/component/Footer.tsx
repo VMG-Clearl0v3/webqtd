@@ -120,7 +120,7 @@ export default function Footer() {
       </div>
 
       {/* Bản quyền */}
-      <div className="flex justify-center mt-5 text-sm text-center border-t border-gray-500 pt-4">
+      <div className="flex justify-center mt-10 text-sm text-center">
         © 2025 Quỹ TDND Trung Sơn. Bảo lưu mọi quyền.
       </div>
     </footer>
