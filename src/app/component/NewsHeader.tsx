@@ -17,11 +17,6 @@ export default function NewsHeader() {
           className="object-cover w-full h-full"
         />
         </div>
-        <div className="">
-        	<h1 className="relative justify-center text-center text-3xl font-bold text-blue-800 p-4">
-          		Tin tức - Sự kiện
-        	</h1>
-      	</div>
     </div>
   );
 }

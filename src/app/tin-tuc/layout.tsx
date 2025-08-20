@@ -6,10 +6,8 @@ export default function NewsLayout({ children }: { children: React.ReactNode }) 
     <div className="bg-gray-100 min-h-screen">
       {/* Header riêng cho tin tức */}
       <NewsHeader/>
-
       {/* Nội dung tin tức */}
       <main>{children}</main>
-
       {/* Footer */}
       <Footer/>
    </div>
