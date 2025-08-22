@@ -40,7 +40,7 @@ export default function RootLayout({
     //   </body>
     // </html>
     <html lang="vi">
-      <link rel="icon" href="/image/logo.png" sizes="32x32" />
+      <link rel="icon" href="/image/icon.png" sizes="100x100" />
       <body className="bg-white text-gray-900">{children}
       <CrispChat />
       <FloatingSupport

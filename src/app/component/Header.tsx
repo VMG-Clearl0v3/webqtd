@@ -13,9 +13,10 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = [
     { label: "Trang chủ", href: "/" },
-    { label: "Giới thiệu", href: "/gioi-thieu" },
-    { label: "Sản phẩm", href: "/san-pham" },
-    { label: "Tin tức", href: "/tin-tuc" },
+    { label: "Giới thiệu", href: "/gioi-thieu"},
+    { label: "Tiền gửi", href: "/san-pham/tien-gui"},
+    { label: "Cho vay", href: "/san-pham/cho-vay"},
+    { label: "Tin tức", href: "/tin-tuc"},
   ];
    useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -31,17 +32,17 @@ export default function Header() {
         <div className="flex items-center justify-between px-8 ">
         {/* Logo */}
         <Link href="/">
-          <Image src="/image/logo.png" alt="icon" width={80} height={80} />
+          <Image src="/image/logo.svg" alt="icon" width={200} height={80} />
         </Link>
         {/*Navbar*/}
-        <nav className="hidden md:flex gap-6 text-lg font-medium">
+        <nav className="hidden md:flex gap-6 text-xl font-medium">
           {menuItems.map((item, i) => (
             <Link
               key={i}
               href={item.href}
               className={`${
                 isScrolled ? "text-black" : "text-white"
-              } hover:text-yellow-500 transition-colors`}
+              } hover:text-[#FF0000] transition-colors`}
             >
               {item.label}
             </Link>

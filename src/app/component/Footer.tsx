@@ -2,50 +2,9 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    // <footer className="md-auto bg-[#01274B] text-white p-12 text-justify">
-    //    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
-    //       <div>
-    //         <h3 className="font-bold">QUỸ TÍN DỤNG NHÂN DÂN TRUNG SƠN</h3>
-    //         <p>Đồng hành phát triển cùng thành viên</p>
-    //         <p>Hotline: 02293.864.329</p>
-    //         <p>Website: qtdndtrungson.com.vn</p>
-    //         <p> Giờ làm việc: Từ Thứ 2 đến Thứ 7</p>
-    //         <ul className="list-disc ml-4">
-    //           <li>Mùa hè: 7h00-11h00</li>
-    //           <li>Mùa đông: 7h00-11h00</li>
-    //         </ul>
-    //       </div>
-    //       <div>
-    //         <h4 className="font-bold">SẢN PHẨM & DỊCH VỤ</h4>
-    //         <ul className="list-disc ml-4">
-    //           <li>Gửi tiết kiệm</li>
-    //           <li>Cho vay</li>
-    //           <li>Mở tài khoản</li>
-    //           <li>Chuyển tiền trong nước</li>
-    //         </ul>
-    //       </div>
-    //       <div>
-    //         <h4 className="font-bold">HỖ TRỢ KHÁCH HÀNG</h4>
-    //         <ul className="list-disc ml-4">
-    //           <li>Câu hỏi thường gặp</li>
-    //           <li>Hướng dẫn sử dụng</li>
-    //           <li>Biểu phí</li>
-    //           <li>Liên hệ hỗ trợ</li>
-    //         </ul>
-    //       </div>
-    //       <div>
-    //         <h4 className="font-bold">KẾT NỐI</h4>
-    //         <ul className="list-disc ml-4">
-    //           <li></li>
-    //           <li></li>
-    //           <li></li>
-    //         </ul>
-    //       </div>
-    //     </div>
-    //     <div className="flex justify-center mt-5 text-sm text-center">© 2025 Quỹ TDND Trung Sơn. Bảo lưu mọi quyền.</div>
-    // </footer>
-     <footer className="bg-[#01274B] text-white py-12 px-6 transition duration-300 hover:brightness-110">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm">
+     <footer>
+      <div className= "bg-gradient-to-b from-[#00377B] to-[#1a4c85] text-white py-12 px-6 transition duration-300">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm ">
         
         {/* Cột 1 */}
         <div>
@@ -118,11 +77,18 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Bản quyền */}
-      <div className="flex justify-center mt-10 text-sm text-center">
-        © 2025 Quỹ TDND Trung Sơn. Bảo lưu mọi quyền.
-      </div>
+    </div>
+         {/* Bản quyền */}
+    <div className="relative w-full">
+      <Image
+       src="/image/footer.png"
+        alt="bản quyền"
+        width={1920}      // width gốc ảnh
+        height={80}       // height gốc ảnh
+        className="w-full h-auto object-contain"
+        priority
+      />
+    </div>
     </footer>
   );
 }
