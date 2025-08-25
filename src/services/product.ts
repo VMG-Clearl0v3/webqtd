@@ -25,14 +25,14 @@ const productList: Product[] = [
   {
     id: 4,
     image: "/image/icon.png",
-    title: "Vay cầm cố sổ tiết kiệm",
+    title: "Tiền gửi có kỳ hạn",
     slug: "gui-co-ky-han",
     type: "deposit",
   }, 
   {
-    id: 4,
+    id: 5,
     image: "/image/footer.png",
-    title: "Vay cầm cố sổ tiết kiệm",
+    title: "Tiền gửi không kỳ hạn",
     slug: "gui-khong-ky-han",
     type: "deposit",
   }, 
