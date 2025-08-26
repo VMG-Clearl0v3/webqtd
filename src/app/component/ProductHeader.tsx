@@ -1,7 +1,19 @@
+"use client";
 import Image from "next/image";
 import Header from "@/app/component/Header";
+import { usePathname } from "next/navigation";
 
 export default function ProductHeader() {
+  const pathname = usePathname();
+
+
+  const bannerMap: Record<string, string> = {
+    "tien-gui": "/image/banner_1.jpg",
+    "cho-vay": "/image/banner_3.jpg",
+  };
+  const bannerSrc =
+    Object.entries(bannerMap).find(([key]) => pathname.includes(key))?.[1] ||
+    "/image/banner_2.jpg";
   return (
     <div className="relative">
       {/* Kế thừa header gốc */}
@@ -10,8 +22,8 @@ export default function ProductHeader() {
       {/* Banner riêng cho trang sản phẩm */}
        <div className="w-full h-50 relative">
         <Image
-          src="/image/banner_3.jpg"
-          alt="Sản phẩm"
+          src={bannerSrc}
+          alt="Trang sản phẩm"         
           width={1200}
           height={192}
           className="object-cover w-full h-full"

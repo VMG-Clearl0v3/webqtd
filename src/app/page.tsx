@@ -162,27 +162,27 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          <tr className="text-center hover:bg-blue-100 text-[#00377B]">
+          <tr className="text-center hover:bg-blue-50 text-[#00377B]">
             <td className="py-2 px-4 border-b">Không kỳ hạn</td>
             <td className="py-2 px-4 border-b">0.2</td>
             <td className="py-2 px-4 border-b">0,017</td>
           </tr>
-          <tr className="text-center hover:bg-blue-100 text-[#00377B]">
+          <tr className="text-center hover:bg-blue-50 text-[#00377B]">
             <td className="py-2 px-4 border-b">1 tháng</td>
             <td className="py-2 px-4 border-b">1.7</td>
             <td className="py-2 px-4 border-b">0,142</td>
           </tr>
-          <tr className="text-center hover:bg-blue-100 text-[#00377B]">
+          <tr className="text-center hover:bg-blue-50 text-[#00377B]">
             <td className="py-2 px-4 border-b">3 tháng</td>
             <td className="py-2 px-4 border-b">2</td>
             <td className="py-2 px-4 border-b">0,167</td>
           </tr>
-          <tr className="text-center hover:bg-blue-100 text-[#00377B]">
+          <tr className="text-center hover:bg-blue-50 text-[#00377B]">
             <td className="py-2 px-4 border-b">6 tháng</td>
             <td className="py-2 px-4 border-b">3.5</td>
             <td className="py-2 px-4 border-b">0,292</td>
           </tr>
-          <tr className="text-center hover:bg-blue-100 text-[#00377B]">
+          <tr className="text-center hover:bg-blue-50 text-[#00377B]">
             <td className="py-2 px-4 border-b">12 tháng</td>
             <td className="py-2 px-4 border-b">4.6</td>
             <td className="py-2 px-4 border-b">0,383</td>
@@ -203,17 +203,17 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          <tr className="text-center hover:bg-blue-100 text-[#00377B]">
+          <tr className="text-center hover:bg-blue-50 text-[#00377B]">
             <td className="py-2 px-4 border-b">Ngắn hạn</td>
             <td className="py-2 px-4 border-b">10</td>
             <td className="py-2 px-4 border-b">0,833</td>
           </tr>
-          <tr className="text-center hover:bg-blue-100 text-[#00377B]">
+          <tr className="text-center hover:bg-blue-50 text-[#00377B]">
             <td className="py-2 px-4 border-b">Trung hạn</td>
             <td className="py-2 px-4 border-b">11</td>
             <td className="py-2 px-4 border-b">0,917</td>
           </tr>
-          <tr className="text-center hover:bg-blue-100 text-[#00377B]">
+          <tr className="text-center hover:bg-blue-50 text-[#00377B]">
             <td className="py-2 px-4 border-b">Cầm cố STK</td>
             <td colSpan={2} className="py-2 px-4 border-b">+2% Lãi suất STK</td>
           </tr>

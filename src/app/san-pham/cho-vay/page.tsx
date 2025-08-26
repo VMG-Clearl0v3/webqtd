@@ -8,9 +8,9 @@ export default async function LoanProductsPage() {
 
   return (
     <>
-      <ProductHeader />
+      <ProductHeader/>
       <div className="max-w-6xl mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-6 text-blue-800">Sản phẩm cho vay</h1>
+        <h1 className="text-2xl font-bold mb-6 text-[#00377B] text-center">Sản phẩm cho vay</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {loanProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

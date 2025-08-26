@@ -40,7 +40,7 @@ export default function Header() {
         paddingBottom: isScrolled ? "0.5rem" : "1rem",
         top: isScrolled ? 0 : 10,
       }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
+      transition={{ duration: 0}}
       className="fixed left-1/2 -translate-x-1/2 z-[9999] px-6 backdrop-blur-md"
     >
       <div className="flex items-center justify-between">
