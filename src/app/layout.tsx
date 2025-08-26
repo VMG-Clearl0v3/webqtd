@@ -5,8 +5,8 @@ import "@/app/globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import FloatingSupport from "@/app/component/FloatingSupport";
-import CrispChat from "@/app/component/CrispChat";
+// import FloatingSupport from "@/app/component/FloatingSupport";
+// import CrispChat from "@/app/component/CrispChat";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -32,24 +32,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // <html lang="en">
-    //   <body
-    //     className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    //   >
-    //     {children}
-    //   </body>
-    // </html>
     <html lang="vi">
       <link rel="icon" href="/image/icon.png" sizes="100x100" />
       <body className="bg-white text-gray-900">{children}
-      <CrispChat />
-      <FloatingSupport
+      {/*<CrispChat />*/}
+      {/* <FloatingSupport
         hotline="02293.864.329"
         crispWebsiteId="http://localhost:3000/"  // bỏ nếu chưa dùng Crisp
         zaloUrl="https://zalo.me/0912345678"   // tuỳ chọn
         whatsapp="+84912345678"                // tuỳ chọn
         position="right"                       // hoặc "left"
-      />
+      />*/}
       </body>
     </html>
   );

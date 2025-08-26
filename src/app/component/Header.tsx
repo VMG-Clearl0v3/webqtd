@@ -14,7 +14,7 @@ export default function Header() {
   const menuItems = [
     { label: "Trang chủ", href: "/" },
     { label: "Giới thiệu", href: "/gioi-thieu"},
-    { label: "Tiền gửi", href: "/san-pham/tien-gui"},
+    { label: "Tiết kiệm", href: "/san-pham/tien-gui"},
     { label: "Cho vay", href: "/san-pham/cho-vay"},
     { label: "Tin tức", href: "/tin-tuc"},
   ];

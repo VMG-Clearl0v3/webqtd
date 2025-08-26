@@ -3,6 +3,7 @@ import Link from "next/link";
 import Header from "@/app/component/Header";
 import Footer from "@/app/component/Footer";
 import Slider from "@/app/component/Slider";
+import PartnerSlider from "@/app/component/PartnerSlider";
 import Content from "@/app/component/component/Content";
 import HomeBanner from "@/app/component/HomeBanner";
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
@@ -14,57 +15,7 @@ export default function Home() {
     <Header/>
     <HomeBanner/>
     <main>
-      
-   {/*   <section className="p-8 bg-white text-blue-900">
-        <h1 className="text-4xl font-bold mb-4">GIẢI PHÁP TÀI CHÍNH THÔNG MINH CHO BẠN</h1>
-        <p className="mb-4">Chúng tôi cung cấp các dịch vụ ngân hàng đa dạng giúp bạn đạt được mục tiêu tài chính.</p>
-        <button className="bg-yellow-400 text-white px-6 py-2 rounded">TÌM HIỂU NGAY</button>
-      </section>
-       <section className="p-8 bg-white text-blue-900">
-        <h1 className="text-4xl font-bold mb-4">GIẢI PHÁP TÀI CHÍNH THÔNG MINH CHO BẠN</h1>
-        <p className="mb-4">Chúng tôi cung cấp các dịch vụ ngân hàng đa dạng giúp bạn đạt được mục tiêu tài chính.</p>
-        <button className="bg-yellow-400 text-white px-6 py-2 rounded">TÌM HIỂU NGAY</button>
-      </section>*/}
-    {/*  <section>
-        <Slider/>
-      </section>
-*/}     
-     {/*<div className="relative grid grid-cols-2 md:grid-cols-4 gap-6 max-w-[1000px] mx-auto pb-12 z-30">
-          <div className="bg-white h-60 flex flex-col items-center text-center p-4 rounded-md shadow-sm transition-transform duration-300 hover:-translate-y-5">
-          <Image src ="/image/savings_14667460.png" alt ="icon" width={50} height={50}/>
-           <p className="cont_td mt-2 font-semibold"> Gửi tiết kiệm</p>
-           <p className="cont_nd flex-1 text-sm mt-1"> Gửi tiết kiệm tại quầy, online lãi suất hấp dẫn</p>
-              <button className={"${inter.className} px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl" }>
-            <a href="#">Xem chi tiết</a>
-          </button>
-        </div>
-
-        <div className="bg-white h-60 flex flex-col items-center text-center p-4 rounded-sm transition-transform duration-300 hover:-translate-y-5">
-           <Image src ="/image/savings_12515229.png" alt ="icon" width={50} height={50}/>
-           <p className="cont_td mt-2 font-semibold"> Cho vay</p>
-           <p className="cont_nd flex-1 text-sm mt-1"> Vay tiêu dùng, sản xuất kinh doanh, cầm cố sổ tiết kiệm nhanh chóng</p>
-          <button className={"${inter.className} px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl" }>
-            <a href="#">Xem chi tiết</a>
-          </button>
-        </div>
-        <div className="bg-white h-60 flex flex-col items-center text-center p-4 rounded-sm transition-transform duration-300 hover:-translate-y-5">
-           <Image src ="/image/user_3801741.png" alt ="icon" width={50} height={50}/>
-           <p className="cont_td mt-2 font-semibold"> Thành viên</p>
-           <p className="cont_nd flex-1 text-sm mt-1"> Tham gia thành viên, mở tài khoản nhận nhiều ưu đãi</p>
-          <button className={"${inter.className} px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl" }>
-            <a href="#">Xem chi tiết</a>
-          </button>
-        </div>
-          <div className="bg-white h-60 flex flex-col items-center text-center p-4 rounded-sm transition-transform duration-300 hover:-translate-y-5">
-           <Image src ="/image/money_14959306.png" alt ="icon" width={50} height={50}/>
-           <p className="cont_td mt-2 font-semibold"> Chuyển tiền 24/7</p>
-           <p className="cont_nd flex-1 text-sm mt-1"> Chuyển tiền trong nước an toàn, tiện lợi</p>
-          <button className={"${inter.className} px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl" }>
-            <a href="#">Xem chi tiết</a>
-          </button>
-          </div>
-        </div>*/}
-      {/* Wrapper cha */}
+  {/* Wrapper cha */}
   <div className="mx-auto max-w-[1000px] px-4 sm:px-6 lg:px-8 pb-12 relative z-30">
     {/* Mobile & Tablet: Vuốt ngang */}
     <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory md:hidden">
@@ -310,6 +261,7 @@ export default function Home() {
           ))}
                     </div>
               </div>
+      <PartnerSlider/>
     </main>
     <Footer/>
    
