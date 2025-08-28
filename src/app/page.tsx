@@ -7,8 +7,7 @@ import PartnerSlider from "@/app/component/PartnerSlider";
 import Content from "@/app/component/component/Content";
 import HomeBanner from "@/app/component/HomeBanner";
 import Calculator from "@/app/component/Calculator";
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import { CheckCircleIcon, ArrowRightIcon } from "lucide-react";
 
 export default function Home() {
   return (
