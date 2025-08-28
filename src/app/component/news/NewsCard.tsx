@@ -26,3 +26,4 @@ export default function NewsCard({ item }: { item: any }) {
       </div>
     </div>
   );
+}
