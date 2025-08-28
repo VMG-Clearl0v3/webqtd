@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
      <footer>
-      <div className= "bg-gradient-to-b from-[#00377B] to-[#1a4c85] text-white py-12 px-6 transition duration-300">
+      <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white py-12 px-6 transition duration-300">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm ">
         
         {/* Cột 1 */}

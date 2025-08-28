@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import ScrollToTop from "@/app/component/ScrollToTop";
 // import FloatingSupport from "@/app/component/FloatingSupport";
 // import CrispChat from "@/app/component/CrispChat";
 
@@ -43,6 +44,7 @@ export default function RootLayout({
         whatsapp="+84912345678"                // tuỳ chọn
         position="right"                       // hoặc "left"
       />*/}
+         <ScrollToTop />
       </body>
     </html>
   );

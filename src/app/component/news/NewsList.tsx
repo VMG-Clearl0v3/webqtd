@@ -16,10 +16,10 @@ export default function NewsList({ news = [] }: { news?: any[] }) {
   const currentNews = news.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div>
-      <h1 className="relative justify-center text-center text-3xl font-bold text-blue-900 p-8">
-          Tin tức - Sự kiện
-      </h1>
+    <div className="max-w-7xl mx-auto p-6">
+      <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
+          Tin tức & Sự kiện
+      </h2>
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 mx-auto max-w-7xl">
         {currentNews.map((item) => (

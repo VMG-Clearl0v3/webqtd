@@ -9,7 +9,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react"; // icon đẹp
 
 const partners = [
-  "/image/partner1.jpg",
+  "/image/partner1.png",
   "/image/partner2.png",
   "/image/partner3.png",
   "/image/partner4.png",
@@ -19,11 +19,10 @@ const partners = [
 
 export default function PartnerSlider() {
   return (
-    <div className="w-full bg-gray-50 py-8 relative">
-      <h2 className="text-center text-3xl font-semibold mb-6 text-[#00377B]">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12 relative">
+      <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
         Đối tác của chúng tôi
       </h2>
-
       <div className="relative max-w-6xl mx-auto">
         {/* Swiper */}
         <Swiper
@@ -47,19 +46,16 @@ export default function PartnerSlider() {
           className="px-6"
         >
           {partners.map((logo, i) => (
-            <SwiperSlide
-              key={i}
-              className="flex justify-center items-center"
-            >
-              <div className="w-[120px] h-[60px] flex justify-center items-center">
-                <Image
-                  src={logo}
-                  alt={`partner-${i}`}
-                  width={120}
-                  height={60}
-                  className="object-contain max-w-full max-h-full"
-                />
-              </div>
+            <SwiperSlide key={i} className="!flex !justify-center !items-center">
+            <div className="w-[120px] h-[60px] flex justify-center items-center">
+              <Image
+                src={logo}
+                alt={`partner-${i}`}
+                width={120}
+                height={60}
+                className="object-contain max-w-full max-h-full"
+              />
+            </div>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -15,7 +15,7 @@ export default async function LoanProductDetailPage({ params }: { params: Promis
     <>
       <DetailProductHeader title={product.title} image={product.image} />
         <div className="max-w-6xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center text-[#00377B]">Chi tiết sản phẩm</h1>
+        <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">Chi tiết sản phẩm</h2>
         <div className="text-[#00377B] space-y-8">
         {/* Điều kiện vay vốn */}
         <div className="bg-blue-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
