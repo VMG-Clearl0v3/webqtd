@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/app/component/Header";
 import Footer from "@/app/component/Footer";
-// import Slider from "@/app/component/Slider";
 import PartnerSlider from "@/app/component/PartnerSlider";
 import HomeBanner from "@/app/component/HomeBanner";
 import Calculator from "@/app/component/Calculator";
