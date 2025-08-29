@@ -6,6 +6,7 @@ const productList: Product[] = [
     image: "/image/news_1.jpg",
     title: "Vay tiêu dùng",
     slug: "vay-tieu-dung",
+    description: "a"
     type: "loan",
   },
   {
@@ -13,6 +14,7 @@ const productList: Product[] = [
     image: "/image/news_2.jpg",
     title: "Vay sản xuất kinh doanh",
     slug: "vay-san-xuat-kinh-doanh",
+    description: "b"
     type: "loan",
   },
     {
@@ -20,6 +22,7 @@ const productList: Product[] = [
     image: "/image/2_9.png",
     title: "Vay cầm cố sổ tiết kiệm",
     slug: "vay-cam-co-stk",
+    description: "c"
     type: "loan",
   }, 
   {
@@ -27,6 +30,7 @@ const productList: Product[] = [
     image: "/image/icon.png",
     title: "Tiền gửi có kỳ hạn",
     slug: "gui-co-ky-han",
+    description: "d"
     type: "deposit",
   }, 
   {
@@ -34,6 +38,7 @@ const productList: Product[] = [
     image: "/image/footer.png",
     title: "Tiền gửi không kỳ hạn",
     slug: "gui-khong-ky-han",
+    description: "e"
     type: "deposit",
   }, 
 ];
