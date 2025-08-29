@@ -1,12 +1,7 @@
 import { getNewsBySlug } from "@/services/news";
 import Image from "next/image";
 
-interface NewsDetailPageProps {
-  params: {
-    slug: string;
-  };
-}
-export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
+export default async function NewsDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const news = await getNewsBySlug(slug);
 
