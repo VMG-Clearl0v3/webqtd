@@ -141,9 +141,8 @@ export default function Home() {
 
         {/* Nút Xem thêm */}
         <div className="mt-3 md:mt-0 md:ml-auto text-right">
-        <a
-        className="inline-flex items-center gap-1 text-[#00377B] text-base font-semibold no-underline group"
-        href="#"
+        <Link className="inline-flex items-center gap-1 text-[#00377B] text-base font-semibold no-underline group"
+        href="/tin-tuc"
         >
         Xem thêm
         <svg
@@ -160,7 +159,7 @@ export default function Home() {
         d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
         />
         </svg>
-        </a>
+        </Link>
         </div>
         </div>
         <div className=" flex gap-4 mt-6 overflow-x-auto scrollbar-hide
@@ -209,12 +208,12 @@ export default function Home() {
               Nếu nội dung quá dài, nó sẽ tự động xuống dòng và sau 3 dòng sẽ bị cắt,
               kèm theo dấu ba chấm để báo cho người đọc rằng còn nội dung phía sau.
             </p>
-            <a
+            <Link
               href="#"
               className="text-blue-500 hover:text-blue-800 mt-auto self-end p-4"
             >
               Xem chi tiết
-            </a>
+            </Link>
           </div>
         </div>
       ))}
