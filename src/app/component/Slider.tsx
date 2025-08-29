@@ -19,7 +19,7 @@ export default function Slider() {
           src="/images/service1.png"
           alt="Gửi tiền"
           fill
-          className="rounded mb-2 object-cover"
+          className="rounded mb-2 object-cover"/>
           <h3 className="font-semibold">Gửi tiền tiết kiệm</h3>
           <p className="text-sm text-gray-600">Lãi suất hấp dẫn, kỳ hạn linh hoạt.</p>
         </div>
@@ -30,7 +30,7 @@ export default function Slider() {
           src="/images/service2.png"
           alt="Gửi tiền"
           fill
-          className="rounded mb-2 object-cover"
+          className="rounded mb-2 object-cover"/>
           <h3 className="font-semibold">Cho vay</h3>
           <p className="text-sm text-gray-600">Thủ tục nhanh chóng, hỗ trợ tối đa.</p>
         </div>
@@ -41,7 +41,7 @@ export default function Slider() {
           src="/images/service3.png"
           alt="Gửi tiền"
           fill
-          className="rounded mb-2 object-cover"
+          className="rounded mb-2 object-cover"/>
           <h3 className="font-semibold">Chuyển tiền</h3>
           <p className="text-sm text-gray-600">Nhanh chóng, an toàn, tiện lợi.</p>
         </div>

@@ -1,5 +1,5 @@
 import Footer from "@/app/component/Footer";
-import ProductHeader from "@/app/component/ProductHeader";
+// import ProductHeader from "@/app/component/ProductHeader";
 
 export default function ProductLayout({ children }: { children: React.ReactNode }) {
   return (

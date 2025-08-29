@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import Header from "@/app/component/Header";
 import Footer from "@/app/component/Footer";
-import Slider from "@/app/component/Slider";
+// import Slider from "@/app/component/Slider";
 import PartnerSlider from "@/app/component/PartnerSlider";
 import Content from "@/app/component/component/Content";
 import HomeBanner from "@/app/component/HomeBanner";
