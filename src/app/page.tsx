@@ -1,5 +1,5 @@
 import Image from "next/image";
-// import Link from "next/link";
+import Link from "next/link";
 import Header from "@/app/component/Header";
 import Footer from "@/app/component/Footer";
 // import Slider from "@/app/component/Slider";
@@ -23,11 +23,13 @@ export default function Home() {
         img: "/image/savings_14667460.png",
         title: "Gửi tiết kiệm",
         desc: "Gửi tiết kiệm tại quầy, online lãi suất hấp dẫn",
+        link: "/san-pham/tien-gui",
       },
       {
         img: "/image/savings_12515229.png",
         title: "Cho vay",
         desc: "Vay tiêu dùng, sản xuất kinh doanh, cầm cố sổ tiết kiệm nhanh chóng",
+        link: "/san-pham/cho-vay",
       },
       {
         img: "/image/user_3801741.png",
@@ -47,9 +49,9 @@ export default function Home() {
         <Image src={item.img} alt="icon" width={50} height={50} />
         <p className="cont_td mt-2 font-semibold">{item.title}</p>
         <p className="cont_nd flex-1 text-sm mt-1">{item.desc}</p>
-        <button className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl">
-          <a href="#">Xem chi tiết</a>
-        </button>
+        <Link href={item.link || "#"} className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl">
+        Xem chi tiết
+        </Link>
       </div>
     ))}
   </div>
@@ -61,7 +63,7 @@ export default function Home() {
     <p className="cont_td mt-2 font-semibold">Gửi tiết kiệm</p>
     <p className="cont_nd flex-1 text-sm mt-1">Gửi tiết kiệm tại quầy, online lãi suất hấp dẫn</p>
     <button className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl">
-      <a href="#">Xem chi tiết</a>
+      <a href="/san-pham/tien-gui">Xem chi tiết</a>
     </button>
   </div>
    <div className="bg-white h-60 flex flex-col items-center text-center p-4 shadow-md transition-transform duration-300 hover:-translate-y-5">
@@ -69,7 +71,7 @@ export default function Home() {
     <p className="cont_td mt-2 font-semibold">Cho vay</p>
     <p className="cont_nd flex-1 text-sm mt-1">Vay tiêu dùng, sản xuất kinh doanh, cầm cố sổ tiết kiệm nhanh chóng</p>
     <button className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl">
-      <a href="#">Xem chi tiết</a>
+      <a href="/san-pham/cho-vay">Xem chi tiết</a>
     </button>
   </div>
    <div className="bg-white h-60 flex flex-col items-center text-center p-4 shadow-md transition-transform duration-300 hover:-translate-y-5">
