@@ -4,7 +4,6 @@ import Header from "@/app/component/Header";
 import Footer from "@/app/component/Footer";
 // import Slider from "@/app/component/Slider";
 import PartnerSlider from "@/app/component/PartnerSlider";
-import Content from "@/app/component/component/Content";
 import HomeBanner from "@/app/component/HomeBanner";
 import Calculator from "@/app/component/Calculator";
 // import { CheckCircleIcon, ArrowRightIcon } from "lucide-react";
