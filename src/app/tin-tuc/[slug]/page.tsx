@@ -2,7 +2,8 @@ import { getNewsBySlug } from "@/services/news";
 import Image from "next/image";
 
 export default async function NewsDetailPage({ params }: { params: { slug: string } }) {
-  const news = await getNewsBySlug(params.slug);
+  const { slug } = await params;
+  const news = await getNewsBySlug(slug);
 
   if (!news) {
     return <p className="text-center text-gray-500">Không tìm thấy tin tức.</p>;

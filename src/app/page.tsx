@@ -7,7 +7,7 @@ import PartnerSlider from "@/app/component/PartnerSlider";
 import Content from "@/app/component/component/Content";
 import HomeBanner from "@/app/component/HomeBanner";
 import Calculator from "@/app/component/Calculator";
-import { CheckCircleIcon, ArrowRightIcon } from "lucide-react";
+// import { CheckCircleIcon, ArrowRightIcon } from "lucide-react";
 
 export default function Home() {
   return (
@@ -43,7 +43,7 @@ export default function Home() {
     ].map((item, i) => (
       <div
         key={i}
-        className="min-w-[50%] bg-white h-60 flex flex-col items-center text-center p-4 rounded-lg shadow-md transition-transform duration-300 hover:-translate-y-3 snap-start"
+        className="min-w-[50%] bg-white h-60 flex flex-col items-center text-center p-4 shadow-md transition-transform duration-300 hover:-translate-y-3 snap-start"
       >
         <Image src={item.img} alt="icon" width={50} height={50} />
         <p className="cont_td mt-2 font-semibold">{item.title}</p>

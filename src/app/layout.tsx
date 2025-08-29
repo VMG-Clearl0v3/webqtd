@@ -36,14 +36,6 @@ export default function RootLayout({
     <html lang="vi">
       <link rel="icon" href="/image/icon.png" sizes="100x100" />
       <body className="bg-white text-gray-900">{children}
-      {/*<CrispChat />*/}
-      {/* <FloatingSupport
-        hotline="02293.864.329"
-        crispWebsiteId="http://localhost:3000/"  // bỏ nếu chưa dùng Crisp
-        zaloUrl="https://zalo.me/0912345678"   // tuỳ chọn
-        whatsapp="+84912345678"                // tuỳ chọn
-        position="right"                       // hoặc "left"
-      />*/}
          <ScrollToTop />
       </body>
     </html>

@@ -6,7 +6,7 @@ export default async function NewsPage() {
 
   return (
     <div>
-      <NewsList news={news ?? []} />
+      <NewsList news={news} />
     </div>
   );
 }

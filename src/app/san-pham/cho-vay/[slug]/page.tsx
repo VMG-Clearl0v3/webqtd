@@ -1,6 +1,6 @@
 import { getProductBySlug } from "@/services/product";
 import DetailProductHeader from "@/app/component/DetailProductHeader";
-import { CheckCircleIcon, ArrowRightIcon } from "lucide-react";
+// import { CheckCircleIcon, ArrowRightIcon } from "lucide-react";
 
 export default async function LoanProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
