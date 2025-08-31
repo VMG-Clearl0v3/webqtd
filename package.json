@@ -32,7 +32,12 @@
     "tailwindcss": "^4.1.11",
     "typescript": "^5"
   },
-  "scripts": {
-  "postinstall": "prisma generate"
-  }
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint",
+      "postinstall": "prisma generate",
+      "vercel-build": "prisma generate && next build"
+    }
 }
