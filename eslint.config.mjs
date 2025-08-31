@@ -14,3 +14,14 @@ const eslintConfig = [
 ];
 
 export default eslintConfig;
+
+export default [
+  {
+    ignores: [
+      "node_modules",
+      ".next",
+      "prisma",
+      "src/generated", // bỏ qua code auto-generated Prisma
+    ],
+  },
+];

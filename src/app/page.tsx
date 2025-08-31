@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/app/component/Header";
