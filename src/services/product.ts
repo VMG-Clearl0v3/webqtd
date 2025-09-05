@@ -1,52 +1,86 @@
 import { Product } from "@/types/product";
 
-const productList: Product[] = [
-  {
-    id: 1,
-    image: "/image/news_1.jpg",
-    title: "Vay tiêu dùng",
-    slug: "vay-tieu-dung",
-    description: "a",
-    type: "loan",
-  },
-  {
-    id: 2,
-    image: "/image/news_2.jpg",
-    title: "Vay sản xuất kinh doanh",
-    slug: "vay-san-xuat-kinh-doanh",
-    description: "b",
-    type: "loan",
-  },
-    {
-    id: 3,
-    image: "/image/2_9.png",
-    title: "Vay cầm cố sổ tiết kiệm",
-    slug: "vay-cam-co-stk",
-    description: "c",
-    type: "loan",
-  }, 
-  {
-    id: 4,
-    image: "/image/icon.png",
-    title: "Tiền gửi có kỳ hạn",
-    slug: "gui-co-ky-han",
-    description: "d",
-    type: "deposit",
-  }, 
-  {
-    id: 5,
-    image: "/image/footer.png",
-    title: "Tiền gửi không kỳ hạn",
-    slug: "gui-khong-ky-han",
-    description: "e",
-    type: "deposit",
-  }, 
-];
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function getProduct(): Promise<Product[]> {
-  return productList;
+// function parseDescription(desc: any): string {
+//   if (!desc) return "";
+
+//   // nếu là string thì trả về luôn
+//   if (typeof desc === "string") return desc;
+
+//   // nếu là array (Strapi rich text)
+//   if (Array.isArray(desc)) {
+//     return desc.map((block: any) => {
+//       if (block.children) {
+//         return block.children.map((c: any) => c.text || "").join(" ");
+//       }
+//       return "";
+//     }).join("\n"); // nối các paragraph bằng xuống dòng
+//   }
+//   // nếu là object kiểu {type, children}
+//   if (desc.children) {
+//     return desc.children.map((c: any) => c.text || "").join(" ");
+//   }
+//   return "";
+// }
+// Trả về array thay vì string
+function parseDescriptionBlocks(desc: any): string[] {
+  if (!desc) return [];
+
+  if (typeof desc === "string") return [desc];
+
+  if (Array.isArray(desc)) {
+    return desc.map((block: any) => {
+      if (block.children) {
+        return block.children.map((c: any) => c.text || "").join(" ");
+      }
+      return "";
+    }).filter(Boolean); // bỏ block rỗng
+  }
+
+  if (desc.children) {
+    return [desc.children.map((c: any) => c.text || "").join(" ")];
+  }
+
+  return [];
+}
+function getImageUrl(imageData: any): string | null {
+  if (!imageData) return null;
+
+  // Nếu imageData là array (v4 populate) thì lấy phần tử đầu tiên
+  const imgObj = Array.isArray(imageData)
+    ? imageData[0]
+    : imageData;
+
+  const realUrl = imgObj.formats?.large?.url || imgObj.url;
+  return realUrl?.startsWith("http") ? realUrl : `${API_URL}${realUrl}`;
 }
 
-export async function getProductBySlug(slug: string): Promise<Product | undefined> {
-  return productList.find((item) => item.slug === slug);
+export async function getProduct(): Promise<Product[]> {
+  const res = await fetch(`${API_URL}/api/products?populate=*`, { cache: "no-store" });
+  const json = await res.json();
+
+  return json.data.map((item: any) => ({
+      id: item.id,
+      title: item.title,
+      slug: item.slug,
+      description: parseDescriptionBlocks(item.description),
+      image: getImageUrl(item.image),
+      type: item.type,
+  }));
+}
+
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const res = await fetch(`${API_URL}/api/products?filters[slug][$eq]=${slug}&populate=*`, { cache: "no-store" });
+  const json = await res.json();
+  if (!json.data.length) return null;
+  const item = json.data[0];
+  return {
+    id: item.id,
+    title: item.title,
+    slug: item.slug,
+    description: parseDescriptionBlocks(item.description),
+    image: getImageUrl(item.image),
+    type: item.type,
+  };
 }

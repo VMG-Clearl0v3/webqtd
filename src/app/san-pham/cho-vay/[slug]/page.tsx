@@ -111,3 +111,12 @@ export default async function LoanProductDetailPage({ params }: { params: Promis
     </>
   );
 }
+           // {Array.isArray(product.description) ? (
+           //    <ul className="list-disc pl-5 text-sm text-gray-600">
+           //      {product.description.map((para, idx) => (
+           //        <li key={idx}>{para}</li>
+           //      ))}
+           //    </ul>
+           //  ) : (
+           //    <p className="text-sm text-gray-600">{product.description}</p>
+           //  )}
