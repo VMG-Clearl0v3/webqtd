@@ -10,19 +10,25 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 //   const realUrl = imgObj.formats?.large?.url || imgObj.url;
 //   return realUrl?.startsWith("http") ? realUrl : `${API_URL}${realUrl}`;
 // }
-export const getImageUrl = (imageData?: NewsImage[] | NewsImage): string | null => {
+export const getImageUrl = (imageData?: NewsImage[] | NewsImage | { data?: NewsImage[] | NewsImage }): string | null => {
   if (!imageData) return null;
 
-  // Nếu là mảng thì lấy phần tử đầu tiên
-  const imgObj: NewsImage | undefined = Array.isArray(imageData) ? imageData[0] : imageData;
+  let imgObj: NewsImage | undefined;
+
+  if (Array.isArray(imageData)) {
+    imgObj = imageData[0];
+  } else if ("data" in imageData && imageData.data) {
+    imgObj = Array.isArray(imageData.data) ? imageData.data[0] : imageData.data;
+  } else {
+    imgObj = imageData as NewsImage;
+  }
+
   if (!imgObj) return null;
 
-  // Lấy URL ảnh lớn nếu có, fallback về url gốc
   const url = imgObj.formats?.large?.url || imgObj.url;
   if (!url) return null;
 
-  // Nếu url đã full (http/https) → trả luôn
-  return url.startsWith("http") ? url : `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+  return url.startsWith("http") ? url : `${API_URL}${url}`;
 }
 
 export async function getNews(): Promise<News[]> {
@@ -33,7 +39,7 @@ export async function getNews(): Promise<News[]> {
     title: item.title,
     slug: item.slug,
     content: item.content,
-    image: getImageUrl(item.image?.data),
+    image: getImageUrl(item.image),
     date: item.date,
   }));
 }
@@ -47,7 +53,7 @@ export async function getNewsBySlug(slug: string): Promise<News | null> {
     title: item.title,
     slug: item.slug,
     content: item.content,
-    image: getImageUrl(item.image?.data),
+    image: getImageUrl(item.image),
     date: item.date,
   };
 }

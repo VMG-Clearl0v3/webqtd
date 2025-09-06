@@ -14,7 +14,7 @@ export default async function LoanProductDetailPage({ params }: { params: Promis
   const documentItems = product.document?.split('\n').filter(Boolean) || [];
   return (
     <>
-      <DetailProductHeader title={product.title} image={product.image || "image/noimage.jpg"} />
+      <DetailProductHeader title={product.title} image={product.image || "/image/noimage.jpg"} />
         <div className="max-w-6xl mx-auto p-6">
         <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">Chi tiết sản phẩm</h2>
         <div className="text-[#00377B] space-y-8">
