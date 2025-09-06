@@ -40,5 +40,5 @@ export interface News {
   slug: string;
   content: string;
   date: string;
-  image: string;
+  image: string | null;
 }

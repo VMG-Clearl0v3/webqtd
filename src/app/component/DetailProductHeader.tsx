@@ -2,7 +2,7 @@ import Image from "next/image";
 import Header from "@/app/component/Header";
 interface DetailProductHeaderProps {
   title: string;
-  image: string;
+  image: string | null;
 }
 
 export default function DetailProductHeader({title, image}: DetailProductHeaderProps) {

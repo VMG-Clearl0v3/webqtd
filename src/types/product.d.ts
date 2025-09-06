@@ -50,5 +50,5 @@ export interface Product {
   feature: string;
   document: string;
   type: "loan" | "deposit";
-  image: string; // URL hoặc null
+  image: string | null;
 }
