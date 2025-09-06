@@ -27,7 +27,7 @@ export async function getProduct(): Promise<Product[]> {
       condition: item.condition,
       feature: item.feature,
       document: item.document,
-      image: getImageUrl(item.image),
+      image: getImageUrl(item.image?.data),
       type: item.type,
   }));
 }
@@ -43,7 +43,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     condition: item.condition,
     feature: item.feature,
     document: item.document,
-    image: getImageUrl(item.image),
+    image: getImageUrl(item.image?.data),
     type: item.type,
   };
 }

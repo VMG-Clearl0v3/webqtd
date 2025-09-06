@@ -33,7 +33,7 @@ export async function getNews(): Promise<News[]> {
     title: item.title,
     slug: item.slug,
     content: item.content,
-    image: getImageUrl(item.image),
+    image: getImageUrl(item.image?.data),
     date: item.date,
   }));
 }
@@ -47,7 +47,7 @@ export async function getNewsBySlug(slug: string): Promise<News | null> {
     title: item.title,
     slug: item.slug,
     content: item.content,
-    image: getImageUrl(item.image),
+    image: getImageUrl(item.image?.data),
     date: item.date,
   };
 }
