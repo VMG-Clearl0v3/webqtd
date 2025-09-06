@@ -10,7 +10,7 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ slu
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4 text-black">{news.title}</h1>
-      {news.image && <img src={news.image || "/image/noimage.jpg"} alt={news.title} className="mb-4 w-full" />}
+      {news.image && <img src={news.image} alt={news.title} className="mb-4 w-full" />}
       <div className="prose prose-lg max-w-none text-black">
         <ReactMarkdown>{news.content}</ReactMarkdown>
       </div>

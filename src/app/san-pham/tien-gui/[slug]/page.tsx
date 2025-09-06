@@ -12,7 +12,7 @@ export default async function DepositProductDetailPage({ params }: { params: Pro
 
   return (
     <>
-      <DetailProductHeader title={product.title} image={product.image || "/image/noimage.jpg"} />
+      <DetailProductHeader title={product.title} image={product.image} />
         <div className="max-w-6xl mx-auto p-6">
         <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">Chi tiết sản phẩm</h2>
         <div className="text-[#00377B] space-y-8">
