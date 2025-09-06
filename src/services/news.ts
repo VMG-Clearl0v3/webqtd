@@ -10,7 +10,7 @@ function getImageUrl(imageArr: any[]): string | null {
 }
 
 export async function getNews(): Promise<News[]> {
-  const res = await fetch(`${API_URL}/api/news?populate=*`, { cache: 'no-store' });
+  const res = await fetch(`${API_URL}/api/news?populate=*&sort[0]=date:desc`, { cache: 'no-store' });
   const json = await res.json();
   return json.data.map((item: any) => ({
     id: item.id,

@@ -9,7 +9,9 @@ export default async function LoanProductDetailPage({ params }: { params: Promis
   if (!product) {
     return <p className="text-center text-gray-500">Không tìm thấy sản phẩm cho vay.</p>;
   }
-
+  const conditionItems = product.condition?.split('\n').filter(Boolean) || [];
+  const featureItems = product.feature?.split('\n').filter(Boolean) || [];
+  const documentItems = product.document?.split('\n').filter(Boolean) || [];
   return (
     <>
       <DetailProductHeader title={product.title} image={product.image} />
@@ -33,15 +35,9 @@ export default async function LoanProductDetailPage({ params }: { params: Promis
         <h1 className="text-2xl font-semibold">Điều kiện vay vốn</h1>
         </div>
         <ul className="text-lg list-disc pl-6 space-y-2">
-        <li>
-          Có hộ khẩu thường trú trên địa bàn phường Trung Sơn: Là thành viên của
-          QTD Trung Sơn, góp vốn cổ phần xác lập và thường niên theo quy định của
-          Quỹ, đủ năng lực pháp luật, năng lực hành vi dân sự.
-        </li>
-        <li>
-          Có tài sản thế chấp, có khả năng tài chính, có mục đích vay vốn hợp
-          pháp, có phương án sử dụng vốn khả thi.
-        </li>
+          {conditionItems.map((item, idx) => (
+          <li key={idx}>{item}</li>
+          ))}
         </ul>
         </div>
 
@@ -62,17 +58,9 @@ export default async function LoanProductDetailPage({ params }: { params: Promis
         <h1 className="text-2xl font-semibold">Tính năng</h1>
         </div>
         <ul className="text-lg list-disc pl-6 space-y-2">
-        <li>
-            Vay xây nhà, nâng cấp sửa chữa nhà ở, mua đồ dùng trang thiết bị gia
-          đình, mua sắm phương tiện đi lại.
-        </li>
-        <li>
-          Mức cho vay: Tối đa 70% Giá trị tài sản và theo tỷ lệ quy định của QTD
-          Trung Sơn
-        </li>
-        <li>
-          Thời hạn cho vay: Tối đa 3 năm
-        </li>
+          {featureItems.map((item, idx) => (
+          <li key={idx}>{item}</li>
+          ))}
         </ul>
         </div>
            {/* Hồ sơ thủ tục*/}
@@ -92,18 +80,9 @@ export default async function LoanProductDetailPage({ params }: { params: Promis
         <h1 className="text-2xl font-semibold">Hồ sơ thủ tục</h1>
         </div>
         <ul className="text-lg list-disc pl-6 space-y-2">
-        <li>
-          Hồ sơ pháp lý: Căn cước công dân; Thông tin nơi cư trú; Đăng ký kết hôn/Giấy xác nhận tình trạng hôn nhân
-        </li>
-        <li>
-          Hồ sơ tài sản đảm bảo: Giấy chứng nhận quyền sử dụng đất
-        </li>
-        <li>
-          Hồ sơ chứng minh tài chính: Bảng lương, Sao kê lương
-        </li>
-        <li>
-          Hồ sơ khác: Hóa đơn mua hàng, Hợp đồng mua xe, Các giấy phép khác theo quy định,...
-        </li>
+          {documentItems.map((item, idx) => (
+          <li key={idx}>{item}</li>
+          ))}
         </ul>
         </div>
         </div>
@@ -111,12 +90,3 @@ export default async function LoanProductDetailPage({ params }: { params: Promis
     </>
   );
 }
-           // {Array.isArray(product.description) ? (
-           //    <ul className="list-disc pl-5 text-sm text-gray-600">
-           //      {product.description.map((para, idx) => (
-           //        <li key={idx}>{para}</li>
-           //      ))}
-           //    </ul>
-           //  ) : (
-           //    <p className="text-sm text-gray-600">{product.description}</p>
-           //  )}

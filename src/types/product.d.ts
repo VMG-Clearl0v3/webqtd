@@ -4,5 +4,8 @@ export interface Product {
   slug: string;
   description: string;
   image: string;
+  condition: string;
+  feature: string;
+  document: string;
   type: "loan" | "deposit"; // phân loại
 }
