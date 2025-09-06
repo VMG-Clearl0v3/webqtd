@@ -1,14 +1,28 @@
-import { Product } from "@/types/product";
+// import { Product } from "@/types/product";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+// const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function getImageUrl(imageData: unknown): string {
-  if (!imageData) return "";
-  const imgObj = Array.isArray(imageData)
-    ? imageData[0]
-    : imageData;
-  const realUrl = imgObj.formats?.large?.url || imgObj.url;
-  return realUrl?.startsWith("http") ? realUrl : `${API_URL}${realUrl}`;
+// function getImageUrl(imageData: unknown): string {
+//   if (!imageData) return "";
+//   const imgObj = Array.isArray(imageData)
+//     ? imageData[0]
+//     : imageData;
+//   const realUrl = imgObj.formats?.large?.url || imgObj.url;
+//   return realUrl?.startsWith("http") ? realUrl : `${API_URL}${realUrl}`;
+// }
+import { Product, StrapiImageItem } from "@/types/product";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
+
+export function getImageUrl(image: StrapiImageItem | null | undefined): string {
+  if (!image) return "";
+  const url =
+    image.formats?.large?.url ??
+    image.formats?.medium?.url ??
+    image.formats?.small?.url ??
+    image.formats?.thumbnail?.url ??
+    image.url;
+  return url.startsWith("http") ? url : `${API_URL}${url}`;
 }
 export async function getProduct(): Promise<Product[]> {
   const res = await fetch(`${API_URL}/api/products?populate=*`, { cache: "no-store" });

@@ -1,9 +1,9 @@
-import { News } from "@/types/news";
+import { News, StrapiImageItem } from "@/types/news";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-function getImageUrl(imageArr: News["image"]): string {
+const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
+
+function getImageUrl(imageArr: StrapiImageItem[] | null | undefined): string {
   if (!imageArr || imageArr.length === 0) return "";
-  // ví dụ lấy bản large nếu có, nếu không lấy url gốc
   const img = imageArr[0];
   const url = img.formats?.large?.url ?? img.formats?.medium?.url ?? img.formats?.small?.url ?? img.formats?.thumbnail?.url ?? "";
   return url.startsWith("http") ? url : `${API_URL}${url}`;
