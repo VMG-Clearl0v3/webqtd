@@ -1,12 +1,14 @@
-import { News, StrapiImageItem } from "@/types/news";
+import { News } from "@/types/news";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function getImageUrl(imageArr: StrapiImageItem[] | null | undefined): string {
-  if (!imageArr || imageArr.length === 0) return "";
-  const img = imageArr[0];
-  const url = img.formats?.large?.url ?? img.formats?.medium?.url ?? img.formats?.small?.url ?? img.formats?.thumbnail?.url ?? "";
-  return url.startsWith("http") ? url : `${API_URL}${url}`;
+function getImageUrl(imageData: unknown): string {
+  if (!imageData) return "";
+  const imgObj = Array.isArray(imageData)
+    ? imageData[0]
+    : imageData;
+  const realUrl = imgObj.formats?.large?.url || imgObj.url;
+  return realUrl?.startsWith("http") ? realUrl : `${API_URL}${realUrl}`;
 }
 
 export async function getNews(): Promise<News[]> {

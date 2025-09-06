@@ -7,7 +7,7 @@ export default function ProductCard({ product }: { product: Product }) {
     <div className="bg-white border rounded-sm shadow hover:shadow-md transition">
       <Link href={`/san-pham/${product.type === "loan" ? "cho-vay" : "tien-gui"}/${product.slug}`}>
         <Image
-        src={product.image}
+        src={product.image || "/image/noimage.jpg"}
         alt={product.title}
         width={400} 
         height={160} 
