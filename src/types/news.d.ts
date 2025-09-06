@@ -1,6 +1,6 @@
 export interface News {
   id: number;
-  image: string;
+  image: string | null;
   title: string;
   slug: string;
   content: string;
