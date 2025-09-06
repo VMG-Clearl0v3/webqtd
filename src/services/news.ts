@@ -1,14 +1,7 @@
 import { News } from "@/types/news";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// function getImageUrl(imageArr: any[]): string | null {
-//   if (!imageArr || !Array.isArray(imageArr) || imageArr.length === 0) return null;
-//   const img = imageArr[0];
-//   const url = img.url?.startsWith("https") ? img.url : `${API_URL}${img.url}`;
-//   return url;
-// }
-function getImageUrl(imageArr: News["image"]): string | null {
+function getImageUrl(imageArr: News["image"]): string {
   if (!imageArr || imageArr.length === 0) return null;
   // ví dụ lấy bản large nếu có, nếu không lấy url gốc
   const img = imageArr[0];
@@ -42,12 +35,3 @@ export async function getNewsBySlug(slug: string): Promise<News | null> {
     date: item.date,
   };
 }
-
-// export async function getNews(): Promise<News[]> {
-//   return newsList;
-// }
-
-// export async function getNewsBySlug(slug: string): Promise<News | undefined> {
-//   return newsList.find((item) => item.slug === slug);
-// }
-

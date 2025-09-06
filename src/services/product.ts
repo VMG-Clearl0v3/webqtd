@@ -2,7 +2,7 @@ import { Product } from "@/types/product";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function getImageUrl(imageData: unknown): string | null {
+function getImageUrl(imageData: unknown): string {
   if (!imageData) return null;
   const imgObj = Array.isArray(imageData)
     ? imageData[0]

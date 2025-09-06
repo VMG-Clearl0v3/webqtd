@@ -8,12 +8,20 @@ export default function NewsCard({ news }: { news: News }) {
     <div className="bg-white w-full border rounded-sm shadow-md hover:shadow-lg transition group">
       <div className="relative h-48 w-full overflow-hidden">
         <Link href={`/tin-tuc/${news.slug}`}>
-          <Image
+          {/*<Image
             src={news.image}
             alt={news.title}
             fill
             className="object-cover rounded-t-sm transition-transform duration-300 group-hover:scale-105"
+          />*/}
+          {news.image && (
+          <Image
+          src={news.image}
+          alt={news.title}
+          fill
+          className="object-cover rounded-t-sm transition-transform duration-300 group-hover:scale-105"
           />
+          )}
         </Link>
       </div>
 

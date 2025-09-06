@@ -3,7 +3,7 @@ export interface Product {
   title: string;
   slug: string;
   description: string;
-  image: string | null;
+  image: string;
   condition: string;
   feature: string;
   document: string;
