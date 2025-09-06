@@ -30,7 +30,6 @@ export interface RawProduct {
   id: number;
   title: string;
   slug: string;
-  description: string;
   condition: string;
   feature: string;
   document: string;
@@ -45,7 +44,6 @@ export interface Product {
   id: number;
   title: string;
   slug: string;
-  description: string;
   condition: string;
   feature: string;
   document: string;
