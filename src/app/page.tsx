@@ -5,7 +5,7 @@ import Footer from "@/app/component/Footer";
 import PartnerSlider from "@/app/component/PartnerSlider";
 import HomeBanner from "@/app/component/HomeBanner";
 import Calculator from "@/app/component/Calculator";
-// import { CheckCircleIcon, ArrowRightIcon } from "lucide-react";
+import NewsSection from "@/app/component/news/NewsSection";
 
 export default function Home() {
   return (
@@ -161,13 +161,12 @@ export default function Home() {
         </Link>
         </div>
         </div>
-        <div className=" flex gap-4 mt-6 overflow-x-auto scrollbar-hide
+{/*        <div className=" flex gap-4 mt-6 overflow-x-auto scrollbar-hide
           snap-x snap-mandatory
           sm:flex-row sm:flex-nowrap
           lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none">
         <div className="min-w-[80%] sm:min-w-[60%] lg:min-w-0 bg-white col-span-2 shadow-lg rounded-2xl overflow-hidden hover:shadow-xl snap-start">
         <div className="relative ww-full h-full group cursor-pointer">
-        {/* Ảnh */}
         <Image
         src="/image/2_9.png"
         alt="Ảnh minh họa"
@@ -176,7 +175,6 @@ export default function Home() {
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
         className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        {/* Tiêu đề */}
         <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white py-2 px-3 text-sm sm:text-base md:text-lg font-semibold transition-colors duration-300">
         Đây là tiêu đề
         </div>
@@ -216,7 +214,8 @@ export default function Home() {
           </div>
         </div>
       ))}
-        </div>
+        </div>*/}
+      <NewsSection />
   </div>
       <PartnerSlider/>
     </main>

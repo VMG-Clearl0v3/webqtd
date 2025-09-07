@@ -4,16 +4,17 @@ import { Product } from "@/types/product";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="bg-white border rounded-sm shadow hover:shadow-md transition">
-      <Link href={`/san-pham/${product.type === "loan" ? "cho-vay" : "tien-gui"}/${product.slug}`}>
+    <div className="bg-white w-full rounded-sm shadow hover:shadow-md transition group">
+      <div className="relative h-48 w-full overflow-hidden rounded-t-sm">
+      <Link className="block h-full" href={`/san-pham/${product.type === "loan" ? "cho-vay" : "tien-gui"}/${product.slug}`}>
         <Image
         src={product.image || "/image/noimage.jpg"}
         alt={product.title}
-        width={400} 
-        height={160} 
-        className="w-full h-50 object-cover rounded-t-sm"
+        fill
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </Link>
+      </div>
       <div className="p-4">
         <Link href={`/san-pham/${product.type === "loan" ? "cho-vay" : "tien-gui"}/${product.slug}`}>
         <h3 className="text-lg font-semibold text-gray-800 line-clamp-2 mb-3">{product.title}</h3>

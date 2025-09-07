@@ -24,7 +24,7 @@ export const getImageUrl = (imageData?: ProductImage[] | ProductImage | { data?:
 }
 
 export async function getProduct(): Promise<Product[]> {
-  const res = await fetch(`${API_URL}/api/products?populate=*`, { cache: "no-store" });
+  const res = await fetch(`${API_URL}/api/products?populate=*`, {next:{revalidate: 60 }});
   const json: { data: RawProduct[] } = await res.json();
   return json.data.map((item: RawProduct) => ({
       id: item.id,
@@ -38,7 +38,7 @@ export async function getProduct(): Promise<Product[]> {
   }));
 }
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  const res = await fetch(`${API_URL}/api/products?filters[slug][$eq]=${slug}&populate=*`, { cache: "no-store" });
+  const res = await fetch(`${API_URL}/api/products?filters[slug][$eq]=${slug}&populate=*`, {next:{revalidate: 60 }});
   const json: { data: RawProduct[] } = await res.json();
   if (json.data.length === 0) return null;
   const item: RawProduct = json.data[0];

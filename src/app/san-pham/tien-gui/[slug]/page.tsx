@@ -9,7 +9,9 @@ export default async function DepositProductDetailPage({ params }: { params: Pro
   if (!product) {
     return <p className="text-center text-gray-500">Không tìm thấy sản phẩm tiết kiệm.</p>;
   }
-
+  const conditionItems = product.condition?.split('\n').filter(Boolean) || [];
+  const featureItems = product.feature?.split('\n').filter(Boolean) || [];
+  const documentItems = product.document?.split('\n').filter(Boolean) || [];
   return (
     <>
       <DetailProductHeader title={product.title} image={product.image || "/image/noimage.jpg"} />
@@ -30,21 +32,12 @@ export default async function DepositProductDetailPage({ params }: { params: Pro
           <path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625Z" />
           <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
         </svg>
-        <h1 className="text-2xl font-semibold">Lợi ích đối với khách hàng</h1>
+        <h1 className="text-2xl font-semibold">Điều kiện vay vốn</h1>
         </div>
         <ul className="text-lg list-disc pl-6 space-y-2">
-        <li>
-          Được gửi thêm hoặc rút tiền trong giờ giao dịch của QTD Trung Sơn trừ ngày nghỉ T7,CN và ngày lễ
-        </li>
-        <li>
-          Được bảo hiểm tiền gửi
-        </li>
-        <li>
-          Được sử dụng để cầm cố vay vốn tại QTD Trung Sơn
-        </li>
-        <li>
-          Được bảo mật thông tin
-        </li>
+          {conditionItems.map((item, idx) => (
+          <li key={idx}>{item}</li>
+          ))}
         </ul>
         </div>
 
@@ -65,15 +58,9 @@ export default async function DepositProductDetailPage({ params }: { params: Pro
         <h1 className="text-2xl font-semibold">Tính năng</h1>
         </div>
         <ul className="text-lg list-disc pl-6 space-y-2">
-        <li>
-          Loại tiền huy động: VND
-        </li>
-        <li>
-          Kỳ hạn: Từ 01 tháng đến 36 tháng
-        </li>
-        <li>
-          Lãi suất: Theo quy định của QTD Trung Sơn theo từng thời điểm
-        </li>
+          {featureItems.map((item, idx) => (
+          <li key={idx}>{item}</li>
+          ))}
         </ul>
         </div>
            {/* Hồ sơ thủ tục*/}
@@ -93,9 +80,9 @@ export default async function DepositProductDetailPage({ params }: { params: Pro
         <h1 className="text-2xl font-semibold">Hồ sơ thủ tục</h1>
         </div>
         <ul className="text-lg list-disc pl-6 space-y-2">
-        <li>
-          Căn cước công dân còn hiệu lực
-        </li>
+          {documentItems.map((item, idx) => (
+          <li key={idx}>{item}</li>
+          ))}
         </ul>
         </div>
         </div>

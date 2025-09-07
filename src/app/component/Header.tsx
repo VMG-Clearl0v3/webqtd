@@ -32,12 +32,12 @@ export default function Header() {
       animate={{ 
         y: 0, 
         opacity: 1, 
-        backgroundColor: isScrolled ? "rgba(255,255,255,1)" : "rgba(0,0,0,0.3)",
+        backgroundColor: isScrolled ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.3)",
         width: isScrolled ? "100%" : "95%",
         borderRadius: isScrolled ? "0px" : "12px",
         boxShadow: isScrolled ? "0 4px 20px rgba(0,0,0,0.1)" : "0px 0px 0px transparent",
-        paddingTop: isScrolled ? "0.5rem" : "1rem",
-        paddingBottom: isScrolled ? "0.5rem" : "1rem",
+        // paddingTop: isScrolled ? "0.5rem" : "1rem",
+        // paddingBottom: isScrolled ? "0.5rem" : "1rem",
         top: isScrolled ? 0 : 10,
       }}
       transition={{ duration: 0}}

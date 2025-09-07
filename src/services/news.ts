@@ -32,7 +32,7 @@ export const getImageUrl = (imageData?: NewsImage[] | NewsImage | { data?: NewsI
 }
 
 export async function getNews(): Promise<News[]> {
-  const res = await fetch(`${API_URL}/api/news?populate=*&sort[0]=date:desc`, { cache: 'no-store' });
+  const res = await fetch(`${API_URL}/api/news?populate=*&sort[0]=date:desc`,{next:{revalidate: 60 }});
   const json: { data: RawNews[] } = await res.json();
   return json.data.map((item: RawNews) => ({
     id: item.id,
@@ -44,7 +44,7 @@ export async function getNews(): Promise<News[]> {
   }));
 }
 export async function getNewsBySlug(slug: string): Promise<News | null> {
-  const res = await fetch(`${API_URL}/api/news?filters[slug][$eq]=${slug}&populate=*`, { cache: 'no-store' });
+  const res = await fetch(`${API_URL}/api/news?filters[slug][$eq]=${slug}&populate=*`, {next:{revalidate: 60 }});
   const json: { data: RawNews[] } = await res.json();
   if (json.data.length === 0) return null;
   const item: RawNews = json.data[0];
@@ -56,4 +56,20 @@ export async function getNewsBySlug(slug: string): Promise<News | null> {
     image: getImageUrl(item.image),
     date: item.date,
   };
+}
+export async function getLastNews(limit = 3): Promise<News[]> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/news?populate=*&sort[0]=date:desc&pagination[limit]=${limit}`,
+    { next: { revalidate: 60 } } 
+  );
+  if (!res.ok) throw new Error("Lỗi lấy tin tức");
+  const json: { data: RawNews[] } = await res.json();
+  return json.data.map((item: RawNews) => ({
+    id: item.id,
+    title: item.title,
+    slug: item.slug,
+    content: item.content,
+    image: getImageUrl(item.image),
+    date: item.date,
+  }));
 }

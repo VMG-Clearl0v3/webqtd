@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
      <footer>
-      <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white py-12 px-6 transition duration-300">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-sm ">
+      <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white py-6 px-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-sm">
         
         {/* Cột 1 */}
         <div>
@@ -16,6 +17,7 @@ export default function Footer() {
 
           <p className="pl-2">37 Ngô Thì Nhậm, P.Trung Sơn, Ninh Bình</p>
           </div>
+
           <div className="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" width="15" height="15">
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
               </svg>
@@ -43,15 +45,15 @@ export default function Footer() {
         <div>
           <h4 className="font-bold">SẢN PHẨM & DỊCH VỤ</h4>
           <ul className="list-disc ml-4">
-            <li>Gửi tiết kiệm</li>
-            <li>Cho vay</li>
+            <li><Link href="/san-pham/tien-gui">Gửi tiết kiệm</Link></li>
+            <li><Link href="/san-pham/cho-vay">Cho vay</Link></li>
             <li>Mở tài khoản</li>
             <li>Chuyển tiền trong nước</li>
           </ul>
         </div>
 
         {/* Cột 3 */}
-        <div>
+{/*        <div>
           <h4 className="font-bold">HỖ TRỢ KHÁCH HÀNG</h4>
           <ul className="list-disc ml-4">
             <li>Câu hỏi thường gặp</li>
@@ -59,12 +61,12 @@ export default function Footer() {
             <li>Biểu phí</li>
             <li>Liên hệ hỗ trợ</li>
           </ul>
-        </div>
+        </div>*/}
 
         {/* Cột 4 - Mạng xã hội */}
         <div>
-          <h4 className="font-bold mb-2">KẾT NỐI</h4>
-          <div className="flex gap-4 mt-3">
+          <h4 className="font-bold">KẾT NỐI</h4>
+          <div className="flex gap-4 mt-2">
             <a
               href="#"
               className="hover:text-blue-400 transition-all duration-300 transform hover:scale-125"
