@@ -13,11 +13,15 @@ export default function NewsList({
   initialTotalPages: number;
 }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [news, setNews] = useState(initialNews);
+  const [news, setNews] = useState<News[]>(initialNews);
   const [totalPages, setTotalPages] = useState(initialTotalPages);
 
   useEffect(() => {
-    if (currentPage === 1) return; // page 1 có sẵn
+    if (currentPage === 1) {
+      setNews(initialNews);
+      setTotalPages(initialTotalPages);
+      return;
+    }
     async function loadNews() {
       try {
         const { news, totalPages } = await getNews(currentPage, 6);
@@ -28,7 +32,7 @@ export default function NewsList({
       }
     }
     loadNews();
-  }, [currentPage]);
+  }, [currentPage,initialNews,initialTotalPages]);
 
   return (
     <div className="max-w-7xl mx-auto p-6">
