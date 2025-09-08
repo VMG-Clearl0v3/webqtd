@@ -9,7 +9,7 @@ import NewsSection from "@/app/component/news/NewsSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
     <Header/>
     <HomeBanner/>
     <main>
@@ -114,7 +114,7 @@ export default function Home() {
                 ].map(([term, year, month], idx) => (
                   <tr
                     key={idx}
-                    className="text-center text-[#00377B] hover:bg-blue-50 transition"
+                    className="text-center text-[#00377B] hover:bg-blue-100 transition"
                   >
                     <td className="py-3 px-4">{term}</td>
                     <td className="py-3 px-4">{year}</td>
@@ -129,6 +129,7 @@ export default function Home() {
       {/* Công cụ tính lãi */}
     <Calculator/>
     </div>
+    <h3 className="text-sm text-[#00377B] p-2">*Lưu ý: Bảng lãi suất chỉ mang tính chất tham khảo. Lãi được tính trên số ngày thực thế và cơ sở tính lãi là 365 ngày.</h3>
   </div>
 
   <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">

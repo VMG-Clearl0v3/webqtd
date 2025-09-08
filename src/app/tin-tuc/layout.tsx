@@ -3,7 +3,7 @@ import NewsHeader from "@/app/component/NewsHeader";
 
 export default function NewsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-white min-h-screen">
       {/* Header riêng cho tin tức */}
       <NewsHeader/>
       {/* Nội dung tin tức */}
