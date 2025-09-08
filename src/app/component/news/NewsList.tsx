@@ -1,31 +1,47 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "@/app/component/Pagination";
 import NewsCard from "./NewsCard";
 import { News } from "@/types/news";
+import { getNews } from "@/services/news";
 
-export default function NewsList({ news = [] }: { news?: News[] }) {
+export default function NewsList({
+  initialNews = [],
+  initialTotalPages = 1,
+}: {
+  initialNews: News[];
+  initialTotalPages: number;
+}) {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const [news, setNews] = useState(initialNews);
+  const [totalPages, setTotalPages] = useState(initialTotalPages);
 
-  if (!news || news.length === 0) {
-    return <p className="text-center text-gray-500">Không có tin tức nào.</p>;
-  }
-
-  const totalPages = Math.ceil(news.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentNews = news.slice(startIndex, startIndex + itemsPerPage);
+  useEffect(() => {
+    if (currentPage === 1) return; // page 1 có sẵn
+    async function loadNews() {
+      try {
+        const { news, totalPages } = await getNews(currentPage, 6);
+        setNews(news);
+        setTotalPages(totalPages);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    loadNews();
+  }, [currentPage]);
 
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
         Tin tức & Sự kiện
       </h2>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentNews.map((item) => (
+        {news.map((item) => (
           <NewsCard key={item.id} news={item} />
         ))}
       </div>
+
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
