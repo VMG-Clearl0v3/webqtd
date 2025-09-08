@@ -3,17 +3,20 @@ import NewsList from "@/app/component/news/NewsList";
 import { News } from "@/types/news";
 
 interface NewsPageProps {
-  searchParams?: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 }
 
 export default async function NewsPage({ searchParams }: NewsPageProps) {
-  const currentPage = searchParams?.page ? parseInt(searchParams.page) : 1;
+  const resolvedSearchParams = await searchParams;
+  const currentPage = resolvedSearchParams?.page
+    ? parseInt(resolvedSearchParams.page)
+    : 1;
 
   const { news, totalPages } = await getNews(currentPage, 6);
 
   return (
     <NewsList
-      initialNews={news as News[]}
+      initialNews={news}
       totalPages={totalPages}
       initialPage={currentPage}
     />
