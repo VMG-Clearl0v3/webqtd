@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 export default function Calculator() {
    const LAI_SUAT = [
-    { term: "Không kỳ hạn", months: 0, yearRate: 0.2 },
     { term: "1 tháng", months: 1, yearRate: 1.7 },
     { term: "3 tháng", months: 3, yearRate: 2 },
     { term: "6 tháng", months: 6, yearRate: 3.5 },
@@ -38,7 +37,7 @@ export default function Calculator() {
 <div className="p-6 space-y-6">
   {/* Số tiền gửi */}
   <div>
-    <label className="block mb-2 text-[#00377B] text-lg font-semibold">Số tiền bạn muốn gửi</label>
+    <label className="block mb-2 text-[#00377B] font-medium">Số tiền bạn muốn gửi</label>
     <div className="relative">
       <input
         type="text"
@@ -62,6 +61,8 @@ export default function Calculator() {
   </div>
 
 {/* Kỳ hạn */}
+<div>
+   <label className="block mb-2 text-[#00377B] font-medium">Kỳ hạn (tháng)</label>
   <div className="relative">
     <select
       value={selectedTerm.months}
@@ -84,7 +85,7 @@ export default function Calculator() {
       ▼
     </span>
   </div>
-
+</div>
   {/* Lãi suất tự động hiển thị */}
   <div>
     <label className="block mb-2 text-[#00377B] font-medium">
@@ -100,35 +101,17 @@ export default function Calculator() {
       </span>
     </div>
   </div>
-
-  {/* Kết quả */}
-{/*  {ketQua !== null && (
-    <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4 shadow-inner animate-fadeIn">
-      <p className="text-[#00377B] text-lg font-semibold mb-2">
-        Tiền lãi sau {selectedTerm.months} tháng:{" "}
-        <span className="font-bold text-green-500">
-         {Math.round(ketQua).toLocaleString("vi-VN")} VND
-        </span>
-      </p>
-      <p className="text-[#00377B] text-lg font-semibold">
-         Tổng nhận:{" "}
-        <span className="font-bold text-green-500">
-          {Math.round(soTien+ketQua).toLocaleString("vi-VN")} VND
-        </span>
-      </p>
-    </div>
-  )}*/}
   {ketQua !== null && (
   <div className="bg-blue-50 mt-8 rounded-2xl p-3 shadow-inner">
     <div className="grid gap-3">
       <div className="flex justify-between items-center">
-        <span className="text-[#00377B] text-lg">Tiền lãi sau {selectedTerm.months} tháng:</span>
+        <span className="text-[#00377B] text-lg">Số tiền lãi:</span>
         <span className="text-green-700 text-lg font-bold">
           {Math.round(ketQua).toLocaleString("vi-VN")} VND
         </span>
       </div>
       <div className="flex justify-between items-center">
-        <span className="text-[#00377B] text-lg">Tổng nhận:</span>
+        <span className="text-[#00377B] text-lg">Tổng tiền nhận:</span>
         <span className="text-green-700 text-lg font-bold">
           {Math.round(soTien + ketQua).toLocaleString("vi-VN")} VND
         </span>
