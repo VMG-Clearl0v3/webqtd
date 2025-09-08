@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -44,6 +43,7 @@ export default function NewsList({ initialNews, totalPages, initialPage }: NewsL
       setCurrentPage(pageNumber);
       fetchPage(pageNumber);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const pagesToShow = getPageRange(currentPage, totalPages, 5);
@@ -74,7 +74,6 @@ export default function NewsList({ initialNews, totalPages, initialPage }: NewsL
         </motion.div>
       </AnimatePresence>
 
-      {/* Pagination nâng cao */}
       <div className="flex justify-center items-center gap-2 py-6 flex-wrap">
         {currentPage > 1 && (
           <button
@@ -87,10 +86,7 @@ export default function NewsList({ initialNews, totalPages, initialPage }: NewsL
 
         {pagesToShow[0] > 1 && (
           <>
-            <button
-              onClick={() => handlePageChange(1)}
-              className="px-4 py-2 rounded-sm font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition"
-            >
+            <button onClick={() => handlePageChange(1)} className="px-4 py-2 rounded-sm font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition">
               1
             </button>
             {pagesToShow[0] > 2 && <span className="px-2">...</span>}
@@ -114,10 +110,7 @@ export default function NewsList({ initialNews, totalPages, initialPage }: NewsL
         {pagesToShow[pagesToShow.length - 1] < totalPages && (
           <>
             {pagesToShow[pagesToShow.length - 1] < totalPages - 1 && <span className="px-2">...</span>}
-            <button
-              onClick={() => handlePageChange(totalPages)}
-              className="px-4 py-2 rounded-sm font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition"
-            >
+            <button onClick={() => handlePageChange(totalPages)} className="px-4 py-2 rounded-sm font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition">
               {totalPages}
             </button>
           </>
