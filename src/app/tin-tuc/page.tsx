@@ -1,12 +1,16 @@
 import { getNews } from "@/services/news";
 import NewsList from "@/app/component/news/NewsList";
 
-export default async function NewsPage() {
-  const { news, totalPages } = await getNews(1, 6);
+export default async function NewsPage({ searchParams }: { searchParams: { page?: string } }) {
+  const page = Number(searchParams.page) || 1;
+
+  const { news, totalPages } = await getNews(page, 6);
 
   return (
-    <div>
-      <NewsList initialNews={news} initialTotalPages={totalPages} />
-    </div>
+    <NewsList
+      news={news}
+      totalPages={totalPages}
+      currentPage={page}
+    />
   );
 }

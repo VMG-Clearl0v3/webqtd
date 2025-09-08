@@ -5,9 +5,10 @@ import Pagination from "@/app/component/Pagination";
 import NewsCard from "./NewsCard";
 import { News } from "@/types/news";
 import { getNews } from "@/services/news";
+import { usePathname, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
-
-// export default function NewsList({
+//  export default function NewsList({
 //   initialNews = [],
 //   initialTotalPages = 1,
 // }: {
@@ -20,6 +21,10 @@ import { getNews } from "@/services/news";
 //   const [loading, setLoading] = useState(false);
 
 //   useEffect(() => {
+//     // luôn cuộn lên top khi đổi page
+//     window.scrollTo({ top: 0, behavior: "smooth" });
+
+//     // page 1 thì dùng dữ liệu ban đầu
 //     if (currentPage === 1) {
 //       setNews(initialNews);
 //       setTotalPages(initialTotalPages);
@@ -28,8 +33,8 @@ import { getNews } from "@/services/news";
 //     }
 
 //     async function loadNews() {
+//       setLoading(true);
 //       try {
-//         setLoading(true);
 //         const { news, totalPages } = await getNews(currentPage, 6);
 //         setNews(news);
 //         setTotalPages(totalPages);
@@ -43,34 +48,34 @@ import { getNews } from "@/services/news";
 //     loadNews();
 //   }, [currentPage, initialNews, initialTotalPages]);
 
-//   useEffect(() => {
-//     if (currentPage > 1) {
-//       window.scrollTo({ top: 0, behavior: "smooth" });
-//     }
-//   }, [currentPage]);
-
-//   // Skeleton giống NewsCard
-//   const SkeletonCard = () => (
-//     <div className="animate-pulse rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-//       <div className="bg-gray-200 h-40 w-full" /> {/* image placeholder */}
-//       <div className="p-4 space-y-2">
-//         <div className="h-4 bg-gray-200 rounded w-3/4" /> {/* title */}
-//         <div className="h-3 bg-gray-200 rounded w-full" /> {/* line 1 */}
-//       </div>
-//     </div>
-//   );
-
 //   return (
 //     <div className="max-w-7xl mx-auto p-6">
 //       <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
 //         Tin tức & Sự kiện
 //       </h2>
 
-//       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-//         {loading
-//           ? Array.from({ length: 6 }).map((_, idx) => <SkeletonCard key={idx} />)
-//           : news.map((item) => <NewsCard key={item.id} news={item} />)}
-//       </div>
+//       {/* danh sách tin tức */}
+//       <AnimatePresence mode="wait">
+//         <motion.div
+//           key={currentPage} // quan trọng để AnimatePresence hiểu page thay đổi
+//           initial={{ opacity: 0, y: 10 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           exit={{ opacity: 0, y: -10 }}
+//           transition={{ duration: 0.3 }}
+//           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+//         >
+//           {loading
+//             ? Array.from({ length: 6 }).map((_, idx) => (
+//                 <div
+//                   key={idx}
+//                   className="h-48 bg-gray-100 animate-pulse rounded-xl"
+//                 />
+//               ))
+//             : news.map((item) => (
+//                 <NewsCard key={item.id} news={item} />
+//               ))}
+//         </motion.div>
+//       </AnimatePresence>
 
 //       <Pagination
 //         currentPage={currentPage}
@@ -80,45 +85,23 @@ import { getNews } from "@/services/news";
 //     </div>
 //   );
 // }
- export default function NewsList({
-  initialNews = [],
-  initialTotalPages = 1,
+export default function NewsList({
+  news,
+  totalPages,
+  currentPage,
+  loading = false,
 }: {
-  initialNews: News[];
-  initialTotalPages: number;
+  news: News[];
+  totalPages: number;
+  currentPage: number;
+  loading?: boolean;
 }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [news, setNews] = useState<News[]>(initialNews);
-  const [totalPages, setTotalPages] = useState(initialTotalPages);
-  const [loading, setLoading] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    // luôn cuộn lên top khi đổi page
     window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // page 1 thì dùng dữ liệu ban đầu
-    if (currentPage === 1) {
-      setNews(initialNews);
-      setTotalPages(initialTotalPages);
-      setLoading(false);
-      return;
-    }
-
-    async function loadNews() {
-      setLoading(true);
-      try {
-        const { news, totalPages } = await getNews(currentPage, 6);
-        setNews(news);
-        setTotalPages(totalPages);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadNews();
-  }, [currentPage, initialNews, initialTotalPages]);
+  }, [pathname, searchParams]); // chạy lại khi URL đổi
 
   return (
     <div className="max-w-7xl mx-auto p-6">
@@ -126,10 +109,14 @@ import { getNews } from "@/services/news";
         Tin tức & Sự kiện
       </h2>
 
-      {/* danh sách tin tức */}
-      <AnimatePresence mode="wait">
+    {/*  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {news.map((item) => (
+          <NewsCard key={item.id} news={item} />
+        ))}
+      </div>*/}
+       <AnimatePresence mode="wait">
         <motion.div
-          key={currentPage} // quan trọng để AnimatePresence hiểu page thay đổi
+          key={currentPage} // 👈 quan trọng, để AnimatePresence hiểu page thay đổi
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
@@ -143,17 +130,43 @@ import { getNews } from "@/services/news";
                   className="h-48 bg-gray-100 animate-pulse rounded-xl"
                 />
               ))
-            : news.map((item) => (
-                <NewsCard key={item.id} news={item} />
-              ))}
+            : news.map((item) => <NewsCard key={item.id} news={item} />)}
         </motion.div>
       </AnimatePresence>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
+      <div className="flex justify-center items-center gap-2 py-6">
+        {currentPage > 1 && (
+          <Link
+            href={`/tin-tuc?page=${currentPage - 1}`}
+            className="px-4 py-2 rounded-md font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition"
+          >
+            Trước
+          </Link>
+        )}
+
+        {Array.from({ length: totalPages }, (_, index) => (
+          <Link
+            key={index}
+            href={`/tin-tuc?page=${index + 1}`}
+            className={`px-4 py-2 rounded-sm font-medium transition ${
+              currentPage === index + 1
+                ? "bg-blue-900 text-white border border-blue-900"
+                : "bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white"
+            }`}
+          >
+            {index + 1}
+          </Link>
+        ))}
+
+        {currentPage < totalPages && (
+          <Link
+            href={`/tin-tuc?page=${currentPage + 1}`}
+            className="px-4 py-2 rounded-md font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition"
+          >
+            Sau
+          </Link>
+        )}
+      </div>
     </div>
   );
 }
