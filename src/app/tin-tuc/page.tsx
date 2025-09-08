@@ -1,16 +1,21 @@
 import { getNews } from "@/services/news";
 import NewsList from "@/app/component/news/NewsList";
+import { News } from "@/types/news";
 
-export default async function NewsPage({ searchParams }: { searchParams: { page?: string } }) {
-  const page = Number(searchParams.page) || 1;
+interface NewsPageProps {
+  searchParams?: { page?: string };
+}
 
-  const { news, totalPages } = await getNews(page, 6);
+export default async function NewsPage({ searchParams }: NewsPageProps) {
+  const currentPage = searchParams?.page ? parseInt(searchParams.page) : 1;
+
+  const { news, totalPages } = await getNews(currentPage, 6);
 
   return (
     <NewsList
-      news={news}
+      initialNews={news as News[]}
       totalPages={totalPages}
-      currentPage={page}
+      initialPage={currentPage}
     />
   );
 }

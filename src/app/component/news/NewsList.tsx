@@ -1,107 +1,52 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Pagination from "@/app/component/Pagination";
+import { useSearchParams, useRouter } from "next/navigation";
 import NewsCard from "./NewsCard";
 import { News } from "@/types/news";
 import { getNews } from "@/services/news";
-import { usePathname, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import { getPageRange } from "@/utils/pagination";
 
-//  export default function NewsList({
-//   initialNews = [],
-//   initialTotalPages = 1,
-// }: {
-//   initialNews: News[];
-//   initialTotalPages: number;
-// }) {
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [news, setNews] = useState<News[]>(initialNews);
-//   const [totalPages, setTotalPages] = useState(initialTotalPages);
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//     // luôn cuộn lên top khi đổi page
-//     window.scrollTo({ top: 0, behavior: "smooth" });
-
-//     // page 1 thì dùng dữ liệu ban đầu
-//     if (currentPage === 1) {
-//       setNews(initialNews);
-//       setTotalPages(initialTotalPages);
-//       setLoading(false);
-//       return;
-//     }
-
-//     async function loadNews() {
-//       setLoading(true);
-//       try {
-//         const { news, totalPages } = await getNews(currentPage, 6);
-//         setNews(news);
-//         setTotalPages(totalPages);
-//       } catch (err) {
-//         console.error(err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     }
-
-//     loadNews();
-//   }, [currentPage, initialNews, initialTotalPages]);
-
-//   return (
-//     <div className="max-w-7xl mx-auto p-6">
-//       <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
-//         Tin tức & Sự kiện
-//       </h2>
-
-//       {/* danh sách tin tức */}
-//       <AnimatePresence mode="wait">
-//         <motion.div
-//           key={currentPage} // quan trọng để AnimatePresence hiểu page thay đổi
-//           initial={{ opacity: 0, y: 10 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           exit={{ opacity: 0, y: -10 }}
-//           transition={{ duration: 0.3 }}
-//           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-//         >
-//           {loading
-//             ? Array.from({ length: 6 }).map((_, idx) => (
-//                 <div
-//                   key={idx}
-//                   className="h-48 bg-gray-100 animate-pulse rounded-xl"
-//                 />
-//               ))
-//             : news.map((item) => (
-//                 <NewsCard key={item.id} news={item} />
-//               ))}
-//         </motion.div>
-//       </AnimatePresence>
-
-//       <Pagination
-//         currentPage={currentPage}
-//         totalPages={totalPages}
-//         onPageChange={setCurrentPage}
-//       />
-//     </div>
-//   );
-// }
-export default function NewsList({
-  news,
-  totalPages,
-  currentPage,
-  loading = false,
-}: {
-  news: News[];
+interface NewsListProps {
+  initialNews: News[];
   totalPages: number;
-  currentPage: number;
-  loading?: boolean;
-}) {
-  const pathname = usePathname();
+  initialPage: number;
+}
+
+export default function NewsList({ initialNews, totalPages, initialPage }: NewsListProps) {
+  const [news, setNews] = useState<News[]>(initialNews);
+  const [currentPage, setCurrentPage] = useState(initialPage);
+  const [loading, setLoading] = useState(false);
+
   const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const fetchPage = async (page: number) => {
+    setLoading(true);
+    const { news } = await getNews(page, 6);
+    setNews(news);
+    setLoading(false);
+  };
+
+  const handlePageChange = (page: number) => {
+    if (page === currentPage) return;
+    setCurrentPage(page);
+    router.push(`/tin-tuc?page=${page}`);
+    fetchPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pathname, searchParams]); // chạy lại khi URL đổi
+    const page = searchParams.get("page");
+    const pageNumber = page ? parseInt(page) : 1;
+    if (pageNumber !== currentPage) {
+      setCurrentPage(pageNumber);
+      fetchPage(pageNumber);
+    }
+  }, [searchParams]);
+
+  const pagesToShow = getPageRange(currentPage, totalPages, 5);
 
   return (
     <div className="max-w-7xl mx-auto p-6">
@@ -109,14 +54,9 @@ export default function NewsList({
         Tin tức & Sự kiện
       </h2>
 
-    {/*  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {news.map((item) => (
-          <NewsCard key={item.id} news={item} />
-        ))}
-      </div>*/}
-       <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait">
         <motion.div
-          key={currentPage} // 👈 quan trọng, để AnimatePresence hiểu page thay đổi
+          key={currentPage}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
@@ -134,37 +74,62 @@ export default function NewsList({
         </motion.div>
       </AnimatePresence>
 
-      <div className="flex justify-center items-center gap-2 py-6">
+      {/* Pagination nâng cao */}
+      <div className="flex justify-center items-center gap-2 py-6 flex-wrap">
         {currentPage > 1 && (
-          <Link
-            href={`/tin-tuc?page=${currentPage - 1}`}
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
             className="px-4 py-2 rounded-md font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition"
           >
             Trước
-          </Link>
+          </button>
         )}
 
-        {Array.from({ length: totalPages }, (_, index) => (
-          <Link
-            key={index}
-            href={`/tin-tuc?page=${index + 1}`}
+        {pagesToShow[0] > 1 && (
+          <>
+            <button
+              onClick={() => handlePageChange(1)}
+              className="px-4 py-2 rounded-sm font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition"
+            >
+              1
+            </button>
+            {pagesToShow[0] > 2 && <span className="px-2">...</span>}
+          </>
+        )}
+
+        {pagesToShow.map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
             className={`px-4 py-2 rounded-sm font-medium transition ${
-              currentPage === index + 1
+              currentPage === page
                 ? "bg-blue-900 text-white border border-blue-900"
                 : "bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white"
             }`}
           >
-            {index + 1}
-          </Link>
+            {page}
+          </button>
         ))}
 
+        {pagesToShow[pagesToShow.length - 1] < totalPages && (
+          <>
+            {pagesToShow[pagesToShow.length - 1] < totalPages - 1 && <span className="px-2">...</span>}
+            <button
+              onClick={() => handlePageChange(totalPages)}
+              className="px-4 py-2 rounded-sm font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition"
+            >
+              {totalPages}
+            </button>
+          </>
+        )}
+
         {currentPage < totalPages && (
-          <Link
-            href={`/tin-tuc?page=${currentPage + 1}`}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
             className="px-4 py-2 rounded-md font-medium bg-white text-blue-900 border border-white hover:bg-blue-900 hover:text-white transition"
           >
             Sau
-          </Link>
+          </button>
         )}
       </div>
     </div>
