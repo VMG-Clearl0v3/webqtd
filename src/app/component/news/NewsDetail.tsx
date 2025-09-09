@@ -11,11 +11,11 @@ export default function NewsDetail({ news }: { news: News }) {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4 text-black">{news.title}</h1>
+      <h1 className="text-3xl font-bold mb-4 text-black text-justify">{news.title}</h1>
       {news.image && (
         <img src={news.image} alt={news.title} className="mb-4 w-full" />
       )}
-      <div className="prose prose-lg max-w-none text-black">
+      <div className="prose prose-lg max-w-none text-black text-justify">
         <ReactMarkdown>{news.content}</ReactMarkdown>
       </div>
       <p className="text-sm italic mt-4 text-black">
