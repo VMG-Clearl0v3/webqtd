@@ -27,7 +27,7 @@ export default function Calculator() {
 
   return (
   <section>
-  <div className="bg-white shadow-2xl rounded-2xl w-full max-w-[1000px] border border-gray-100 overflow-hidden">
+  <div className="bg-white shadow-md rounded-2xl w-full max-w-[1000px] border border-gray-100 overflow-hidden">
     {/* Header */}
     <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] px-6 py-4">
       <h2 className="text-xl md:text-2xl font-semibold text-white">Công cụ tính lãi</h2>
