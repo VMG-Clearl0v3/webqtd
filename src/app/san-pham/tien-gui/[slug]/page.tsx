@@ -94,14 +94,15 @@ import DepositProductDetail from "@/app/component/products/DepositProductDetail"
 import { notFound } from "next/navigation";
 
 export default async function DepositProductDetailPage({
-  params,
+   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params; 
   const product = await getProductBySlug(slug);
 
   if (!product) notFound();
 
   return <DepositProductDetail product={product} />;
 }
+
