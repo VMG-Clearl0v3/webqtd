@@ -4,10 +4,9 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white">
-      <div className="max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        
+      <div className="max-w-7xl mx-auto py-12 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">  
         {/* Cột 1 - Thông tin */}
-        <div className="space-y-2 pl-5">
+        <div className="space-y-2">
           <h4 className="font-bold text-md">QUỸ TÍN DỤNG NHÂN DÂN TRUNG SƠN</h4>
           <div className="space-y-2 text-sm">
             <div className="flex items-start gap-2">
@@ -43,7 +42,7 @@ export default function Footer() {
         </div>
 
         {/* Cột 2 - Sản phẩm & dịch vụ */}
-        <div className="space-y-2 pl-5">
+        <div className="space-y-2">
           <h4 className="font-bold text-md">SẢN PHẨM & DỊCH VỤ</h4>
           <ul className="list-disc ml-5 space-y-1 text-sm">
             <li><Link href="/san-pham/tien-gui" className="hover:text-blue-300 transition-colors">Gửi tiết kiệm</Link></li>
@@ -54,7 +53,7 @@ export default function Footer() {
         </div>
 
         {/* Cột 3 - Mạng xã hội */}
-        <div className="space-y-2 pl-5">
+        <div className="space-y-2">
           <h4 className="font-bold text-md">KẾT NỐI</h4>
           <div className="flex gap-4 mt-2">
            {/* Facebook */}
