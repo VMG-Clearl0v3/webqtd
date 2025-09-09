@@ -1,13 +1,15 @@
 import { getNewsBySlug } from "@/services/news";
-import { notFound } from "next/navigation";
 import NewsDetail from "@/app/component/news/NewsDetail";
+import { notFound } from "next/navigation";
 
 export default async function NewsDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>; // 👈 kiểu Promise
 }) {
-  const news = await getNewsBySlug(params.slug);
+  const { slug } = await params; // 👈 phải await
+  const news = await getNewsBySlug(slug);
+
   if (!news) notFound();
 
   return <NewsDetail news={news} />;
