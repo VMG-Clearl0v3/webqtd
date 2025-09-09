@@ -1,11 +1,12 @@
 import { getNews } from "@/services/news";
 import NewsList from "@/app/component/news/NewsList";
 
-interface NewsPageProps {
-  searchParams: Promise<{ page?: string }>;
-}
-
-export default async function NewsPage({ searchParams }: NewsPageProps) {
+export default async function NewsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>; // khai báo Promise
+}) {
+  // await trước khi dùng
   const resolvedSearchParams = await searchParams;
   const currentPage = resolvedSearchParams?.page
     ? parseInt(resolvedSearchParams.page)
