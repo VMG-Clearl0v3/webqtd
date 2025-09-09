@@ -1,6 +1,7 @@
 import { getProduct } from "@/services/product";
 import ProductCard from "@/app/component/products/ProductCard";
 import ProductHeader from "@/app/component/ProductHeader";
+import DepositProducBenefit from "@/app/component/products/DepositProducBenefit";
 
 export default async function DepositProductsPage() {
   // Fetch data ở server
@@ -26,6 +27,10 @@ export default async function DepositProductsPage() {
             ))}
           </div>
         )}
+         <h2 className="text-3xl md:text-4xl text-center py-6 font-bold text-[#00377B] tracking-wide">
+          Lợi ích sử dụng sản phẩm tiết kiệm của chúng tôi
+        </h2>
+       <DepositProducBenefit/>
       </div>
     </>
   );

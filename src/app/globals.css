@@ -53,4 +53,12 @@ body {
   z-index: 50 !important;
   color: white !important; /* đổi màu cho dễ thấy */
 }
+.swiper-pagination-bullet {
+  background-color: #00377B !important;
+  opacity: 0.4; /* màu nhạt cho chấm chưa active */
+}
 
+.swiper-pagination-bullet-active {
+  background-color: #00377B !important;
+  opacity: 1; /* màu đậm cho chấm active */
+}
