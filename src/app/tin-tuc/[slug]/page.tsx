@@ -1,6 +1,5 @@
 import { getNewsBySlug } from "@/services/news";
 import { notFound } from 'next/navigation';
-import Image from "next/image";
 import ReactMarkdown from 'react-markdown';
 
 export default async function NewsDetailPage({ params }: { params: Promise<{ slug: string }>}){

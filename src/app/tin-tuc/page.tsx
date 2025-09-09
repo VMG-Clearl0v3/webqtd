@@ -1,6 +1,5 @@
 import { getNews } from "@/services/news";
 import NewsList from "@/app/component/news/NewsList";
-import { News } from "@/types/news";
 
 interface NewsPageProps {
   searchParams: Promise<{ page?: string }>;
