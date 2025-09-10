@@ -1,9 +1,23 @@
 "use client";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "@/app/globals.css";
 import { useEffect } from "react";
 import { Product } from "@/types/product";
 import DetailProductHeader from "@/app/component/DetailProductHeader";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import ProductCard from "@/app/component/products/ProductCard";
+import { ChevronLeft, ChevronRight } from "lucide-react"; 
 
-export default function DepositProductDetail({ product }: { product: Product }) {
+export default function DepositProductDetail({ 
+  product,
+  relatedProducts = [],
+}: {
+  product: Product;
+  relatedProducts?: Product[];
+}) {
   // Mỗi lần đổi product thì scroll lên đầu trang
     useEffect(() => {
     if (product) {
@@ -32,6 +46,48 @@ export default function DepositProductDetail({ product }: { product: Product }) 
           {/* Hồ sơ thủ tục */}
           <Section title="Hồ sơ thủ tục" items={documentItems} />
         </div>
+        {relatedProducts.length > 0 && (
+          <div className="pt-14 relative">
+            <h2 className="text-3xl md:text-4xl text-center font-bold text-[#00377B] tracking-wide mb-10">
+              Có thể bạn quan tâm
+            </h2>
+
+            {/* Nút prev */}
+            <button className="custom-prev absolute top-1/2 -left-6 z-10 -translate-y-1/2 bg-white shadow p-2 rounded-full hover:bg-gray-100 transition">
+              <ChevronLeft size={24} className="text-[#00377B]" />
+            </button>
+
+            {/* Nút next */}
+            <button className="custom-next absolute top-1/2 -right-6 z-10 -translate-y-1/2 bg-white shadow p-2 rounded-full hover:bg-gray-100 transition">
+              <ChevronRight size={24} className="text-[#00377B]" />
+            </button>
+
+            <Swiper
+              modules={[Navigation, Pagination]}
+              spaceBetween={24}
+              slidesPerView={1}
+              navigation={{
+                nextEl: ".custom-next",
+                prevEl: ".custom-prev",
+              }}
+              pagination={{ clickable: true }}
+              breakpoints={{
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="!pb-10"
+            >
+              {relatedProducts.map((p) => (
+                <SwiperSlide key={p.id}>
+                  <div className="h-full transition-transform hover:scale-[1.02]">
+                    <ProductCard product={p} />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
       </div>
     </>
   );

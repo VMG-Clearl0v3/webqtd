@@ -50,7 +50,7 @@ export default function Header() {
             animate={{ scale: isScrolled ? 1 : 1.2 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <Image src="/image/logo.png" alt="logo" width={180} height={60} />
+            <Image src="/image/logo.png" alt="logo" width={150} height={60} />
           </motion.div>
         </Link>
 

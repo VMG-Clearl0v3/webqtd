@@ -106,19 +106,30 @@
 
 //   return <LoanProductDetail product={product} />;
 // }
-import { getProductBySlug } from "@/services/product";
-import LoanProductDetail from "@/app/component/products/LoanProductDetail";
-import { notFound } from "next/navigation";
+  import { getProductBySlug, getProduct } from "@/services/product";
+  import LoanProductDetail from "@/app/component/products/LoanProductDetail";
+  import { notFound } from "next/navigation";
 
-export default async function LoanProductDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params; 
+  export default async function LoanProductDetailPage(
+  props: { params: Promise<{ slug: string }> } 
+) {
+  const { slug } = await props.params;
+  // Lấy sản phẩm hiện tại
   const product = await getProductBySlug(slug);
+  if (!product) return notFound();
 
-  if (!product) notFound();
+  // Lấy tất cả sản phẩm
+  const allProducts = await getProduct();
 
-  return <LoanProductDetail product={product} />;
+  // Lọc ra các sản phẩm khác
+  const relatedProducts = Array.isArray(allProducts)
+    ? allProducts.filter((p) => p.slug !== slug)
+    : [];
+
+  return (
+    <LoanProductDetail
+      product={product}
+      relatedProducts={relatedProducts}
+    />
+  );
 }

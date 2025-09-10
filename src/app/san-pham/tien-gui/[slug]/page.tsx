@@ -89,20 +89,30 @@
 //     </>
 //   );
 // }
-import { getProductBySlug } from "@/services/product";
+import { getProductBySlug, getProduct } from "@/services/product";
 import DepositProductDetail from "@/app/component/products/DepositProductDetail";
 import { notFound } from "next/navigation";
 
-export default async function DepositProductDetailPage({
-   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params; 
+  export default async function DepositProductDetailPage(
+  props: { params: Promise<{ slug: string }> } 
+) {
+  const { slug } = await props.params;
+  // Lấy sản phẩm hiện tại
   const product = await getProductBySlug(slug);
+  if (!product) return notFound();
 
-  if (!product) notFound();
+  // Lấy tất cả sản phẩm
+  const allProducts = await getProduct();
 
-  return <DepositProductDetail product={product} />;
+  // Lọc ra các sản phẩm khác
+  const relatedProducts = Array.isArray(allProducts)
+    ? allProducts.filter((p) => p.slug !== slug)
+    : [];
+
+  return (
+    <DepositProductDetail
+      product={product}
+      relatedProducts={relatedProducts}
+    />
+  );
 }
-

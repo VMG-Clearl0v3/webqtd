@@ -6,6 +6,7 @@ import PartnerSlider from "@/app/component/PartnerSlider";
 import HomeBanner from "@/app/component/HomeBanner";
 import Calculator from "@/app/component/Calculator";
 import NewsSection from "@/app/component/news/NewsSection";
+import ServicesSection from "@/app/component/ServicesSection"
 
 export default function Home() {
   return (
@@ -14,74 +15,7 @@ export default function Home() {
     <HomeBanner/>
     <main>
   {/* Wrapper cha */}
-  <div className="mx-auto max-w-[1000px] px-4 sm:px-6 lg:px-8 pb-12 relative z-30">
-  {/* Mobile & Tablet: Vuốt ngang */}
-    <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory md:hidden">
-    {[
-      {
-        img: "/image/savings_14667460.png",
-        title: "Gửi tiết kiệm",
-        desc: "Gửi tiết kiệm tại quầy, online lãi suất hấp dẫn",
-        link: "/san-pham/tien-gui",
-      },
-      {
-        img: "/image/savings_12515229.png",
-        title: "Cho vay",
-        desc: "Vay tiêu dùng, sản xuất kinh doanh, cầm cố sổ tiết kiệm nhanh chóng",
-        link: "/san-pham/cho-vay",
-      },
-      {
-        img: "/image/user_3801741.png",
-        title: "Thành viên",
-        desc: "Tham gia thành viên, mở tài khoản nhận nhiều ưu đãi",
-        link: "/thanh-vien",
-      },
-      {
-        img: "/image/money_14959306.png",
-        title: "Chuyển tiền 24/7",
-        desc: "Chuyển tiền trong nước an toàn, tiện lợi",
-        link: "/chuyen-tien",
-      },
-    ].map((item, i) => (
-      <div
-        key={i}
-        className="min-w-[50%] bg-white h-60 flex flex-col items-center text-center p-4 shadow-md transition-transform duration-300 hover:-translate-y-3 snap-start"
-      >
-        <Image src={item.img} alt={item.title} width={50} height={50} />
-        <p className="cont_td mt-2 font-semibold">{item.title}</p>
-        <p className="cont_nd flex-1 text-sm mt-1">{item.desc}</p>
-        <Link href={item.link || "#"} className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl"> Xem chi tiết </Link>
-      </div>
-    ))}
-    </div>
-  {/* Desktop: Grid 4 cột */}
-  <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6 items-stretch justify-center px-2 md:px-4 lg:px-6">
-  <div className="bg-white h-60 flex flex-col items-center text-center p-4 shadow-md transition-transform duration-300 hover:-translate-y-5">
-    <Image src="/image/savings_14667460.png" alt="icon" width={50} height={50} />
-    <p className="cont_td mt-2 font-semibold">Gửi tiết kiệm</p>
-    <p className="cont_nd flex-1 text-sm mt-1">Gửi tiết kiệm tại quầy, online lãi suất hấp dẫn</p>
-    <Link href="/san-pham/tien-gui" className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl">Xem chi tiết</Link>
-  </div>
-   <div className="bg-white h-60 flex flex-col items-center text-center p-4 shadow-md transition-transform duration-300 hover:-translate-y-5">
-    <Image src="/image/savings_12515229.png" alt="icon" width={50} height={50} />
-    <p className="cont_td mt-2 font-semibold">Cho vay</p>
-    <p className="cont_nd flex-1 text-sm mt-1">Vay tiêu dùng, sản xuất kinh doanh, cầm cố sổ tiết kiệm nhanh chóng</p>
-    <Link href="/san-pham/cho-vay" className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl">Xem chi tiết</Link>
-  </div>
-   <div className="bg-white h-60 flex flex-col items-center text-center p-4 shadow-md transition-transform duration-300 hover:-translate-y-5">
-    <Image src="/image/user_3801741.png" alt="icon" width={50} height={50} />
-    <p className="cont_td mt-2 font-semibold">Thành viên</p>
-    <p className="cont_nd flex-1 text-sm mt-1">Tham gia thành viên, mở tài khoản nhận nhiều ưu đãi</p>
-    <Link href="/thanh-vien" className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl">Xem chi tiết</Link>
-  </div>
-   <div className="bg-white h-60 flex flex-col items-center text-center p-4 shadow-md transition-transform duration-300 hover:-translate-y-5">
-    <Image src="/image/money_14959306.png" alt="icon" width={50} height={50} />
-    <p className="cont_td mt-2 font-semibold">Chuyển tiền 24/7</p>
-    <p className="cont_nd flex-1 text-sm mt-1">Chuyển tiền trong nước an toàn, tiện lợi</p>
-    <Link href="/chuyen-tien" className="px-6 py-2 bg-white mt-auto text-[#00377B] rounded-lg shadow-md transform transition-all duration-300 hover:bg-[#00377B] hover:text-white hover:scale-105 hover:shadow-xl">Xem chi tiết</Link>
-  </div>
-  </div>
-  </div>
+  <ServicesSection/>
   <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
       <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
         Lãi suất & Công cụ tính lãi
@@ -90,7 +24,7 @@ export default function Home() {
       {/* Bảng lãi suất */}
       <div className="bg-white flex flex-col shadow-md rounded-2xl border border-gray-100">
         <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white rounded-t-2xl px-6 py-4">
-          <h3 className="text-2xl font-semibold">Lãi suất tiết kiệm</h3>
+          <h3 className="text-xl md:text-2xl font-semibold">Lãi suất tiết kiệm</h3>
         </div>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-sm md:text-base overflow-hidden shadow-sm">

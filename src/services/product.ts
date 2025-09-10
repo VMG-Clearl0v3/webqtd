@@ -24,24 +24,43 @@ export const getImageUrl = (imageData?: ProductImage[] | ProductImage | { data?:
 }
 
 export async function getProduct(): Promise<Product[]> {
-  const res = await fetch(`${API_URL}/api/products?populate=image`, {next:{revalidate: 60 }});
-  const json: { data: RawProduct[] } = await res.json();
-  return json.data.map((item: RawProduct) => ({
-      id: item.id,
-      title: item.title,
-      slug: item.slug,
-      condition: item.condition,
-      feature: item.feature,
-      document: item.document,
-      image: getImageUrl(item.image),
-      type: item.type,
+  const res = await fetch(`${API_URL}/api/products?populate=image`, {
+    // ISR: revalidate mỗi 60 giây
+    next: { revalidate: 60 },
+  });
+
+  // Nếu API lỗi → trả về mảng rỗng
+  if (!res.ok) return [];
+
+  const json: { data?: RawProduct[] } = await res.json();
+
+  // Nếu không có data hoặc không phải array → mảng rỗng
+  if (!Array.isArray(json.data)) return [];
+
+  return json.data.map((item) => ({
+    id: item.id,
+    title: item.title,
+    slug: item.slug,
+    condition: item.condition,
+    feature: item.feature,
+    document: item.document,
+    image: getImageUrl(item.image),
+    type: item.type,
   }));
 }
+
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  const res = await fetch(`${API_URL}/api/products?filters[slug][$eq]=${slug}&populate=image`, {next:{revalidate: 60 }});
-  const json: { data: RawProduct[] } = await res.json();
-  if (json.data.length === 0) return null;
-  const item: RawProduct = json.data[0];
+  const res = await fetch(
+    `${API_URL}/api/products?filters[slug][$eq]=${slug}&populate=image`,
+    { next: { revalidate: 60 } }
+  );
+
+  if (!res.ok) return null;
+
+  const json: { data?: RawProduct[] } = await res.json();
+  if (!json.data || json.data.length === 0) return null;
+
+  const item = json.data[0];
   return {
     id: item.id,
     title: item.title,

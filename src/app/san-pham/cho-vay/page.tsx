@@ -24,7 +24,7 @@ export default async function LoanProductsPage() {
             ))}
           </div>
         )}
-         <h2 className="text-3xl md:text-4xl text-center py-6 font-bold text-[#00377B] tracking-wide">
+         <h2 className="text-3xl md:text-4xl text-center py-10 font-bold text-[#00377B] tracking-wide">
           Lợi ích sử dụng sản phẩm vay của chúng tôi
         </h2>
        <LoanProductBenefit/>
