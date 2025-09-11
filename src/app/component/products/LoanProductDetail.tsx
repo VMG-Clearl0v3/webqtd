@@ -3,6 +3,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "@/app/globals.css";
+import Image from "next/image";
 import DetailProductHeader from "@/app/component/DetailProductHeader";
 import { Product } from "@/types/product";
 import { useEffect } from "react";
@@ -49,12 +50,11 @@ export default function LoanProductDetail({
           {/* Hồ sơ thủ tục */}
           <Section title="Hồ sơ thủ tục" items={documentItems} />
         </div>
- {relatedProducts.length > 0 && (
-          <div className="pt-14 relative">
-            <h2 className="text-3xl md:text-4xl text-center font-bold text-[#00377B] tracking-wide mb-10">
-              Có thể bạn quan tâm
-            </h2>
-
+        <h2 className="text-3xl md:text-4xl text-center font-bold text-[#00377B] tracking-wide pt-10">
+            Có thể bạn quan tâm
+        </h2>
+        {relatedProducts.length > 0 && (
+          <div className="pt-10 relative">
             {/* Nút prev */}
             <button className="custom-prev absolute top-1/2 -left-6 z-10 -translate-y-1/2 bg-white shadow p-2 rounded-full hover:bg-gray-100 transition">
               <ChevronLeft size={24} className="text-[#00377B]" />
@@ -101,7 +101,7 @@ function Section({ title, items }: { title: string; items: string[] }) {
   return (
     <div className="bg-blue-50 rounded-2xl p-6 shadow-sm">
       <div className="flex items-center gap-2 pb-4">
-        <svg
+       {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
@@ -111,7 +111,14 @@ function Section({ title, items }: { title: string; items: string[] }) {
         >
           <path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625Z" />
           <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
-        </svg>
+        </svg>*/}
+        <Image
+          src="/image/iconbonglua.png"
+          alt="Bông lúa"
+          width={25}
+          height={25}
+          className="object-contain"
+        />
         <h1 className="text-xl font-semibold">{title}</h1>
       </div>
       <ul className="md:text-lg sm:text-md list-disc pl-6 space-y-2 text-justify">

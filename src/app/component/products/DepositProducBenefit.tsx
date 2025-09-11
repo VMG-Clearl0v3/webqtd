@@ -29,8 +29,8 @@ const benefits = [
 
 function BenefitCard({ icon: Icon, color, title, desc }: typeof benefits[0]) {
   return (
-    <div className="bg-gray-100 h-60 flex flex-col items-center justify-center text-center p-4 shadow-md rounded-md">
-      <Icon className={`w-12 h-12 mb-3 ${color}`} />
+    <div className="group bg-gray-100 h-60 flex flex-col items-center justify-center text-center text-black p-4 shadow-md rounded-md">
+      <Icon className={`w-12 h-12 mb-3 ${color} transform transition-transform duration-300 group-hover:scale-125` } />
       <p className="text-lg font-semibold">{title}</p>
       <p className="text-md">{desc}</p>
     </div>

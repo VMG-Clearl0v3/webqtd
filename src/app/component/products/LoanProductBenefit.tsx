@@ -1,6 +1,6 @@
 'use client';
 
-import { Banknote, Percent, CreditCard } from "lucide-react";
+import { HandCoins , Percent, CreditCard } from "lucide-react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -9,7 +9,7 @@ import "@/app/globals.css";
 
 const benefits = [
   {
-    icon: Banknote,
+    icon: HandCoins,
     color: "text-blue-600",
     title: "Giải ngân nhanh chóng",
     desc: "Thủ tục đơn giản, phê duyệt và giải ngân nhanh chóng, đáp ứng mọi nhu cầu chi tiêu",
@@ -30,8 +30,8 @@ const benefits = [
 
 function BenefitCard({ icon: Icon, color, title, desc }: typeof benefits[0]) {
   return (
-    <div className="bg-gray-100 h-60 flex flex-col items-center justify-center text-center p-4 shadow-md rounded-md">
-      <Icon className={`w-12 h-12 mb-3 ${color}`} />
+    <div className="group bg-gray-100 h-60 flex flex-col items-center justify-center text-center text-black p-4 shadow-md rounded-md">
+      <Icon className={`w-12 h-12 mb-3 ${color} transform transition-transform duration-300 group-hover:scale-125`} />
       <p className="text-lg font-semibold">{title}</p>
       <p className="text-md">{desc}</p>
     </div>

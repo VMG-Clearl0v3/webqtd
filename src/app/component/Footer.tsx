@@ -47,11 +47,10 @@ export default function Footer() {
           <ul className="list-disc ml-5 space-y-1 text-sm">
             <li><Link href="/san-pham/tien-gui" className="hover:text-blue-300 transition-colors">Gửi tiết kiệm</Link></li>
             <li><Link href="/san-pham/cho-vay" className="hover:text-blue-300 transition-colors">Cho vay</Link></li>
-            <li>Mở tài khoản</li>
-            <li>Chuyển tiền trong nước</li>
+            <li className="hover:text-blue-300 transition-colors">Mở tài khoản</li>
+            <li className="hover:text-blue-300 transition-colors">Chuyển tiền trong nước</li>
           </ul>
         </div>
-
         {/* Cột 3 - Mạng xã hội */}
         <div className="space-y-2">
           <h4 className="font-bold text-md">KẾT NỐI</h4>
