@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function AboutCompanyPage() {
+export default function AboutUsPage() {
   return (
     <div className="max-w-7xl mx-auto p-6">
         <h2 className="text-3xl md:text-4xl text-center pb-10 font-bold text-[#00377B] tracking-wide">
