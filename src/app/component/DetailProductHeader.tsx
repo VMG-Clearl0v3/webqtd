@@ -12,7 +12,7 @@ export default function DetailProductHeader({title, image}: DetailProductHeaderP
     <Header/>
      <div className="absolute inset-0">
     <Image
-      src="/image/banner_1.jpg"
+      src="/image/detailproductheader.jpg"
       alt="background"
       fill
       className="object-cover opacity-60"
