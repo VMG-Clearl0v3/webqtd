@@ -83,7 +83,7 @@ export default function LoanProductDetail({
             >
               {relatedProducts.map((p) => (
                 <SwiperSlide key={p.id}>
-                  <div className="h-full transition-transform hover:scale-[1.02]">
+                  <div className="h-full">
                     <ProductCard product={p} />
                   </div>
                 </SwiperSlide>

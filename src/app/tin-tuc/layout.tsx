@@ -1,3 +1,4 @@
+import "@/app/globals.css";
 import Footer from "@/app/component/Footer";
 import NewsHeader from "@/app/component/NewsHeader";
 

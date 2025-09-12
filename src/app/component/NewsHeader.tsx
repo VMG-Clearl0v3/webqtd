@@ -8,7 +8,7 @@ export default function NewsHeader() {
       <Header />
 
       {/* Banner riêng cho trang tin tức */}
-       <div className="w-full h-50 relative">
+       <div className="w-full h-60 relative">
         <Image
           src="/image/banner_news.png"
           alt="Tin tức"

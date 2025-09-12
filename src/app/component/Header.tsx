@@ -25,61 +25,57 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="flex flex-col w-full">
-      {/* Desktop menu */}
+  <header className="flex flex-col w-full">
+      {/* Desktop Header */}
+<motion.div
+  initial={{ y: -50, opacity: 0 }}
+  animate={{
+    y: 0,
+    opacity: 1,
+    background: "rgba(255,255,255,1)",
+    width: "100%",                    
+    borderRadius: "0px",           
+    boxShadow: isScrolled
+      ? "0 4px 20px rgba(0,0,0,0.1)"
+      : "0 4px 30px rgba(0,0,0,0.08)",
+  }}
+  transition={{ duration: 0 }}
+  className="fixed top-0 left-0 z-[9999] w-full px-6 backdrop-blur-md"
+>
+  <div className="flex items-center justify-between h-20">
+    {/* Logo */}
+    <Link href="/">
       <motion.div
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ 
-        y: 0, 
-        opacity: 1, 
-        background: isScrolled? "rgba(255,255,255,1)": "linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(0,116,217,0.3) 100%)",
-        width: isScrolled ? "100%" : "95%",
-        borderRadius: isScrolled ? "0px" : "12px",
-        boxShadow: isScrolled ? "0 4px 20px rgba(0,0,0,0.1)" : "0px 0px 0px transparent",
-        // paddingTop: isScrolled ? "0.5rem" : "1rem",
-        // paddingBottom: isScrolled ? "0.5rem" : "1rem",
-        top: isScrolled ? 0 : 10,
-      }}
-      transition={{ duration: 0}}
-      className="fixed left-1/2 -translate-x-1/2 z-[9999] px-6 backdrop-blur-md"
-    >
-      <div className="flex items-center justify-between">
-        {/* Logo có hiệu ứng scale */}
-        <Link href="/">
-          <motion.div
-            animate={{ scale: isScrolled ? 1 : 1.2 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          >
-            <Image src="/image/logo.png" alt="logo" width={150} height={60} />
-          </motion.div>
-        </Link>
+        animate={{ scale: isScrolled ? 1 : 1.15 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        <Image src="/image/logo.png" alt="logo" width={150} height={60} />
+      </motion.div>
+    </Link>
 
-        {/* Nav */}
-        <nav className="hidden md:flex gap-6 text-lg font-medium">
-          {menuItems.map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              className={`transition-colors ${
-                isScrolled ? "text-black" : "text-white"
-              } hover:text-[#FF0000]`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-     </motion.div>
+    {/* Desktop Menu */}
+    <nav className="hidden md:flex gap-8 text-lg font-medium">
+      {menuItems.map((item, i) => (
+        <Link
+          key={i}
+          href={item.href}
+          className="group relative px-1 text-gray-800"
+        >
+          {item.label}
+          <span className="absolute left-0 -bottom-1 h-[3px] w-0 group-hover:w-full transition-all duration-300 bg-gradient-to-r from-[#FF0000] via-[#FF9900] to-[#FF0000] rounded-full"></span>
+        </Link>
+      ))}
+    </nav>
+  </div>
+</motion.div>
       {/* Mobile Hamburger */}
       <button
-        className={`fixed top-5 right-4 md:hidden z-[10000] text-3xl focus:outline-none ${
-          isScrolled ? "text-black" : "text-white"
-        }`}
-        onClick={() => setIsOpen(!isOpen)}
+      className="fixed top-6 right-4 md:hidden z-[10000] text-3xl text-gray-800 focus:outline-none"
+      onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <X size={28} className="text-black" /> : <Menu size={28} />}
+      {isOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
-      {/* Overlay + Mobile Menu Drawer */}
+      {/* Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -93,29 +89,30 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu Slide */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="fixed top-0 right-0 w-3/4 h-full bg-white shadow-lg z-[9999] p-6 flex flex-col gap-6"
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-full bg-white shadow-xl z-[9999] p-8 flex flex-col gap-8"
           >
             {menuItems.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
               >
                 <Link
                   href={item.href}
-                  className="text-lg font-medium text-gray-800 hover:text-[#FF0000] transition-colors"
+                  className="block relative text-lg font-medium text-gray-800 hover:text-[#FF0000] transition-colors group"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
+                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#FF0000] transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </motion.div>
             ))}

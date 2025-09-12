@@ -40,7 +40,6 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-
         {/* Cột 2 - Sản phẩm & dịch vụ */}
         <div className="space-y-2">
           <h4 className="font-bold text-md">SẢN PHẨM & DỊCH VỤ</h4>
