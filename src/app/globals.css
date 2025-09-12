@@ -51,18 +51,30 @@ body {
 .swiper-button-next,
 .swiper-button-prev {
   z-index: 50 !important;
-  color: white !important; /* đổi màu cho dễ thấy */
+  color: #ffffff !important; 
 }
+
+/* Bullet thường */
 .swiper-pagination-bullet {
-  background-color: #00377B !important;
-  opacity: 0.4; /* màu nhạt cho chấm chưa active */
+  display: inline-block; /* thêm dòng này để đảm bảo size hoạt động */
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50%;
+  background-color: #00377B !important; /* xanh đậm */
+  opacity: 0.5;
+  margin: 0 4px !important;
 }
 
+/* Bullet active */
 .swiper-pagination-bullet-active {
-  background-color: #00377B !important;
-  opacity: 1; /* màu đậm cho chấm active */
+  display: inline-block; /* chắc chắn vẫn inline-block */
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50%; /* vẫn tròn */
+  background-color: #00377B !important; /* xanh đậm */
+  opacity: 1;
+  border: 1px solid #ffffff; /* viền trắng bên ngoài */
 }
-
 @layer components {
   /* Style chung cho nội dung markdown */
   .markdown-content {

@@ -39,7 +39,7 @@ export default function HomeBanner() {
                 loading={idx === 0 ? "eager" : "lazy"}
               />
               {/* Lớp mờ */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" />
               {/* Text + Button animate */}
               <div className="absolute inset-0 flex flex-col justify-center px-12 md:px-24 text-white max-w-xl">
                 <motion.h1
