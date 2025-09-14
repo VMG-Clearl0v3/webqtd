@@ -11,9 +11,9 @@ import { motion } from "framer-motion";
 
 export default function HomeBanner() {
   const banners = [
-    { id: 1, src: "/image/banner1.svg", title: "" },
-    { id: 2, src: "/image/banner2.svg", title: "" },
-    { id: 3, src: "/image/banner_3.jpg", title: "" },
+    { id: 1, src: "/image/banner1.svg", title: "gửi tiết kiệm" },
+    { id: 2, src: "/image/banner2.svg", title: "vay vốn" },
+    { id: 3, src: "/image/banner3.svg", title: "chuyển tiền" },
   ];
 
   return (
