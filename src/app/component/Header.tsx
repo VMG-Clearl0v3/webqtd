@@ -1,8 +1,6 @@
-
 "use client";
+
 import Link from 'next/link';
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -11,70 +9,80 @@ import { Menu, X } from "lucide-react";
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
   const menuItems = [
     { label: "Trang chủ", href: "/" },
-    { label: "Giới thiệu", href: "/gioi-thieu"},
-    { label: "Tiết kiệm", href: "/san-pham/tien-gui"},
-    { label: "Cho vay", href: "/san-pham/cho-vay"},
-    { label: "Tin tức", href: "/tin-tuc"},
+    { label: "Giới thiệu", href: "/gioi-thieu" },
+    { label: "Tiết kiệm", href: "/san-pham/tien-gui" },
+    { label: "Cho vay", href: "/san-pham/cho-vay" },
+    { label: "Tin tức", href: "/tin-tuc" },
   ];
-   useEffect(() => {
+
+  useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-  <header className="flex flex-col w-full">
+    <header className="w-full">
       {/* Desktop Header */}
-<motion.div
-  initial={{ y: -50, opacity: 0 }}
-  animate={{
-    y: 0,
-    opacity: 1,
-    background: "rgba(255,255,255,1)",
-    width: "100%",                    
-    borderRadius: "0px",           
-    boxShadow: isScrolled
-      ? "0 4px 20px rgba(0,0,0,0.1)"
-      : "0 4px 30px rgba(0,0,0,0.08)",
-  }}
-  transition={{ duration: 0 }}
-  className="fixed top-0 left-0 z-[9999] w-full px-6 backdrop-blur-md"
->
-  <div className="flex items-center justify-between h-20">
-    {/* Logo */}
-    <Link href="/">
       <motion.div
-        animate={{ scale: isScrolled ? 1 : 1.15 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        initial={{ y: -50, opacity: 0 }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          background: "rgba(255,255,255,1)",
+          width: "100%",
+          borderRadius: "0px",
+          boxShadow: isScrolled
+            ? "0 4px 20px rgba(0,0,0,0.1)"
+            : "0 4px 30px rgba(0,0,0,0.08)",
+        }}
+        transition={{ duration: 0 }}
+        className="fixed top-0 left-0 z-[9999] w-full px-6 backdrop-blur-md"
       >
-        <Image src="/image/logo.png" alt="logo" width={150} height={60} />
-      </motion.div>
-    </Link>
+        <div className="max-w-7xl mx-auto flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0">
+            <motion.div
+              animate={{ scale: isScrolled ? 1 : 1.15 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <Image
+                src="/image/logo.png"
+                alt="logo"
+                width={150}
+                height={60}
+                priority
+              />
+            </motion.div>
+          </Link>
 
-    {/* Desktop Menu */}
-    <nav className="hidden md:flex gap-8 text-lg font-medium">
-      {menuItems.map((item, i) => (
-        <Link
-          key={i}
-          href={item.href}
-          className="group relative px-1 text-gray-800"
-        >
-          {item.label}
-          <span className="absolute left-0 -bottom-1 h-[3px] w-0 group-hover:w-full transition-all duration-300 bg-gradient-to-r from-[#FF0000] via-[#FF9900] to-[#FF0000] rounded-full"></span>
-        </Link>
-      ))}
-    </nav>
-  </div>
-</motion.div>
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex gap-8 text-lg font-medium">
+            {menuItems.map((item, i) => (
+              <Link
+                key={i}
+                href={item.href}
+                className="group relative px-1 text-gray-800"
+              >
+                {item.label}
+                <span className="absolute left-0 -bottom-1 h-[3px] w-0 group-hover:w-full transition-all duration-300 bg-gradient-to-r from-[#FF0000] via-[#FF9900] to-[#FF0000] rounded-full"></span>
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </motion.div>
+
       {/* Mobile Hamburger */}
       <button
-      className="fixed top-6 right-4 md:hidden z-[10000] text-3xl text-gray-800 focus:outline-none"
-      onClick={() => setIsOpen(!isOpen)}
+        className="fixed top-6 right-4 md:hidden z-[10000] text-3xl text-gray-800 focus:outline-none"
+        onClick={() => setIsOpen(!isOpen)}
       >
-      {isOpen ? <X size={28} /> : <Menu size={28} />}
+        {isOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
+
       {/* Overlay */}
       <AnimatePresence>
         {isOpen && (
