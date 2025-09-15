@@ -8,15 +8,15 @@ export default function NewsHeader() {
       <Header />
 
       {/* Banner riêng cho trang tin tức */}
-       <div className="w-full h-60 relative">
+    <div className="w-full relative h-50 md:h-80">
         <Image
-          src="/image/banner_news.png"
+          src="/image/bgnews.jpg"
           alt="Tin tức"
-          width={1200}
-          height={192}
-          className="object-cover w-full h-full"
+          fill            
+          className="object-cover object-center" 
+          priority
         />
-        </div>
+    </div>
     </div>
   );
 }
