@@ -8,25 +8,25 @@ export default function ProductHeader() {
 
 
   const bannerMap: Record<string, string> = {
-    "tien-gui": "/image/banner_1.jpg",
-    "cho-vay": "/image/banner_3.jpg",
+    "tien-gui": "/image/depositbanner.jpg",
+    "cho-vay": "/image/loanbanner.jpg",
   };
   const bannerSrc =
     Object.entries(bannerMap).find(([key]) => pathname.includes(key))?.[1] ||
-    "/image/banner_2.jpg";
+    "/image/aboutusbanner.jpg";
   return (
     <div className="relative">
       {/* Kế thừa header gốc */}
       <Header />
 
       {/* Banner riêng cho trang sản phẩm */}
-       <div className="w-full h-60 relative">
+       <div className="w-full relative h-50 md:h-80">
         <Image
           src={bannerSrc}
           alt="Trang sản phẩm"         
-          width={1200}
-          height={192}
-          className="object-cover w-full h-full"
+          fill            
+          className="object-cover object-center" 
+          priority
         />
         </div>
     </div>
