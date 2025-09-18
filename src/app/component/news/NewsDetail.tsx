@@ -44,13 +44,13 @@ export default function NewsDetail({ news }: { news: News }) {
             {formattedDate || 'Đang tải…'}
           </p>
 
-          <div className="flex items-center space-x-3 text-gray-500">
+          <div className="flex items-center space-x-3 text-blue-400">
             {/* Facebook */}
             <a
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-2 py-1 rounded-full bg-[#1877F2] text-white text-sm font-bold hover:bg-[#145dbf]"
+              className="px-2 py-1 rounded-full bg-[#0068FF] text-white text-sm font-bold hover:bg-[#145dbf]"
               aria-label="Share on Facebook"
             >
               Facebook
