@@ -7,6 +7,7 @@ import { Facebook, Share2 } from 'lucide-react';
 export default function NewsDetail({ news }: { news: News }) {
   const [formattedDate, setFormattedDate] = useState<string>(''); 
   const [shareUrl, setShareUrl] = useState<string>('');
+  const [copied, setCopied] = useState(false);
 
   // scroll về đầu trang mỗi lần bài thay đổi
   useEffect(() => {
@@ -29,7 +30,11 @@ export default function NewsDetail({ news }: { news: News }) {
 
     setShareUrl(window.location.href);
   }, [news.date]);
-
+   const handleCopy = () => {
+    navigator.clipboard.writeText(shareUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500); // 1.5 giây sau ẩn chữ Copied!
+  };
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-black">
       <div className="border-b border-gray-300">
@@ -55,17 +60,25 @@ export default function NewsDetail({ news }: { news: News }) {
               >
               <Facebook size={20} />
             </a>
-            {/* Copy link */}
+          {/* Copy link */}
+            <div className="relative flex items-center justify-center">
             <button
-              onClick={() => {
-                navigator.clipboard.writeText(shareUrl);
-                alert('Đã sao chép link bài viết!');
-              }}
-              className="hover:text-[#0055d6]"
+              onClick={handleCopy}
+              className="hover:text-[#0055d6] flex items-center justify-center"
               aria-label="Copy link"
             >
               <Share2 size={20} />
             </button>
+
+            <span
+              className={`absolute -top-7 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded-md
+                          transition-opacity duration-300 ${
+                            copied ? 'opacity-100' : 'opacity-0'
+                          }`}
+            >
+              Copied!
+            </span>
+          </div>
           </div>
         </div>
       </div>
