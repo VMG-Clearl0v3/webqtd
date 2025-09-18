@@ -39,7 +39,7 @@ export default function NewsDetail({ news }: { news: News }) {
         </h1>
 
         {/* Date + Share */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4">
           <p className="text-md font-semibold text-gray-400">
             {formattedDate || 'Đang tải…'}
           </p>
