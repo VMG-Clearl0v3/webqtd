@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import type { News } from '@/types/news';
-import { Share2 } from 'lucide-react'; 
+import { Facebook, Share2 } from 'lucide-react'; 
 
 export default function NewsDetail({ news }: { news: News }) {
   const [formattedDate, setFormattedDate] = useState<string>(''); 
@@ -46,26 +46,15 @@ export default function NewsDetail({ news }: { news: News }) {
 
           <div className="flex items-center space-x-3 text-blue-400">
             {/* Facebook */}
-            <a
+              <a
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-2 py-1 rounded-full bg-[#0068FF] text-white text-sm font-bold hover:bg-[#145dbf]"
+              className="hover:text-[#0055d6]"
               aria-label="Share on Facebook"
-            >
-              Facebook
+              >
+              <Facebook size={20} />
             </a>
-            {/* Zalo */}
-            <a
-              href={`https://zalo.me/share/?url=${encodeURIComponent(shareUrl)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-2 py-1 rounded-full bg-[#0068FF] text-white text-sm font-bold hover:bg-[#0055d6]"
-              aria-label="Share on Zalo"
-            >
-              Zalo
-            </a>
-
             {/* Copy link */}
             <button
               onClick={() => {
