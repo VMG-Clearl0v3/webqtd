@@ -22,7 +22,7 @@ export default async function NewsDetailPage({
           property="og:description"
           content={news.content.slice(0, 150)}
         />
-        <meta property="og:image" content={news.image} />
+        <meta property="og:image" content={news.image || "/image/noimage.jpg"} />
         <meta property="og:url" content={shareUrl} />
         <meta property="og:type" content="new" />
         {/*<meta name="twitter:card" content="summary_large_image" />*/}
