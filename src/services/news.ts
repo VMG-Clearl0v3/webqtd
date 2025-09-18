@@ -39,7 +39,7 @@ export async function getNews(page = 1, pageSize = 6): Promise<{ news: News[]; t
 }
 export async function getNewsBySlug(slug: string): Promise<News | null> {
   const res = await fetch(`${API_URL}/api/news?filters[slug][$eq]=${slug}&populate=image`, {next:{revalidate: 60 }});
-   const json = await res.json();
+  const json = await res.json();
   if (json.data.length === 0) return null;
   const item: RawNews = json.data[0];
   return {
