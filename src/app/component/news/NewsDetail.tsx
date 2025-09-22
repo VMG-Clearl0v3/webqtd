@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import type { News } from '@/types/news';
 import { Facebook, Share2 } from 'lucide-react'; 
-import Breadcrumb from "@/app/component/Breadcrumb.tsx";
+import Breadcrumb from "@/app/component/Breadcrumb";
 
 export default function NewsDetail({ news }: { news: News }) {
   const [formattedDate, setFormattedDate] = useState<string>(''); 
