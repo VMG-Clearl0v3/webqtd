@@ -7,7 +7,7 @@ import NewsCard from './NewsCard';
 import { News } from '@/types/news';
 import { getNews } from '@/services/news';
 import { getPageRange } from '@/utils/pagination';
-import Breadcrumb from "@/app/component/Breadcrumb.tsx";
+import Breadcrumb from "@/app/component/Breadcrumb";
 
 interface NewsListProps {
   initialNews: News[];

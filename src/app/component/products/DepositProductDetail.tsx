@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ProductCard from "@/app/component/products/ProductCard";
 import { ChevronLeft, ChevronRight } from "lucide-react"; 
-import Breadcrumb from "@/app/component/Breadcrumb.tsx";
+import Breadcrumb from "@/app/component/Breadcrumb";
 
 export default function DepositProductDetail({ 
   product,

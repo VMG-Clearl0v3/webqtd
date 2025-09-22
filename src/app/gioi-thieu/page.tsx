@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Breadcrumb from "@/app/component/Breadcrumb.tsx";
+import Breadcrumb from "@/app/component/Breadcrumb.";
 
 export default function AboutUsPage() {
   return (
