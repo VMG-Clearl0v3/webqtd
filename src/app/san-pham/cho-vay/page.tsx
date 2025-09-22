@@ -2,6 +2,7 @@ import { getProduct } from "@/services/product";
 import ProductCard from "@/app/component/products/ProductCard";
 import ProductHeader from "@/app/component/ProductHeader";
 import LoanProductBenefit from "@/app/component/products/LoanProductBenefit";
+import Breadcrumb from "@/app/component/Breadcrumb.tsx";
 
 export default async function LoanProductsPage() {
   // Fetch data ở server
@@ -12,6 +13,12 @@ export default async function LoanProductsPage() {
     <>
       <ProductHeader />
       <div className="max-w-7xl mx-auto p-6">
+       <Breadcrumb
+          items={[
+          { label: 'Trang chủ', href: '/' },
+          { label: 'Cho vay', href: '/cho-vay' },
+        ]}
+      />
         <h2 className="text-3xl md:text-4xl text-center pb-10 font-bold text-[#00377B] tracking-wide">
           Sản phẩm cho vay
         </h2>

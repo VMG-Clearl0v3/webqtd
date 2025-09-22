@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import type { News } from '@/types/news';
 import { Facebook, Share2 } from 'lucide-react'; 
+import Breadcrumb from "@/app/component/Breadcrumb.tsx";
 
 export default function NewsDetail({ news }: { news: News }) {
   const [formattedDate, setFormattedDate] = useState<string>(''); 
@@ -36,7 +37,15 @@ export default function NewsDetail({ news }: { news: News }) {
     setTimeout(() => setCopied(false), 1500); // 1.5 giây sau ẩn chữ Copied!
   };
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-black">
+    <div className="max-w-7xl mx-auto p-6">
+      <Breadcrumb
+        items={[
+          { label: 'Trang chủ', href: '/' },
+          { label: 'Tin tức', href: '/tin-tuc' },
+          { label: news.title },
+        ]}
+      />
+      <div className="max-w-4xl mx-auto text-black">
       <div className="border-b border-gray-300">
         {/* Title */}
         <h1 className="text-4xl font-bold mb-2 leading-snug">
@@ -98,5 +107,6 @@ export default function NewsDetail({ news }: { news: News }) {
         </div>
       </div>
     </div>
+  </div>
   );
 }

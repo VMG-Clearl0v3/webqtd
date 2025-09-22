@@ -2,10 +2,17 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Breadcrumb from "@/app/component/Breadcrumb.tsx";
 
 export default function AboutUsPage() {
   return (
     <div className="max-w-7xl mx-auto p-6">
+      <Breadcrumb
+        items={[
+          { label: 'Trang chủ', href: '/' },
+          { label: 'Giới thiệu', href: '/gioi-thieu' },
+        ]}
+      />
         <h2 className="text-3xl md:text-4xl text-center pb-10 font-bold text-[#00377B] tracking-wide">
           Về chúng tôi
         </h2>

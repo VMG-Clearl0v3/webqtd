@@ -7,6 +7,7 @@ import NewsCard from './NewsCard';
 import { News } from '@/types/news';
 import { getNews } from '@/services/news';
 import { getPageRange } from '@/utils/pagination';
+import Breadcrumb from "@/app/component/Breadcrumb.tsx";
 
 interface NewsListProps {
   initialNews: News[];
@@ -62,6 +63,10 @@ export default function NewsList({
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+      <Breadcrumb items={[
+      { label: 'Trang chủ', href: '/' },
+      { label: 'Tin tức', href: '/tin-tuc' }
+      ]} />
       <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
         Tin tức &amp; Sự kiện
       </h2>

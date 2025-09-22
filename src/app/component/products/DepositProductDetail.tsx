@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ProductCard from "@/app/component/products/ProductCard";
 import { ChevronLeft, ChevronRight } from "lucide-react"; 
+import Breadcrumb from "@/app/component/Breadcrumb.tsx";
 
 export default function DepositProductDetail({ 
   product,
@@ -33,7 +34,15 @@ export default function DepositProductDetail({
   return (
     <>
       <DetailProductHeader title={product.title} image={product.image || "/image/noimage.jpg"} />
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-6">
+        <Breadcrumb
+        items={[
+          { label: 'Trang chủ', href: '/' },
+          { label: 'Tiết kiệm', href: '/tien-gui' },
+          { label: product.title },
+        ]}
+      />
+        <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
           Chi tiết sản phẩm
         </h2>
@@ -89,6 +98,7 @@ export default function DepositProductDetail({
           </div>
         )}
       </div>
+    </div>
     </>
   );
 }
