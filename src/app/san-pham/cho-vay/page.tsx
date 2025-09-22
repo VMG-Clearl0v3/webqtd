@@ -2,7 +2,7 @@ import { getProduct } from "@/services/product";
 import ProductCard from "@/app/component/products/ProductCard";
 import ProductHeader from "@/app/component/ProductHeader";
 import LoanProductBenefit from "@/app/component/products/LoanProductBenefit";
-import Breadcrumb from "@/app/component/Breadcrumb.tsx";
+import Breadcrumb from "@/app/component/Breadcrumb";
 
 export default async function LoanProductsPage() {
   // Fetch data ở server
