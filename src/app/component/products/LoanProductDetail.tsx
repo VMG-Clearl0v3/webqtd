@@ -41,7 +41,7 @@ export default function LoanProductDetail({
         <Breadcrumb
         items={[
           { label: 'Trang chủ', href: '/' },
-          { label: 'Cho vay', href: '/cho-vay' },
+          { label: 'Cho vay', href: '/san-pham/cho-vay' },
           { label: product.title },
         ]}
       />

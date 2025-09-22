@@ -38,7 +38,7 @@ export default function DepositProductDetail({
         <Breadcrumb
         items={[
           { label: 'Trang chủ', href: '/' },
-          { label: 'Tiết kiệm', href: '/tien-gui' },
+          { label: 'Tiết kiệm', href: '/san-pham/tien-gui' },
           { label: product.title },
         ]}
       />
