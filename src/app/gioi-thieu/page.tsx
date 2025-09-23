@@ -4,74 +4,82 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Breadcrumb from "@/app/component/Breadcrumb";
 
+const fadeLeft = {
+  initial: { opacity: 0, x: -60 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.7 },
+};
+
+const fadeRight = {
+  initial: { opacity: 0, x: 60 },
+  whileInView: { opacity: 1, x: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.7, delay: 0.1 },
+};
+
+const sections = [
+  {
+    img: "/image/about1.png",
+    alt: "Hình ảnh công ty",
+    text: "Quỹ tín dụng nhân dân Trung Sơn được thành lập năm 1996 với mục tiêu cung cấp các dịch vụ tài chính an toàn, hiệu quả cho cộng đồng.",
+  },
+  {
+    img: "/image/about2.jpg",
+    alt: "Hình ảnh dịch vụ",
+    text: "Với sứ mệnh tương trợ thành viên trên địa bàn phường, chúng tôi luôn nỗ lực phát triển bền vững, nâng cao chất lượng dịch vụ để đáp ứng nhu cầu ngày càng đa dạng của khách hàng.",
+  },
+  // có thể thêm nhiều section nữa...
+];
+
 export default function AboutUsPage() {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <Breadcrumb
         items={[
-          { label: 'Trang chủ', href: '/' },
-          { label: 'Giới thiệu', href: '/gioi-thieu' },
+          { label: "Trang chủ", href: "/" },
+          { label: "Giới thiệu", href: "/gioi-thieu" },
         ]}
       />
-        <h2 className="text-3xl md:text-4xl text-center pb-10 font-bold text-[#00377B] tracking-wide">
-          Về chúng tôi
-        </h2>
+      <h2 className="text-3xl md:text-4xl text-center pb-10 font-bold text-[#00377B] tracking-wide">
+        Về chúng tôi
+      </h2>
+
       <section className="space-y-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative w-full h-[250px] sm:h-[250px] md:h-[350px]"
-          >
-            <Image
-              src="/image/about1.png"
-              alt="Hình ảnh công ty"
-              fill
-              className="object-cover rounded-2xl shadow-xl"
-            />
-          </motion.div>
+        {sections.map((item, idx) => {
+          const isEven = idx % 2 === 0; // true = ảnh trái, chữ phải
+          return (
+            <div
+              key={idx}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center"
+            >
+              {/* Ảnh */}
+              <motion.div
+                {...(isEven ? fadeLeft : fadeRight)}
+                className={`relative w-full h-[250px] md:h-[350px] ${
+                  isEven ? "" : "order-2 md:order-2"
+                }`}
+              >
+                <Image
+                  src={item.img}
+                  alt={item.alt}
+                  fill
+                  className="object-cover rounded-md shadow-md"
+                />
+              </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-lg md:text-2xl leading-relaxed text-justify text-[#00377B]"
-          >
-            Quỹ tín dụng nhân dân Trung Sơn được thành lập năm 1996 với mục tiêu
-            cung cấp các dịch vụ tài chính an toàn, hiệu quả cho cộng đồng.
-          </motion.div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-lg md:text-2xl leading-relaxed text-justify text-[#00377B] order-2 md:order-1"
-          >
-            Với sứ mệnh tương trợ thành viên trên địa bàn phường, chúng tôi luôn
-            nỗ lực phát triển bền vững, nâng cao chất lượng dịch vụ để đáp ứng
-            nhu cầu ngày càng đa dạng của khách hàng.
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="relative w-full h-[250px] sm:h-[250px] md:h-[350px] order-1 md:order-2"
-          >
-            <Image
-              src="/image/about2.jpg"
-              alt="Hình ảnh dịch vụ"
-              fill
-              className="object-cover rounded-2xl shadow-xl"
-            />
-          </motion.div>
-        </div>
+              {/* Chữ */}
+              <motion.div
+                {...(isEven ? fadeRight : fadeLeft)}
+                className={`text-lg md:text-2xl leading-relaxed text-justify text-[#00377B] ${
+                  isEven ? "" : "order-1 md:order-1"
+                }`}
+              >
+                {item.text}
+              </motion.div>
+            </div>
+          );
+        })}
       </section>
     </div>
   );

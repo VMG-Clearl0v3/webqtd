@@ -46,19 +46,19 @@ export default function NewsDetail({ news }: { news: News }) {
         ]}
       />
       <div className="max-w-4xl mx-auto text-black">
-      <div className="border-b border-gray-300">
+      <div className="border-b border-gray-200">
         {/* Title */}
-        <h1 className="text-4xl font-bold mb-2 leading-snug">
+        <h1 className="text-4xl font-semibold mb-2 leading-snug">
           {news.title}
         </h1>
 
         {/* Date + Share */}
         <div className="flex items-center justify-between mb-4">
-          <p className="text-md font-semibold text-gray-400">
+          <p className="text-sm text-gray-400">
             {formattedDate || 'Đang tải…'}
           </p>
 
-          <div className="flex items-center space-x-3 text-blue-400">
+          <div className="flex items-center space-x-3 text-gray-400">
             {/* Facebook */}
               <a
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
@@ -98,7 +98,7 @@ export default function NewsDetail({ news }: { news: News }) {
           <img
             src={news.image}
             alt={news.title}
-            className="w-full shadow-md object-cover mb-6"
+            className="w-full shadow-md rounded-md object-cover mb-6"
           />
         )}
         {/* Content */}
