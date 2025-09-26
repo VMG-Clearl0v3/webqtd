@@ -19,7 +19,7 @@ export default function HomeBanner() {
   return (
     <div className="relative w-full pt-20">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
+        modules={[Navigation, Pagination, Autoplay]} 
         pagination={{ clickable: true }}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop

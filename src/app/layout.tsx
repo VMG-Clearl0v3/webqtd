@@ -4,6 +4,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import type { Metadata } from "next";
 import ScrollToTop from "@/app/component/ScrollToTop";
+import CallButton from "@/app/component/CallButton";
 
 export const metadata: Metadata = {
   title: "Quỹ TDND Trung Sơn",
@@ -19,7 +20,8 @@ export default function RootLayout({
     <html lang="vi">
       <link rel="icon" href="/image/icon.png" sizes="100x100" />
       <body className="bg-white text-gray-900">{children}
-         <ScrollToTop />
+        <CallButton/>
+        <ScrollToTop />
       </body>
     </html>
   );

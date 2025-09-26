@@ -116,3 +116,62 @@ body {
     @apply rounded-xl shadow-md my-6;
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* rung qua lại */
+@keyframes ring {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(15deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(15deg); }
+  40% { transform: rotate(-5deg); }
+  50% { transform: rotate(10deg); }
+  60%, 100% { transform: rotate(0); }
+}
+
+/* ripple lan ra */
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.ring-animation {
+  animation: ring 1.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.ripple-wrapper {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  z-index: -1;
+}
+
+.ripple-circle {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background-color: rgba(0, 55, 123, 0.3);
+  animation: ripple 2.5s ease-out infinite;
+}
+
+.ripple-circle:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.ripple-circle:nth-child(3) {
+  animation-delay: 1s;
+}
