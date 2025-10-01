@@ -8,7 +8,7 @@ export default function ProductHeader() {
 
 
   const bannerMap: Record<string, string> = {
-    "tien-gui": "/image/depositbanner.jpg",
+    "tien-gui": "/image/depositbanner.webp",
     "cho-vay": "/image/loanbanner.jpg",
   };
   const bannerSrc =
@@ -20,7 +20,7 @@ export default function ProductHeader() {
       <Header />
 
       {/* Banner riêng cho trang sản phẩm */}
-       <div className="w-full relative h-50 md:h-80">
+       <div className="w-full relative h-80">
         <Image
           src={bannerSrc}
           alt="Trang sản phẩm"         

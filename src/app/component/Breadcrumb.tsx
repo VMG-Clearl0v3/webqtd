@@ -18,7 +18,7 @@ interface BreadcrumbProps {
 export default function Breadcrumb({
   items,
   separator = <ChevronRight className="w-4 h-4 text-gray-400" />,
-  maxLastLabelLength = 15,
+  maxLastLabelLength = 20,
 }: BreadcrumbProps) {
   const totalItems = items.length;
   const [open, setOpen] = useState(false);

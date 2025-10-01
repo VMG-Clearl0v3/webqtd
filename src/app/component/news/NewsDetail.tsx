@@ -37,7 +37,7 @@ export default function NewsDetail({ news }: { news: News }) {
     setTimeout(() => setCopied(false), 1500); // 1.5 giây sau ẩn chữ Copied!
   };
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto p-6">
       <Breadcrumb
         items={[
           { label: 'Trang chủ', href: '/' },

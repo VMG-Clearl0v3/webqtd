@@ -37,71 +37,71 @@ export default function LoanProductDetail({
         title={product.title}
         image={product.image || "/image/noimage.jpg"}
       />
-      <div className="max-w-7xl mx-auto p-6">
-        <Breadcrumb
-        items={[
-          { label: 'Trang chủ', href: '/' },
-          { label: 'Cho vay', href: '/san-pham/cho-vay' },
-          { label: product.title },
-        ]}
-      />
-        <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
-          Chi tiết sản phẩm
-        </h2>
-        <div className="text-[#00377B] space-y-8">
-          {/* Điều kiện vay vốn */}
-          <Section title="Điều kiện vay vốn" items={conditionItems} />
+   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <Breadcrumb
+    items={[
+      { label: "Trang chủ", href: "/" },
+      { label: "Cho vay", href: "/san-pham/cho-vay" },
+      { label: product.title },
+    ]}
+  />
 
-          {/* Tính năng */}
-          <Section title="Tính năng" items={featureItems} />
+  {/* Tiêu đề */}
+  <h2 className="text-2xl md:text-4xl text-center mb-12 font-bold text-[#00377B] tracking-wide">
+    Chi tiết sản phẩm
+  </h2>
 
-          {/* Hồ sơ thủ tục */}
-          <Section title="Hồ sơ thủ tục" items={documentItems} />
-        </div>
-        <h2 className="text-3xl md:text-4xl text-center font-bold text-[#00377B] tracking-wide pt-10">
-            Có thể bạn quan tâm
-        </h2>
-        {relatedProducts.length > 0 && (
-          <div className="pt-10 relative">
-            {/* Nút prev */}
-            <button className="custom-prev absolute top-1/2 -left-6 z-10 -translate-y-1/2 bg-white shadow p-2 rounded-full hover:bg-gray-100 transition">
-              <ChevronLeft size={24} className="text-[#00377B]" />
-            </button>
+  {/* Nội dung sản phẩm */}
+  <div className="text-[#00377B] space-y-10">
+    <Section title="Điều kiện vay vốn" items={conditionItems} />
+    <Section title="Tính năng" items={featureItems} />
+    <Section title="Hồ sơ thủ tục" items={documentItems} />
+  </div>
 
-            {/* Nút next */}
-            <button className="custom-next absolute top-1/2 -right-6 z-10 -translate-y-1/2 bg-white shadow p-2 rounded-full hover:bg-gray-100 transition">
-              <ChevronRight size={24} className="text-[#00377B]" />
-            </button>
+  {/* Liên quan */}
+  <h2 className="text-2xl md:text-4xl text-center font-bold text-[#00377B] tracking-wide pt-16">
+    Có thể bạn quan tâm
+  </h2>
 
-            <Swiper
-              modules={[Navigation, Pagination]}
-              spaceBetween={24}
-              slidesPerView={1}
-              navigation={{
-                nextEl: ".custom-next",
-                prevEl: ".custom-prev",
-              }}
-              pagination={{ clickable: true }}
-              breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-              className="!pb-10"
-            >
-              {relatedProducts.map((p) => (
-                <SwiperSlide key={p.id}>
-                  <div className="h-full">
-                    <ProductCard product={p} />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        )}
-      </div>
+  {relatedProducts.length > 0 && (
+    <div className="pt-12 relative">
+      {/* Nút prev */}
+      <button className="custom-prev absolute top-1/2 -left-4 md:-left-8 z-10 -translate-y-1/2 bg-white shadow p-2 md:p-3 rounded-full hover:bg-gray-100 transition">
+        <ChevronLeft size={24} className="text-[#00377B]" />
+      </button>
+
+      {/* Nút next */}
+      <button className="custom-next absolute top-1/2 -right-4 md:-right-8 z-10 -translate-y-1/2 bg-white shadow p-2 md:p-3 rounded-full hover:bg-gray-100 transition">
+        <ChevronRight size={24} className="text-[#00377B]" />
+      </button>
+
+      <Swiper
+        modules={[Navigation, Pagination]}
+        spaceBetween={24}
+        slidesPerView={1}
+        navigation={{
+          nextEl: ".custom-next",
+          prevEl: ".custom-prev",
+        }}
+        pagination={{ clickable: true }}
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+        className="!pb-12"
+      >
+        {relatedProducts.map((p) => (
+          <SwiperSlide key={p.id}>
+            <div className="h-full">
+              <ProductCard product={p} />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
+  )}
+</div>
     </>
   );
 }
