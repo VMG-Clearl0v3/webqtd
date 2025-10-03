@@ -5,8 +5,8 @@ import { News } from "@/types/news"
 
 export default function NewsCard({ news }: { news: News }) {
   return (
-    <div className="bg-white w-full rounded-sm shadow-sm hover:shadow-md transition group">
-      <div className="relative h-48 w-full overflow-hidden rounded-t-sm">
+    <div className="bg-white w-full shadow-md hover:shadow-lg transition group">
+      <div className="relative h-48 w-full overflow-hidden">
         <Link className="block h-full" href={`/tin-tuc/${news.slug}`}>
           <Image
             src={news.image || "/image/noimage.jpg"}

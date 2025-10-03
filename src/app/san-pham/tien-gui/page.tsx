@@ -20,7 +20,7 @@ export default async function DepositProductsPage() {
               ]}
             />
 
-            <h1 className="text-2xl md:text-4xl text-center mt-8 mb-12 font-bold text-[#00377B] tracking-wide">
+            <h1 className="text-2xl md:text-4xl text-center py-10 font-semibold text-[#00377B] tracking-wide">
               Sản phẩm tiết kiệm
             </h1>
 
@@ -36,13 +36,10 @@ export default async function DepositProductsPage() {
               </div>
             )}
 
-            <h2 className="text-2xl md:text-3xl text-center mb-8 font-bold text-[#00377B] tracking-wide">
+            <h1 className="text-2xl md:text-4xl text-center pb-10 font-semibold text-[#00377B] tracking-wide">
               Lợi ích sử dụng sản phẩm tiết kiệm của chúng tôi
-            </h2>
-
-            <div className="mt-6">
-              <DepositProducBenefit />
-            </div>
+            </h1>
+            <DepositProducBenefit />
           </div>
         </>
       );

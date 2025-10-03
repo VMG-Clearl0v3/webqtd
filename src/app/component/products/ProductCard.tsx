@@ -17,9 +17,9 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={href}
-      className="bg-white w-full rounded-sm shadow hover:shadow-md transition group block"
+      className="bg-white w-full shadow-lg hover:shadow-xl transition group block"
     >
-      <div className="relative h-48 w-full overflow-hidden rounded-t-sm">
+      <div className="relative h-48 w-full overflow-hidden">
         <Image
           src={imageUrl}
           alt={product.title || "Sản phẩm"}

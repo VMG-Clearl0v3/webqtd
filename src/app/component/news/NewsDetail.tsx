@@ -48,7 +48,7 @@ export default function NewsDetail({ news }: { news: News }) {
       <div className="max-w-4xl mx-auto text-black">
       <div className="border-b border-gray-200">
         {/* Title */}
-        <h1 className="text-4xl font-semibold mb-2 leading-snug">
+        <h1 className="text-2xl md:text-4xl pt-10 font-semibold mb-2 leading-snug">
           {news.title}
         </h1>
 
@@ -92,17 +92,17 @@ export default function NewsDetail({ news }: { news: News }) {
         </div>
       </div>
 
-      <div className="pt-6">
+      <div className="py-5">
         {/* Featured image */}
         {news.image && (
           <img
             src={news.image}
             alt={news.title}
-            className="w-full shadow-md rounded-md object-cover mb-6"
+            className="w-full shadow-md object-cover mb-5"
           />
         )}
         {/* Content */}
-        <div className="markdown-content">
+        <div className="markdown-content space-y-2">
           <ReactMarkdown>{news.content}</ReactMarkdown>
         </div>
       </div>

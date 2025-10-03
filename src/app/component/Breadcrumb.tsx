@@ -39,7 +39,7 @@ export default function Breadcrumb({
     label.length > maxLastLabelLength ? label.slice(0, maxLastLabelLength) + "…" : label;
 
   return (
-    <nav className="text-sm md:text-md mb-6 relative" aria-label="Breadcrumb">
+    <nav className="text-sm md:text-md relative" aria-label="Breadcrumb">
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((item, idx) => {
           const isFirst = idx === 0;

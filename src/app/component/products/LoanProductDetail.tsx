@@ -109,7 +109,7 @@ export default function LoanProductDetail({
 // Component con hiển thị danh sách
 function Section({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="bg-blue-50 rounded-2xl p-6 shadow-sm">
+    <div className="bg-gray-50 p-6">
       <div className="flex items-center gap-2 pb-4">
        {/* <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -26,11 +26,13 @@ export default function Calculator() {
   }, [soTien, selectedTerm]);
 
   return (
-  <section>
-  <div className="bg-white shadow-md rounded-2xl w-full max-w-[1000px] border border-gray-100 overflow-hidden">
+  <section className="flex justify-center">
+  <div className="w-full max-w-[1000px] bg-white shadow-lg border border-gray-200">
     {/* Header */}
-    <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] px-6 py-4">
-      <h2 className="text-xl md:text-2xl font-semibold text-white">Công cụ tính lãi</h2>
+    <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white px-6 py-4 border-b-4 border-[#00377B]">
+      <h2 className="text-xl md:text-2xl font-semibold text-white">
+        Công cụ tính lãi
+      </h2>
     </div>
 
     {/* Form */}

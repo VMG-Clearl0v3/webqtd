@@ -16,16 +16,18 @@ export default function Home() {
     <main>
   {/* Wrapper cha */}
   <ServicesSection/>
-  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
-      <h2 className="text-3xl md:text-4xl text-center mb-10 font-bold text-[#00377B] tracking-wide">
+  <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-12">
+      <h2 className="text-3xl md:text-4xl text-center py-10 font-semibold text-[#00377B] tracking-wide">
         Lãi suất & Công cụ tính lãi
       </h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Bảng lãi suất */}
-      <div className="bg-white flex flex-col shadow-md rounded-2xl border border-gray-100">
-        <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white rounded-t-2xl px-6 py-4">
-          <h3 className="text-xl md:text-2xl font-semibold">Lãi suất tiết kiệm</h3>
-        </div>
+      <div className="bg-white flex flex-col shadow-lg">
+          <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white px-6 py-4 border-b-4 border-[#00377B]">
+          <h2 className="text-xl md:text-2xl font-semibold text-white">
+          Lãi suất tiết kiệm
+          </h2>
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-sm md:text-base overflow-hidden shadow-sm">
               <thead>
@@ -66,11 +68,11 @@ export default function Home() {
     <h3 className="text-sm text-[#00377B] p-2">*Lưu ý: Bảng lãi suất chỉ mang tính chất tham khảo. Lãi được tính trên số ngày thực thế và cơ sở tính lãi là 365 ngày.</h3>
   </div>
 
-  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
+  <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-12">
         <div className="flex flex-col md:flex-row md:items-center w-full">
         {/* Tiêu đề */}
-        <h2 className="text-3xl md:text-4xl text-center md:text-left font-bold text-[#00377B] tracking-wide">
-          Tin tức & Sự kiện
+        <h2 className="text-3xl md:text-4xl py-10 text-center md:text-left font-semibold text-[#00377B] tracking-wide">
+          Tin tức mới nhất
         </h2>
 
         {/* Nút Xem thêm */}
@@ -96,62 +98,8 @@ export default function Home() {
         </Link>
         </div>
         </div>
-{/*        <div className=" flex gap-4 mt-6 overflow-x-auto scrollbar-hide
-          snap-x snap-mandatory
-          sm:flex-row sm:flex-nowrap
-          lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none">
-        <div className="min-w-[80%] sm:min-w-[60%] lg:min-w-0 bg-white col-span-2 shadow-lg rounded-2xl overflow-hidden hover:shadow-xl snap-start">
-        <div className="relative ww-full h-full group cursor-pointer">
-        <Image
-        src="/image/2_9.png"
-        alt="Ảnh minh họa"
-        fill
-        priority
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
-        className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <div className="absolute bottom-0 left-0 w-full bg-black/50 text-white py-2 px-3 text-sm sm:text-base md:text-lg font-semibold transition-colors duration-300">
-        Đây là tiêu đề
-        </div>
-        </div>
-        </div>
-        {[
-        { img: "/image/news_1.jpg", title: "Đây là tiêu đề 1" },
-        { img: "/image/news_2.jpg", title: "Đây là tiêu đề 2" },
-      ].map((item, i) => (
-        <div
-          key={i}
-          className="min-w-[80%] sm:min-w-[50%] lg:min-w-0 flex flex-col bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition snap-start"
-        >
-          <div className="relative w-full h-48 group cursor-pointer">
-            <Image
-              src={item.img}
-              alt="Ảnh minh họa"
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
-          <div className="flex flex-col flex-1">
-            <p className="text-lg font-semibold text-gray-800 p-4">{item.title}</p>
-            <p className="text-sm text-gray-600 px-4 flex-1 line-clamp-3">
-              Đây là nội dung mô tả ngắn gọn cho bài viết, giới thiệu sơ lược nội dung.
-              Nếu nội dung quá dài, nó sẽ tự động xuống dòng và sau 3 dòng sẽ bị cắt,
-              kèm theo dấu ba chấm để báo cho người đọc rằng còn nội dung phía sau.
-            </p>
-            <Link
-              href="#"
-              className="text-blue-500 hover:text-blue-800 mt-auto self-end p-4"
-            >
-              Xem chi tiết
-            </Link>
-          </div>
-        </div>
-      ))}
-        </div>*/}
       <NewsSection />
-  </div>
+      </div>
       <PartnerSlider/>
     </main>
     <Footer/>

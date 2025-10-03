@@ -70,9 +70,9 @@ export default function NewsList({
     ]}
   />
 
-  <h2 className="text-2xl md:text-4xl text-center mt-8 mb-12 font-bold text-[#00377B] tracking-wide">
-    Tin tức &amp; Sự kiện
-  </h2>
+  <h1 className="text-3xl md:text-4xl text-center mt-10 mb-10 font-semibold text-[#00377B] tracking-wide">
+    Tin tức
+  </h1>
 
   <AnimatePresence mode="wait">
     <motion.div

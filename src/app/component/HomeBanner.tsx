@@ -1,70 +1,98 @@
-
 "use client";
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, Parallax } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/parallax";
 import { motion } from "framer-motion";
 
 export default function HomeBanner() {
   const banners = [
-    { id: 1, src: "/image/banner1.svg", title: "gửi tiết kiệm" },
-    { id: 2, src: "/image/banner2.svg", title: "vay vốn" },
-    { id: 3, src: "/image/banner3.svg", title: "chuyển tiền" },
+    {
+      id: 1,
+      title: "Gửi tiết kiệm an toàn",
+      desc: "Lãi suất hấp dẫn, linh hoạt kỳ hạn. Đồng hành cùng bạn xây dựng tương lai bền vững.",
+      img: "/image/banner1.png",
+      btn: "Tìm hiểu thêm",
+    },
+    {
+      id: 2,
+      title: "Vay vốn linh hoạt",
+      desc: "Hỗ trợ tài chính kịp thời, thủ tục nhanh chóng và thuận tiện cho mọi nhu cầu.",
+      img: "/image/banner2.png",
+      btn: "Tìm hiểu thêm",
+    },
+    {
+      id: 3,
+      title: "Chuyển tiền 24/7",
+      desc: "Nhanh chóng – Bảo mật – Tiện lợi. Tham gia thành viên chuyển tiền miễn phí.",
+      img: "/image/banner3.png",
+      btn: "Tìm hiểu thêm",
+    },
   ];
 
   return (
-    <div className="relative w-full pt-20">
+    <section className="relative w-full">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]} 
+        modules={[Pagination, Autoplay, Parallax]}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
+        parallax={true}
+        speed={1000}
         loop
         className="w-full h-full"
       >
-        {banners.map((banner, idx) => (
+        {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
-            {/* Ảnh nền */}
-            <div className="relative w-full aspect-[21/9] lg:aspect-[21/9]">
-              <Image
-                src={banner.src}
-                alt={banner.title || "Banner"}
-                fill
-                sizes="100vw"
-                className="object-cover object-center"
-                priority={idx === 0}
-                loading={idx === 0 ? "eager" : "lazy"}
-              />
-              {/* Lớp mờ */}
-              {/*<div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" />*/}
-              {/* Text + Button animate */}
-    {/*          <div className="absolute inset-0 flex flex-col justify-center px-12 md:px-24 text-white max-w-xl">
-                <motion.h1
-                  key={`title-${banner.id}`}
-                  initial={{ y: 40, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="text-3xl md:text-5xl font-extrabold leading-tight drop-shadow-md"
+            <div className="relative w-full h-[570px] lg:h-[720px] overflow-hidden">
+              {/* Background Image with parallax */}
+              <div
+                className="absolute inset-0"
+                data-swiper-parallax="-20%"
+              >
+                <Image
+                  src={banner.img}
+                  alt={banner.title}
+                  fill
+                  className="object-cover object-center"
+                  priority
+                />
+              </div>
+
+              {/* Gradient Overlay (mỏng & tinh tế) */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/50 via-[#334155]/10 to-transparent" />
+
+              {/* Content */}
+              <div className="relative z-10 h-full flex items-center px-6 lg:px-16">
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="max-w-xl text-white"
+                  data-swiper-parallax="-100"
                 >
-                  GIẢI PHÁP <br /> TÀI CHÍNH <br /> THÔNG MINH <br /> CHO BẠN
-                </motion.h1>
-                <motion.button
-                  key={`btn-${banner.id}`}
-                  initial={{ y: 40, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                  className="mt-6 px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors w-max"
-                >
-                  Tìm hiểu ngay
-                </motion.button>
-              </div>*/}
+                  <h1 className="text-2xl sm:text-5xl font-semibold leading-tight">
+                    {banner.title}
+                  </h1>
+                  <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-100">
+                    {banner.desc}
+                  </p>
+                  <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                  <a
+                  href="#"
+                  className="inline-flex self-start px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white text-[#0f172a] font-semibold text-sm sm:text-base shadow-lg hover:scale-105 transition"
+                  >
+                  {banner.btn}
+                  </a>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 }

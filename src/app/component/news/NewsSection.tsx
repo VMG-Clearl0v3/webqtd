@@ -20,7 +20,7 @@ export default async function NewsSection() {
       <div
         className="
           min-w-[80%] sm:min-w-[60%] lg:min-w-0 
-          bg-white col-span-2 shadow-lg rounded-2xl overflow-hidden 
+          bg-white col-span-2 shadow-lg overflow-hidden 
           hover:shadow-xl snap-start
         "
       >
@@ -43,7 +43,7 @@ export default async function NewsSection() {
           key={item.id}
           className="
             min-w-[80%] sm:min-w-[50%] lg:min-w-0 
-            flex flex-col bg-white shadow-lg rounded-2xl overflow-hidden 
+            flex flex-col bg-white shadow-lg overflow-hidden 
             hover:shadow-xl transition snap-start
           "
         >
