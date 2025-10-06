@@ -19,7 +19,7 @@ export default function DetailProductHeader({title, image}: DetailProductHeaderP
     />
   </div>
 
-  <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-10 mt-20">
+  <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-10 mt-15">
     <div className="w-full md:w-[350px] aspect-[4/3] md:h-[250px] relative overflow-hidden shadow-lg order-1 md:order-2 mb-4 md:mb-0">
       <Image
         src={image || "/image/noimage.jpg"}

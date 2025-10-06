@@ -16,6 +16,7 @@ export default function HomeBanner() {
       desc: "Lãi suất hấp dẫn, linh hoạt kỳ hạn. Đồng hành cùng bạn xây dựng tương lai bền vững.",
       img: "/image/banner1.svg",
       btn: "Tìm hiểu thêm",
+      url: "/san-pham/tien-gui",
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ export default function HomeBanner() {
       desc: "Hỗ trợ tài chính kịp thời, thủ tục nhanh chóng và thuận tiện cho mọi nhu cầu.",
       img: "/image/banner2.svg",
       btn: "Tìm hiểu thêm",
+      url: "/san-pham/cho-vay",
     },
     {
       id: 3,
@@ -81,7 +83,7 @@ export default function HomeBanner() {
                   </p>
                   <div className="mt-5 flex flex-col sm:flex-row gap-3">
                   <a
-                  href="#"
+                  href={banner.url}
                   className="inline-flex self-start px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white text-[#0f172a] font-semibold text-sm sm:text-base shadow-lg hover:scale-105 transition"
                   >
                   {banner.btn}
