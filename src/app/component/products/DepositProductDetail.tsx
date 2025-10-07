@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -13,7 +13,7 @@ import ProductCard from "@/app/component/products/ProductCard";
 import { ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
 import Breadcrumb from "@/app/component/Breadcrumb";
 
-export default function DepositProductDetail({
+export default function LoanProductDetail({
   product,
   relatedProducts = [],
 }: {
@@ -37,18 +37,19 @@ export default function DepositProductDetail({
         image={product.image || "/image/noimage.jpg"}
       />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-[#00377B]">
-        {/* Breadcrumb */}
-        <Breadcrumb
-          items={[
-            { label: "Trang chủ", href: "/" },
-            { label: "Tiết kiệm", href: "/san-pham/tien-gui" },
-            { label: product.title },
-          ]}
-        />
+      {/* Breadcrumb */}
+      <Breadcrumb
+        items={[
+          { label: "Trang chủ", href: "/" },
+          { label: "Cho vay", href: "/san-pham/cho-vay" },
+          { label: product.title },
+        ]}
+      />
+
+      <div className="max-w-6xl mx-auto px-4">
 
         {/* Tiêu đề chính */}
-        <h2 className="text-3xl md:text-4xl text-center mt-10 mb-8 font-semibold text-[#00377B] tracking-wide">
+        <h2 className="text-2xl md:text-3xl font-light text-gray-900 py-6 leading-snug">
           Chi tiết sản phẩm
         </h2>
 
@@ -68,11 +69,7 @@ export default function DepositProductDetail({
                   const elementPosition = el.getBoundingClientRect().top;
                   const offsetPosition =
                     elementPosition + window.scrollY - headerOffset;
-
-                  window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth",
-                  });
+                  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                 }
               }}
               className="bg-[#00377B] text-white px-5 py-2 rounded-full hover:scale-105 hover:bg-[#004ca3] transition-transform duration-200"
@@ -83,7 +80,7 @@ export default function DepositProductDetail({
         </div>
 
         {/* Nội dung */}
-        <div className="space-y-8">
+        <div className="space-y-8 text-[#00377B]">
           <Section id="condition" title="Điều kiện vay vốn" items={conditionItems} />
           <Section id="feature" title="Tính năng" items={featureItems} />
           <Section id="document" title="Hồ sơ thủ tục" items={documentItems} />
@@ -92,29 +89,25 @@ export default function DepositProductDetail({
         {/* Liên quan */}
         {relatedProducts.length > 0 && (
           <>
-            <h2 className="text-2xl md:text-4xl text-center mt-16 font-semibold text-[#00377B] tracking-wide">
+            <h2 className="text-2xl md:text-3xl font-light text-gray-900 pt-15 leading-snug">
               Có thể bạn quan tâm
             </h2>
-
             <div className="pt-10 relative">
               {/* Nút prev */}
-              <button className="custom-prev absolute top-1/2 -left-4 md:-left-8 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
-                <ChevronLeft size={26} className="text-[#00377B]" />
+              <button className="custom-prev absolute top-1/2 -left-4 md:-left-7 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
+                <ChevronLeft size={20} className="text-[#00377B]" />
               </button>
 
               {/* Nút next */}
-              <button className="custom-next absolute top-1/2 -right-4 md:-right-8 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
-                <ChevronRight size={26} className="text-[#00377B]" />
+              <button className="custom-next absolute top-1/2 -right-4 md:-right-7 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
+                <ChevronRight size={20} className="text-[#00377B]" />
               </button>
 
               <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={24}
                 slidesPerView={1}
-                navigation={{
-                  nextEl: ".custom-next",
-                  prevEl: ".custom-prev",
-                }}
+                navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
                 pagination={{ clickable: true }}
                 breakpoints={{
                   640: { slidesPerView: 1 },
@@ -188,11 +181,7 @@ function Section({
           >
             {copied ? <Check size={20} /> : <Copy size={20} />}
           </button>
-          <span
-            className={`transform transition-transform ${
-              open ? "rotate-180" : ""
-            }`}
-          >
+          <span className={`transform transition-transform ${open ? "rotate-180" : ""}`}>
             <ChevronDownIcon />
           </span>
         </div>

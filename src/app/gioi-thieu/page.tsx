@@ -21,23 +21,24 @@ export default function AboutUsPage() {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      {/* Breadcrumb */}
+    <>
+       {/* Breadcrumb */}
       <Breadcrumb
         items={[
           { label: "Trang chủ", href: "/" },
           { label: "Giới thiệu", href: "/gioi-thieu" },
         ]}
       />
+    <div className="max-w-6xl mx-auto px-4">
 
       {/* Heading */}
-      <h1 className="text-2xl md:text-4xl text-center mt-10 mb-10 font-semibold text-[#00377B] tracking-wide">
-        Về chúng tôi
-      </h1>
+      <h2 className="text-2xl md:text-3xl font-semibold text-[#00377B] py-6 leading-snug">
+          Về chúng tôi
+      </h2>
 
       <div className="space-y-10">
         {/* Giới thiệu chung */}
-        <section className="max-w-6xl mx-auto py-5 flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
+        <section className="relative py-5 flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
           <motion.img
             src="/image/about-intro.jpg"
             alt="Giới thiệu chung"
@@ -54,8 +55,8 @@ export default function AboutUsPage() {
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <BookOpen className="w-12 h-12 text-blue-900" />
-              <h2 className="text-3xl font-semibold text-[#003776]">Giới thiệu chung</h2>
+              <BookOpen className="w-10 h-10 text-blue-900" />
+              <h2 className="text-2xl font-light text-gray-900">Giới thiệu chung</h2>
             </div>
             <p className="text-gray-600 leading-relaxed text-lg text-justify">
               Quỹ tín dụng nhân dân Trung Sơn được thành lập năm 1996, chuyển đổi từ mô hình hợp tác xã tín dụng.
@@ -72,8 +73,8 @@ export default function AboutUsPage() {
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <Target className="w-12 h-12 text-red-500" />
-              <h2 className="text-3xl font-semibold text-[#003776]">Sứ mệnh</h2>
+              <Target className="w-10 h-10 text-red-500" />
+              <h2 className="text-2xl font-light text-gray-900">Sứ mệnh</h2>
             </div>
             <p className="text-gray-700 leading-relaxed text-lg text-justify">
               Mang đến giải pháp tài chính an toàn, minh bạch và hiệu quả, tương trợ thành viên trên địa bàn, góp phần nâng cao đời sống và phát triển kinh tế địa phương.
@@ -137,7 +138,7 @@ export default function AboutUsPage() {
                 <motion.div
                   key={idx}
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white shadow-lg p-8 flex flex-col items-center"
+                  className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center"
                 >
                   {stat.icon}
                   <p className="text-4xl font-bold mt-4 text-[#003776]">
@@ -152,7 +153,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Định hướng tương lai */}
-        <section className="max-w-6xl mx-auto py-5 flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
+        <section className="max-w-6xl mx-auto py-5 flex flex-col md:grid md:grid-cols-2 gap-10 items-center mb-10">
           <motion.img
             src="/image/future.jpg"
             alt="Định hướng tương lai"
@@ -169,8 +170,8 @@ export default function AboutUsPage() {
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <Rocket className="w-12 h-12 text-green-600" />
-              <h2 className="text-3xl font-semibold text-[#003776]">Định hướng tương lai</h2>
+              <Rocket className="w-10 h-10 text-green-600" />
+              <h2 className="text-2xl font-light text-gray-900">Định hướng tương lai</h2>
             </div>
             <p className="text-gray-700 leading-relaxed text-lg text-justify">
               Chúng tôi tiếp tục đẩy mạnh chuyển đổi số, mở rộng dịch vụ, 
@@ -180,5 +181,6 @@ export default function AboutUsPage() {
         </section>
       </div>
     </div>
+    </>
   );
 }

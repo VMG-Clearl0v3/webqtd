@@ -1,70 +1,61 @@
 'use client';
+import { HandCoins, Percent, CreditCard } from "lucide-react";
 
-import { HandCoins , Percent, CreditCard } from "lucide-react";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import "@/app/globals.css";
-
-const benefits = [
+const reasons = [
   {
     icon: HandCoins,
-    color: "text-blue-600",
     title: "Giải ngân nhanh chóng",
     desc: "Thủ tục đơn giản, phê duyệt và giải ngân nhanh chóng, đáp ứng mọi nhu cầu chi tiêu",
   },
   {
     icon: Percent,
-    color: "text-green-600",
     title: "Lãi suất hấp dẫn",
     desc: "Lãi suất cạnh tranh với nhiều ưu đãi hấp dẫn",
   },
   {
     icon: CreditCard,
-    color: "text-purple-600",
     title: "Phương thức trả nợ linh hoạt",
     desc: "Phương thức trả nợ linh hoạt, đơn giản tại quầy hoặc qua tài khoản",
   },
 ];
 
-function BenefitCard({ icon: Icon, color, title, desc }: typeof benefits[0]) {
-  return (
-    <div className="group bg-gray-50 h-60 flex flex-col items-center justify-center text-center text-black p-4">
-      <Icon className={`w-12 h-12 mb-3 ${color} transform transition-transform duration-300 group-hover:scale-125`} />
-      <p className="text-lg font-semibold">{title}</p>
-      <p className="text-md">{desc}</p>
-    </div>
-  );
-}
-
 export default function LoanProductBenefit() {
   return (
-    <>
-      {/* Desktop grid */}
-      <div className="hidden md:grid grid-cols-3 gap-6">
-        {benefits.map((item, i) => (
-          <BenefitCard key={i} {...item} />
-        ))}
-      </div>
+    <section className="relative w-screen bg-[#f5f6f8] pb-10 left-1/2 right-1/2 -mx-[50vw]">
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Tiêu đề */}
+        <h2 className="text-2xl md:text-3xl font-light text-gray-900 py-10 leading-snug">
+          Lợi ích khi sử dụng sản phẩm vay của{" "}
+          <span className="text-red-600">Quỹ Trung Sơn</span>
+        </h2>
 
-      {/* Mobile slider */}
-      <div className="md:hidden">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          autoplay={{ delay: 3000 }}
-          pagination={{ clickable: true }}
-          loop
-          slidesPerView={1}
-          spaceBetween={16}
-        >
-          {benefits.map((item, i) => (
-            <SwiperSlide key={i}>
-              <BenefitCard {...item} />
-            </SwiperSlide>
+        {/* Grid layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {reasons.map((item, idx) => (
+            <div
+              key={idx}
+              className="flex items-start md:items-center gap-4 bg-white rounded-xl shadow-sm 
+                         border border-gray-100 p-5 transition-all duration-300 
+                         hover:shadow-md hover:scale-[1.02]"
+            >
+              {/* Icon */}
+              <div className="flex-shrink-0 p-3 rounded-lg bg-gray-50">
+                <item.icon className="w-8 h-8 text-gray-700" />
+              </div>
+
+              {/* Nội dung */}
+              <div>
+                <h3 className="font-semibold text-gray-900 text-base md:text-lg">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 text-sm mt-1 leading-snug">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
           ))}
-        </Swiper>
+        </div>
       </div>
-    </>
+    </section>
   );
 }

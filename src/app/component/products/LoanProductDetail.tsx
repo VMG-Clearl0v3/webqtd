@@ -5,8 +5,8 @@ import "swiper/css/pagination";
 import "@/app/globals.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import DetailProductHeader from "@/app/component/DetailProductHeader";
 import { Product } from "@/types/product";
+import DetailProductHeader from "@/app/component/DetailProductHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ProductCard from "@/app/component/products/ProductCard";
@@ -30,20 +30,6 @@ export default function LoanProductDetail({
   const featureItems = product.feature?.split("\n").filter(Boolean) || [];
   const documentItems = product.document?.split("\n").filter(Boolean) || [];
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const headerOffset = 90;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <>
       <DetailProductHeader
@@ -51,18 +37,19 @@ export default function LoanProductDetail({
         image={product.image || "/image/noimage.jpg"}
       />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-[#00377B]">
-        {/* Breadcrumb */}
-        <Breadcrumb
-          items={[
-            { label: "Trang chủ", href: "/" },
-            { label: "Cho vay", href: "/san-pham/cho-vay" },
-            { label: product.title },
-          ]}
-        />
+      {/* Breadcrumb */}
+      <Breadcrumb
+        items={[
+          { label: "Trang chủ", href: "/" },
+          { label: "Cho vay", href: "/san-pham/cho-vay" },
+          { label: product.title },
+        ]}
+      />
 
-        {/* Tiêu đề */}
-        <h2 className="text-3xl md:text-4xl text-center mt-10 mb-8 font-semibold text-[#00377B] tracking-wide">
+      <div className="max-w-6xl mx-auto px-4">
+
+        {/* Tiêu đề chính */}
+        <h2 className="text-2xl md:text-3xl font-light text-gray-900 py-6 leading-snug">
           Chi tiết sản phẩm
         </h2>
 
@@ -75,7 +62,16 @@ export default function LoanProductDetail({
           ].map((item) => (
             <button
               key={item.id}
-              onClick={() => scrollToSection(item.id)}
+              onClick={() => {
+                const el = document.getElementById(item.id);
+                if (el) {
+                  const headerOffset = 90;
+                  const elementPosition = el.getBoundingClientRect().top;
+                  const offsetPosition =
+                    elementPosition + window.scrollY - headerOffset;
+                  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
+              }}
               className="bg-[#00377B] text-white px-5 py-2 rounded-full hover:scale-105 hover:bg-[#004ca3] transition-transform duration-200"
             >
               {item.label}
@@ -83,8 +79,8 @@ export default function LoanProductDetail({
           ))}
         </div>
 
-        {/* Nội dung chi tiết */}
-        <div className="space-y-8">
+        {/* Nội dung */}
+        <div className="space-y-8 text-[#00377B]">
           <Section id="condition" title="Điều kiện vay vốn" items={conditionItems} />
           <Section id="feature" title="Tính năng" items={featureItems} />
           <Section id="document" title="Hồ sơ thủ tục" items={documentItems} />
@@ -93,29 +89,25 @@ export default function LoanProductDetail({
         {/* Liên quan */}
         {relatedProducts.length > 0 && (
           <>
-            <h2 className="text-2xl md:text-4xl text-center mt-16 font-semibold text-[#00377B] tracking-wide">
+            <h2 className="text-2xl md:text-3xl font-light text-gray-900 pt-15 leading-snug">
               Có thể bạn quan tâm
             </h2>
-
             <div className="pt-10 relative">
               {/* Nút prev */}
-              <button className="custom-prev absolute top-1/2 -left-4 md:-left-8 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
-                <ChevronLeft size={26} className="text-[#00377B]" />
+              <button className="custom-prev absolute top-1/2 -left-4 md:-left-7 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
+                <ChevronLeft size={20} className="text-[#00377B]" />
               </button>
 
               {/* Nút next */}
-              <button className="custom-next absolute top-1/2 -right-4 md:-right-8 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
-                <ChevronRight size={26} className="text-[#00377B]" />
+              <button className="custom-next absolute top-1/2 -right-4 md:-right-7 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
+                <ChevronRight size={20} className="text-[#00377B]" />
               </button>
 
               <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={24}
                 slidesPerView={1}
-                navigation={{
-                  nextEl: ".custom-next",
-                  prevEl: ".custom-prev",
-                }}
+                navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
                 pagination={{ clickable: true }}
                 breakpoints={{
                   640: { slidesPerView: 1 },
@@ -126,7 +118,7 @@ export default function LoanProductDetail({
               >
                 {relatedProducts.map((p) => (
                   <SwiperSlide key={p.id}>
-                    <div className="h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div className="h-full transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.02]">
                       <ProductCard product={p} />
                     </div>
                   </SwiperSlide>
@@ -140,7 +132,7 @@ export default function LoanProductDetail({
   );
 }
 
-// Component từng phần có mũi tên xuống (accordion thuần CSS)
+// Accordion Section
 function Section({
   id,
   title,
@@ -189,27 +181,19 @@ function Section({
           >
             {copied ? <Check size={20} /> : <Copy size={20} />}
           </button>
-          <span
-            className={`transform transition-transform ${
-              open ? "rotate-180" : ""
-            }`}
-          >
+          <span className={`transform transition-transform ${open ? "rotate-180" : ""}`}>
             <ChevronDownIcon />
           </span>
         </div>
       </div>
 
-      <div
-        className={`overflow-hidden transition-all duration-300 ${
-          open ? "max-h-[1000px] opacity-100 mt-4" : "max-h-0 opacity-0"
-        }`}
-      >
-        <ul className="md:text-lg sm:text-md list-disc pl-6 space-y-2 text-justify">
+      {open && (
+        <ul className="mt-4 md:text-lg sm:text-md list-disc pl-6 space-y-2 text-justify transition-all duration-300">
           {items.map((item, idx) => (
             <li key={idx}>{item}</li>
           ))}
         </ul>
-      </div>
+      )}
     </div>
   );
 }

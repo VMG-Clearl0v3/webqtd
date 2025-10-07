@@ -91,7 +91,14 @@ function ServiceCard({
 
 export default function ServicesSection() {
   return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-8 relative">
+        <div
+        className="
+        relative pb-8
+        w-full
+        md:max-w-6xl md:mx-auto
+        px-0 sm:px-0 md:px-6
+        "
+        >
       {/* Desktop grid */}
       <div className="hidden md:grid grid-cols-2 lg:grid-cols-4">
         {services.map((item, i) => (
@@ -108,7 +115,7 @@ export default function ServicesSection() {
             prevEl: ".service-prev",
           }}
           slidesPerView={2}
-          spaceBetween={1}
+          spaceBetween={0}
           loop
           className="w-full"
         >
@@ -120,12 +127,23 @@ export default function ServicesSection() {
         </Swiper>
 
         {/* Nút điều hướng */}
-        <button className="service-prev absolute top-1/2 -left-3 z-20 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-white/90 text-[#00377B] shadow-md hover:scale-110 transition">
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-        <button className="service-next absolute top-1/2 -right-3 z-20 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-white/90 text-[#00377B] shadow-md hover:scale-110 transition">
-          <ChevronRight className="w-5 h-5" />
-        </button>
+       <button
+  className="service-prev absolute top-1/2 left-0 z-20 -translate-y-1/2
+             w-9 h-9 flex items-center justify-center rounded-full
+             bg-white/90 text-[#00377B] shadow-md
+             hover:scale-110 transition"
+>
+  <ChevronLeft className="w-5 h-5" />
+</button>
+
+<button
+  className="service-next absolute top-1/2 right-0 z-20 -translate-y-1/2
+             w-9 h-9 flex items-center justify-center rounded-full
+             bg-white/90 text-[#00377B] shadow-md
+             hover:scale-110 transition"
+>
+  <ChevronRight className="w-5 h-5" />
+</button>
       </div>
     </div>
   );

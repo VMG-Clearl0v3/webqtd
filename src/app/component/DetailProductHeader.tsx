@@ -32,7 +32,7 @@ export default function DetailProductHeader({title, image}: DetailProductHeaderP
     {/* Chữ */}
     <h1
       className="
-       text-3xl font-bold text-[#00377B] drop-shadow-lg max-w-lg
+       text-2xl md:text-4xl font-bold text-[#00377B] drop-shadow-lg max-w-lg
         text-center md:text-left order-2 md:order-1
       "
     >
