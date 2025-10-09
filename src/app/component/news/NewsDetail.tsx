@@ -148,7 +148,7 @@ export default function NewsDetail({
                       {item.title}
                     </p>
                     <p className="text-sm text-gray-500 mt-2 line-clamp-2">
-                      {item.excerpt || item.content.slice(0, 100) + "..."}
+                      {item.content.slice(0, 100) + "..."}
                     </p>
                   </div>
                 </Link>
