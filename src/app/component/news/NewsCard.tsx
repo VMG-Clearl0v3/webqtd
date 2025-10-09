@@ -41,11 +41,11 @@ export default function NewsCard({ news }: { news: News }) {
         </Link>
 
         {/* Mô tả ngắn (nếu có) */}
-        {news.description && (
+   {/*     {news.description && (
           <p className="text-gray-600 text-sm mt-3 line-clamp-3">
             {news.description}
           </p>
-        )}
+        )}*/}
 
         {/* Nút xem chi tiết */}
 <div className="mt-auto">
