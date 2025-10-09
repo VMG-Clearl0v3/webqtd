@@ -38,28 +38,17 @@ body {
   z-index: 50 !important;
   color: #ffffff !important; 
 }
-
-/* Bullet thường */
-.swiper-pagination-bullet {
-  display: inline-block; /* thêm dòng này để đảm bảo size hoạt động */
-  width: 12px !important;
-  height: 12px !important;
-  border-radius: 50%;
-  background-color: #00377B !important; /* xanh đậm */
-  opacity: 0.5;
-  margin: 0 4px !important;
-}
-
-/* Bullet active */
-.swiper-pagination-bullet-active {
-  display: inline-block; /* chắc chắn vẫn inline-block */
-  width: 15px !important;
-  height: 15px !important;
-  border-radius: 50%; /* vẫn tròn */
-  background-color: #00377B !important; /* xanh đậm */
+.swiper-pagination-bullet-custom {
+  background-color: #ccc;
   opacity: 1;
-  border: 1px solid #ffffff; /* viền trắng bên ngoài */
+  transition: all 0.3s ease;
 }
+
+.swiper-pagination-bullet-custom:hover,
+.swiper-pagination-bullet-custom.swiper-pagination-bullet-active {
+  background-color: #ff0000;
+}
+
 @layer components {
   /* Style chung cho nội dung markdown */
   .markdown-content {
@@ -150,7 +139,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  background-color: rgba(0, 55, 123, 0.3);
+  background-color: rgba(255, 0, 0, 0.3);
   animation: ripple 2.5s ease-out infinite;
 }
 
@@ -162,3 +151,22 @@ body {
   animation-delay: 1s;
 }
 
+/* Ẩn thanh cuộn ngang nhưng vẫn cho phép cuộn */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* cho IE và Edge */
+  scrollbar-width: none; /* cho Firefox */
+}
+
+/* Ẩn thanh cuộn trên tất cả thiết bị di động */
+@media (max-width: 1024px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

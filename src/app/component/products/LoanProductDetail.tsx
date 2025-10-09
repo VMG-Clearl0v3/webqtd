@@ -10,7 +10,7 @@ import DetailProductHeader from "@/app/component/DetailProductHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ProductCard from "@/app/component/products/ProductCard";
-import { ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight, Copy, Check, ChevronDown } from "lucide-react";
 import Breadcrumb from "@/app/component/Breadcrumb";
 
 export default function LoanProductDetail({
@@ -30,6 +30,27 @@ export default function LoanProductDetail({
   const featureItems = product.feature?.split("\n").filter(Boolean) || [];
   const documentItems = product.document?.split("\n").filter(Boolean) || [];
 
+  const sections = [
+    { label: "Điều kiện vay vốn", id: "condition" },
+    { label: "Tính năng", id: "feature" },
+    { label: "Hồ sơ thủ tục", id: "document" },
+  ];
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
+
+  const handleSelect = (id: string) => {
+    setSelected(id);
+    setIsOpen(false);
+    const el = document.getElementById(id);
+    if (el) {
+      const headerOffset = 90;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <DetailProductHeader
@@ -46,38 +67,45 @@ export default function LoanProductDetail({
         ]}
       />
 
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-6 md:px-4">
 
         {/* Tiêu đề chính */}
-        <h2 className="text-2xl md:text-3xl font-light text-gray-900 py-6 leading-snug">
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 py-10 leading-snug">
           Chi tiết sản phẩm
         </h2>
 
-        {/* Mục lục nhanh */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {[
-            { label: "Điều kiện vay vốn", id: "condition" },
-            { label: "Tính năng", id: "feature" },
-            { label: "Hồ sơ thủ tục", id: "document" },
-          ].map((item) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                const el = document.getElementById(item.id);
-                if (el) {
-                  const headerOffset = 90;
-                  const elementPosition = el.getBoundingClientRect().top;
-                  const offsetPosition =
-                    elementPosition + window.scrollY - headerOffset;
-                  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                }
-              }}
-              className="bg-[#00377B] text-white px-5 py-2 rounded-full hover:scale-105 hover:bg-[#004ca3] transition-transform duration-200"
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+        {/* Mục lục nhanh dạng dropdown */}
+    {/*    <div className="relative max-w-xs mx-auto mb-10">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-full flex items-center justify-between bg-[#00377B] text-white px-5 py-3 rounded-full hover:bg-[#004ca3] transition"
+          >
+            <span>
+              {selected
+                ? sections.find((s) => s.id === selected)?.label
+                : "Chọn mục cần xem"}
+            </span>
+            <ChevronDown
+              className={`transition-transform duration-300 ${
+                isOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          {isOpen && (
+            <div className="absolute w-full mt-2 bg-white rounded-2xl border border-gray-100 shadow-md overflow-hidden z-20 animate-fadeIn">
+              {sections.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleSelect(item.id)}
+                  className="w-full text-left px-5 py-3 text-[#00377B] hover:bg-gray-50 transition"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>*/}
 
         {/* Nội dung */}
         <div className="space-y-8 text-[#00377B]">
@@ -89,26 +117,33 @@ export default function LoanProductDetail({
         {/* Liên quan */}
         {relatedProducts.length > 0 && (
           <>
-            <h2 className="text-2xl md:text-3xl font-light text-gray-900 pt-15 leading-snug">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 pt-16 leading-snug">
               Có thể bạn quan tâm
             </h2>
-            <div className="pt-10 relative">
+
+            <div className="relative py-10">
               {/* Nút prev */}
-              <button className="custom-prev absolute top-1/2 -left-4 md:-left-7 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
-                <ChevronLeft size={20} className="text-[#00377B]" />
+              <button
+                className="custom-prev absolute -left-5 md:-left-6 top-1/2 z-10 -translate-y-[95%]
+                w-10 h-10 flex items-center justify-center rounded-full
+                bg-white/90 backdrop-blur text-[#00377B] shadow-md
+                hover:bg-[#ff0000] hover:text-white
+                transition-all duration-300 ease-out"
+              >
+                <ChevronLeft size={20} />
               </button>
 
-              {/* Nút next */}
-              <button className="custom-next absolute top-1/2 -right-4 md:-right-7 z-10 -translate-y-1/2 bg-white shadow-lg p-3 rounded-full hover:bg-gray-100 transition">
-                <ChevronRight size={20} className="text-[#00377B]" />
-              </button>
-
+              {/* Swiper */}
               <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={24}
                 slidesPerView={1}
                 navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
-                pagination={{ clickable: true }}
+                pagination={{
+                  clickable: true,
+                  renderBullet: (index, className) =>
+                    `<span class="${className} swiper-pagination-bullet-custom"></span>`,
+                }}
                 breakpoints={{
                   640: { slidesPerView: 1 },
                   768: { slidesPerView: 2 },
@@ -118,12 +153,23 @@ export default function LoanProductDetail({
               >
                 {relatedProducts.map((p) => (
                   <SwiperSlide key={p.id}>
-                    <div className="h-full transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.02]">
+                    <div className="h-full">
                       <ProductCard product={p} />
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
+
+              {/* Nút next */}
+              <button
+                className="custom-next absolute -right-5 md:-right-6 top-1/2 z-10 -translate-y-[95%]
+                w-10 h-10 flex items-center justify-center rounded-full
+                bg-white/90 backdrop-blur text-[#00377B] shadow-md
+                hover:bg-[#ff0000] hover:text-white
+                transition-all duration-300 ease-out"
+              >
+                <ChevronRight size={20} />
+              </button>
             </div>
           </>
         )}
@@ -182,7 +228,7 @@ function Section({
             {copied ? <Check size={20} /> : <Copy size={20} />}
           </button>
           <span className={`transform transition-transform ${open ? "rotate-180" : ""}`}>
-            <ChevronDownIcon />
+            <ChevronDown size={20} />
           </span>
         </div>
       </div>
@@ -195,23 +241,5 @@ function Section({
         </ul>
       )}
     </div>
-  );
-}
-
-// Icon mũi tên xuống
-function ChevronDownIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#00377B"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
   );
 }

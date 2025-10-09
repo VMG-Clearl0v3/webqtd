@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Home } from "lucide-react";
+import "@/app/globals.css";
 
 type BreadcrumbItem = {
   label: string;
@@ -21,10 +22,10 @@ export default function Breadcrumb({
 
   return (
     <section className="py-4 md:py-6">
-      <nav
+        <nav
         aria-label="Breadcrumb"
-        className="max-w-6xl mx-auto px-4 text-sm md:text-base w-full overflow-x-auto whitespace-nowrap"
-      >
+        className="max-w-6xl mx-auto px-6 md:px-4 text-sm md:text-base w-full overflow-x-auto whitespace-nowrap hide-scrollbar"
+        >
         <ol className="flex items-center gap-2">
           {items.map((item, idx) => {
             const isFirst = idx === 0;

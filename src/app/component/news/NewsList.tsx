@@ -68,9 +68,9 @@ export default function NewsList({
         ]}
       />
 
-      <div className="max-w-6xl mx-auto px-4 pb-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-4">
         {/* Tiêu đề */}
-        <h2 className="text-2xl md:text-3xl font-semibold text-[#00377B] py-6 leading-snug">
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 py-10 leading-snug">
           Tin tức 
         </h2>
 
@@ -96,7 +96,7 @@ export default function NewsList({
         </AnimatePresence>
 
         {/* Phân trang */}
-        <div className="flex justify-center items-center flex-wrap gap-2">
+        <div className="flex justify-center items-center flex-wrap gap-2 pb-10">
           {currentPage > 1 && (
             <button
               onClick={() => handlePageChange(currentPage - 1)}

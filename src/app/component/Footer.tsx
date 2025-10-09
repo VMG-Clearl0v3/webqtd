@@ -117,11 +117,11 @@ export default function Footer() {
       </div>
 
       {/* Bản quyền */}
-      {/*<div className="w-full text-center text-xs sm:text-sm py-4 bg-[#002A5C]">
+      <div className="w-full text-center text-xs sm:text-sm py-4 bg-[#002A5C]">
         © 2025 Bản quyền thuộc về Quỹ tín dụng nhân dân Trung Sơn
-      </div>*/}
-      <div className="relative w-full mt-8">
-        {/* Desktop */}
+      </div>
+{/*      <div className="relative w-full mt-8">
+    
         <div className="hidden sm:block w-full">
           <Image
             src="/image/footer-desktop.png"
@@ -132,7 +132,7 @@ export default function Footer() {
             priority
           />
         </div>
-        {/* Mobile */}
+
         <div className="block sm:hidden w-full">
           <Image
             src="/image/footer-mobile.png"
@@ -143,7 +143,7 @@ export default function Footer() {
             priority
           />
         </div>
-      </div>
+      </div>*/}
     </footer>
   );
 }

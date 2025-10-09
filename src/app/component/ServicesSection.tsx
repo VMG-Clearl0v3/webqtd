@@ -54,10 +54,14 @@ function ServiceCard({
   return (
     <Link
       href={link}
-      className={`group relative flex flex-col items-center justify-center h-60 p-6 
-                  bg-gradient-to-br ${grad} overflow-hidden border border-[#dce8f8]
-                  transition-all duration-500 hover:shadow-[0_8px_20px_rgba(0,55,123,0.15)]
-                  hover:-translate-y-1`}
+     className={`
+    group relative flex flex-col items-center justify-center h-60 p-6
+    border border-blue-100 
+    bg-gradient-to-br ${grad} overflow-hidden
+    transition-all duration-500 ease-out
+    hover:shadow-[0_8px_25px_rgba(0,55,123,0.15)]
+    hover:-translate-y-1 hover:border-blue-200
+  `}
     >
       {/* ánh sáng hover */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-[#00377B]/10 to-transparent" />
@@ -93,10 +97,10 @@ export default function ServicesSection() {
   return (
         <div
         className="
-        relative pb-8
+        relative pb-5
         w-full
         md:max-w-6xl md:mx-auto
-        px-0 sm:px-0 md:px-6
+        px-0 sm:px-0 md:px-4
         "
         >
       {/* Desktop grid */}

@@ -29,20 +29,20 @@ export default function AboutUsPage() {
           { label: "Giới thiệu", href: "/gioi-thieu" },
         ]}
       />
-    <div className="max-w-6xl mx-auto px-4">
+    <div className="max-w-6xl mx-auto px-6 md:px-4">
 
       {/* Heading */}
-      <h2 className="text-2xl md:text-3xl font-semibold text-[#00377B] py-6 leading-snug">
+      <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 py-6 leading-snug">
           Về chúng tôi
       </h2>
 
-      <div className="space-y-10">
+      <div className="space-y-6">
         {/* Giới thiệu chung */}
         <section className="relative py-5 flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
           <motion.img
             src="/image/about-intro.jpg"
             alt="Giới thiệu chung"
-            className="shadow-lg w-full h-[320px] object-cover"
+            className="shadow-lg rounded-xl w-full h-[300px] object-cover"
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -56,7 +56,7 @@ export default function AboutUsPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <BookOpen className="w-10 h-10 text-blue-900" />
-              <h2 className="text-2xl font-light text-gray-900">Giới thiệu chung</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">Giới thiệu chung</h2>
             </div>
             <p className="text-gray-600 leading-relaxed text-lg text-justify">
               Quỹ tín dụng nhân dân Trung Sơn được thành lập năm 1996, chuyển đổi từ mô hình hợp tác xã tín dụng.
@@ -74,7 +74,7 @@ export default function AboutUsPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <Target className="w-10 h-10 text-red-500" />
-              <h2 className="text-2xl font-light text-gray-900">Sứ mệnh</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">Sứ mệnh</h2>
             </div>
             <p className="text-gray-700 leading-relaxed text-lg text-justify">
               Mang đến giải pháp tài chính an toàn, minh bạch và hiệu quả, tương trợ thành viên trên địa bàn, góp phần nâng cao đời sống và phát triển kinh tế địa phương.
@@ -83,7 +83,7 @@ export default function AboutUsPage() {
           <motion.img
             src="/image/mission.jpg"
             alt="Sứ mệnh"
-            className="shadow-lg w-full h-[320px] object-cover"
+            className="shadow-lg rounded-xl w-full h-[300px] object-cover"
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -93,7 +93,7 @@ export default function AboutUsPage() {
 
         {/* Quá trình phát triển */}
         <section className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold mb-10 text-[#003776] text-center">
+          <h2 className="text-3xl font-semibold mb-10 text-gray-900 text-center">
             Quá trình phát triển
           </h2>
           <div className="relative border-l-2 border-gray-300 pl-12">
@@ -130,7 +130,7 @@ export default function AboutUsPage() {
         {/* Thành tích */}
         <section className="relative w-screen bg-gradient-to-r from-indigo-50 to-blue-50 py-10 px-6 left-1/2 right-1/2 -mx-[50vw]">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-semibold mb-12 text-[#003776] text-center">
+            <h2 className="text-3xl font-semibold mb-12 text-gray-900 text-center">
               Thành tích đạt được
             </h2>
             <div className="grid md:grid-cols-4 gap-10">
@@ -157,7 +157,7 @@ export default function AboutUsPage() {
           <motion.img
             src="/image/future.jpg"
             alt="Định hướng tương lai"
-            className="shadow-lg w-full h-[320px] object-cove"
+            className="shadow-lg rounded-xl w-full h-[300px] object-cove"
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -171,7 +171,7 @@ export default function AboutUsPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <Rocket className="w-10 h-10 text-green-600" />
-              <h2 className="text-2xl font-light text-gray-900">Định hướng tương lai</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">Định hướng tương lai</h2>
             </div>
             <p className="text-gray-700 leading-relaxed text-lg text-justify">
               Chúng tôi tiếp tục đẩy mạnh chuyển đổi số, mở rộng dịch vụ, 

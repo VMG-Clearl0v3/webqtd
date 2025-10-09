@@ -19,8 +19,8 @@ const partners = [
 
 export default function PartnerSlider() {
   return (
-    <div className="mx-auto max-w-6xl px-6 pb-10 relative">
-      <h2 className="text-3xl md:text-4xl text-center py-10 font-semibold text-[#00377B] tracking-wide">
+    <div className="max-w-6xl mx-auto px-6 md:px-4 pb-10 relative">
+      <h2 className="text-2xl md:text-4xl text-center py-10 font-semibold text-[#00377B] tracking-wide">
         Đối tác của chúng tôi
       </h2>
       <div className="relative">
@@ -64,14 +64,14 @@ export default function PartnerSlider() {
         <button className="partner-prev hidden md:flex absolute -left-1 top-1/2 -translate-y-1/2 
         w-10 h-10 items-center justify-center rounded-full 
         bg-white/90 backdrop-blur shadow-md 
-        text-[#00377B] hover:bg-[#00377B] hover:text-white transition z-10">
+        text-[#00377B] hover:bg-[#ff0000] hover:text-white transition z-10">
         <ChevronLeft size={20} />
         </button>
 
         <button className="partner-next hidden md:flex absolute -right-1 top-1/2 -translate-y-1/2 
         w-10 h-10 items-center justify-center rounded-full 
         bg-white/90 backdrop-blur shadow-md 
-        text-[#00377B] hover:bg-[#00377B] hover:text-white transition z-10">
+        text-[#00377B] hover:bg-[#ff0000] hover:text-white transition z-10">
         <ChevronRight size={20} />
         </button>      
       </div>

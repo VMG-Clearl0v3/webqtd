@@ -18,8 +18,8 @@ export default async function DepositProductsPage() {
                 { label: "Tiết kiệm", href: "/tien-gui" },
               ]}
             />
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-semibold text-[#00377B] py-6 leading-snug">
+          <div className="max-w-6xl mx-auto px-6 md:px-4">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 py-6 leading-snug">
               Sản phẩm tiết kiệm
             </h2>
 

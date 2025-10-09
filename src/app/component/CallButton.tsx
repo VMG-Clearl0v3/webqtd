@@ -23,68 +23,68 @@ export default function CallButton() {
   ];
 
   return (
-   <div
-  className={`
-    fixed z-50
-    ${isMobile
-      ? 'bottom-20 right-4' // mobile: ngay trên nút scroll-top
-      : 'top-1/2 right-4 -translate-y-1/2' // desktop: giữa trang
-    }
-  `}
->
-  <div className={`relative flex items-center ${!isMobile && 'group'}`}>
-    {/* List số điện thoại */}
     <div
       className={`
-        absolute right-full mr-3 flex flex-col items-end gap-2 origin-right
-        transition-all duration-300 ease-out
-        ${
-          (isMobile && open)
-            ? 'opacity-100 scale-100 translate-x-0 pointer-events-auto'
-            : (!isMobile
-                ? 'opacity-0 scale-90 translate-x-3 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:pointer-events-auto'
-                : 'opacity-0 scale-90 translate-x-3 pointer-events-none')
+        fixed z-50
+        ${isMobile
+          ? 'bottom-20 right-4' // mobile
+          : 'top-1/2 right-4 -translate-y-1/2' // desktop
         }
       `}
     >
-      {phoneNumbers.map((item) => (
-        <a
-          key={`${item.number}-${item.label}`} // key duy nhất
-          href={`tel:${item.number.replace(/\s/g, '')}`}
+      <div className={`relative flex items-center ${!isMobile && 'group'}`}>
+        {/* Danh sách số điện thoại */}
+        <div
+          className={`
+            absolute right-full mr-3 flex flex-col items-end gap-2 origin-right
+            transition-all duration-300 ease-out
+            ${
+              (isMobile && open)
+                ? 'opacity-100 scale-100 translate-x-0 pointer-events-auto'
+                : (!isMobile
+                    ? 'opacity-0 scale-90 translate-x-3 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0 group-hover:pointer-events-auto'
+                    : 'opacity-0 scale-90 translate-x-3 pointer-events-none')
+            }
+          `}
+        >
+          {phoneNumbers.map((item) => (
+            <a
+              key={`${item.number}-${item.label}`}
+              href={`tel:${item.number.replace(/\s/g, '')}`}
+              className="
+                bg-[#ff0000] text-white rounded-full shadow
+                hover:bg-[#cc0000]
+                active:scale-95 active:shadow-inner
+                px-4 py-2 text-sm font-medium
+                inline-flex justify-between items-center
+                min-w-[220px] transition-all duration-200 ease-out
+              "
+            >
+              <span>{item.number}</span>
+              <span className="font-semibold">{item.label}</span>
+            </a>
+          ))}
+        </div>
+
+        {/* Nút gọi chính */}
+        <button
+          aria-label="Call"
+          onClick={() => isMobile && setOpen(!open)}
           className="
-            bg-[#2aa1d3] text-white rounded-full shadow
-            hover:bg-[#1e87b5]
-            active:scale-95 active:shadow-inner
-            px-4 py-2 text-sm font-medium
-            inline-flex justify-between items-center
-            min-w-[220px] transition-all duration-200 ease-out
+            relative bg-[#ff0000] text-white p-3 rounded-full shadow-lg 
+            hover:bg-[#cc0000] transition flex items-center justify-center 
+            ring-animation
           "
         >
-          <span>{item.number}</span>
-          <span className="font-semibold">{item.label}</span>
-        </a>
-      ))}
-    </div>
-
-    {/* Nút gọi */}
-    <button
-      aria-label="Call"
-      onClick={() => isMobile && setOpen(!open)}
-      className="
-        relative bg-[#00377B] text-white p-3 rounded-full shadow-lg 
-        hover:bg-[#0050aa] transition flex items-center justify-center 
-        ring-animation
-      "
-    >
-      {/* ripple effect */}
-      <div className="ripple-wrapper">
-        <span className="ripple-circle"></span>
-        <span className="ripple-circle"></span>
-        <span className="ripple-circle"></span>
+          {/* ripple effect */}
+          <div className="ripple-wrapper">
+            <span className="ripple-circle"></span>
+            <span className="ripple-circle"></span>
+            <span className="ripple-circle"></span>
+          </div>
+          <Phone size={24} />
+        </button>
       </div>
-      <Phone size={24} />
-    </button>
-  </div>
-</div>
+    </div>
   );
 }

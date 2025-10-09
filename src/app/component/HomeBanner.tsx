@@ -48,7 +48,7 @@ export default function HomeBanner() {
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative w-full h-[570px] lg:h-[720px] overflow-hidden">
+            <div className="relative w-full h-[550px] lg:h-[650px] overflow-hidden">
               {/* Background Image with parallax */}
               <div
                 className="absolute inset-0"
@@ -72,7 +72,7 @@ export default function HomeBanner() {
                   initial={{ opacity: 0, x: -40 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="max-w-xl text-white"
+                  className="max-w-2xl text-white"
                   data-swiper-parallax="-100"
                 >
                   <h1 className="text-2xl sm:text-5xl font-semibold leading-tight">
@@ -84,7 +84,7 @@ export default function HomeBanner() {
                   <div className="mt-5 flex flex-col sm:flex-row gap-3">
                   <a
                   href={banner.url}
-                  className="inline-flex self-start px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white text-[#0f172a] font-semibold text-sm sm:text-base shadow-lg hover:scale-105 transition"
+                  className="inline-flex self-start px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-[#FF0000] text-white font-semibold text-sm sm:text-base shadow-lg hover:scale-105 transition"
                   >
                   {banner.btn}
                   </a>

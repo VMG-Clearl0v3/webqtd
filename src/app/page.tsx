@@ -16,14 +16,14 @@ export default function Home() {
     <main>
   {/* Wrapper cha */}
   <ServicesSection/>
-  <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-12">
-      <h2 className="text-3xl md:text-4xl text-center py-10 font-semibold text-[#00377B] tracking-wide">
+  <div className="max-w-6xl mx-auto px-6 md:px-4 pb-10">
+      <h2 className="text-2xl md:text-4xl text-center py-10 font-semibold text-[#00377B] tracking-wide">
         Lãi suất & Công cụ tính lãi
       </h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Bảng lãi suất */}
-      <div className="bg-white flex flex-col shadow-lg">
-          <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white px-6 py-4 border-b-4 border-[#00377B]">
+      <div className="bg-white flex flex-col shadow-lg rounded-xl">
+          <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white px-6 py-4 border-b-4 border-[#00377B] rounded-t-xl">
           <h2 className="text-xl md:text-2xl font-semibold text-white">
           Lãi suất tiết kiệm
           </h2>
@@ -68,36 +68,8 @@ export default function Home() {
     <h3 className="text-sm text-[#00377B] p-2">*Lưu ý: Bảng lãi suất chỉ mang tính chất tham khảo. Lãi được tính trên số ngày thực thế và cơ sở tính lãi là 365 ngày.</h3>
   </div>
 
-  <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="flex flex-col md:flex-row md:items-center w-full">
-        {/* Tiêu đề */}
-        <h2 className="text-3xl md:text-4xl py-10 text-center md:text-left font-semibold text-[#00377B] tracking-wide">
-          Tin tức mới nhất
-        </h2>
-
-        {/* Nút Xem thêm */}
-        <div className="mt-3 md:mt-0 md:ml-auto text-right">
-        <Link className="inline-flex items-center gap-1 text-[#00377B] text-base font-semibold no-underline group"
-        href="/tin-tuc"
-        >
-        Xem thêm
-        <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1"
-        >
-        <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-        />
-        </svg>
-        </Link>
-        </div>
-        </div>
+          <div className="max-w-6xl mx-auto px-6 md:px-4 pb-10">
+      
       <NewsSection />
       </div>
       <PartnerSlider/>
