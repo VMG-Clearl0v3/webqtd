@@ -48,7 +48,7 @@ export default function HomeBanner() {
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative w-full h-[550px] lg:h-[650px] overflow-hidden">
+            <div className="relative w-full h-[650px] overflow-hidden">
               {/* Background Image with parallax */}
               <div
                 className="absolute inset-0"
