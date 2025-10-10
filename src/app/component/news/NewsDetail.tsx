@@ -59,7 +59,7 @@ export default function NewsDetail({
       <article className="max-w-6xl mx-auto px-6 md:px-4">
         <div className="max-w-4xl mx-auto">
           {/* --- Title --- */}
-          <h1 className="text-2xl md:text-4xl font-semibold leading-snug mb-3 text-gray-900">
+          <h1 className="text-2xl md:text-4xl font-semibold leading-snug mt-10 pb-3 text-gray-900">
             {news.title}
           </h1>
 

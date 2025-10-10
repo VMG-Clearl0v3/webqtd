@@ -22,7 +22,7 @@ const reasons = [
 export default function LoanProductBenefit() {
   return (
     <section className="relative w-screen bg-[#f5f6f8] pb-10 left-1/2 right-1/2 -mx-[50vw]">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-6 md:px-4">
         {/* Tiêu đề */}
         <h2 className="text-2xl md:text-4xl font-semibold text-gray-900 py-10 leading-snug">
           Lợi ích khi sử dụng sản phẩm vay của{" "}
@@ -40,7 +40,7 @@ export default function LoanProductBenefit() {
             >
               {/* Icon */}
               <div className="flex-shrink-0 p-3 rounded-lg bg-gray-50">
-                <item.icon className="w-8 h-8 text-gray-700" />
+                <item.icon className="w-10 h-10 text-gray-700" />
               </div>
 
               {/* Nội dung */}

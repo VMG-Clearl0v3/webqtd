@@ -41,7 +41,7 @@ export default function DepositProductBenefit() {
             >
               {/* Icon */}
               <div className="flex-shrink-0 p-3 rounded-lg bg-gray-50">
-                <item.icon className="w-8 h-8 text-gray-700" />
+                <item.icon className="w-10 h-10 text-gray-700" />
               </div>
 
               {/* Nội dung */}
