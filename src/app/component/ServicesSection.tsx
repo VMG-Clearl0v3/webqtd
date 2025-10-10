@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -42,7 +43,6 @@ function ServiceCard({
   description,
   index,
 }: typeof services[0] & { index: number }) {
-  // gradient theo index (các tone xanh đan xen)
   const gradients = [
     "from-[#e9f3ff] to-[#f8fbff]",
     "from-[#f0f9ff] to-[#e6f4ff]",
@@ -54,14 +54,14 @@ function ServiceCard({
   return (
     <Link
       href={link}
-     className={`
-    group relative flex flex-col items-center justify-center h-60 p-6
-    border border-blue-100 
-    bg-gradient-to-br ${grad} overflow-hidden
-    transition-all duration-500 ease-out
-    hover:shadow-[0_8px_25px_rgba(0,55,123,0.15)]
-    hover:-translate-y-1 hover:border-blue-200
-  `}
+      className={`
+        group relative flex flex-col items-center justify-center h-60 p-6
+        border border-blue-100 
+        bg-gradient-to-br ${grad} overflow-hidden
+        transition-all duration-500 ease-out
+        hover:shadow-[0_8px_25px_rgba(0,55,123,0.15)]
+        hover:-translate-y-1 hover:border-blue-200
+      `}
     >
       {/* ánh sáng hover */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-[#00377B]/10 to-transparent" />
@@ -87,7 +87,7 @@ function ServiceCard({
         </p>
       </div>
 
-      {/* đường sáng dưới chân khi hover */}
+      {/* Đường sáng dưới chân khi hover */}
       <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#00b4ff] to-[#00377B] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
     </Link>
   );
@@ -95,22 +95,19 @@ function ServiceCard({
 
 export default function ServicesSection() {
   return (
-        <div
-        className="
-        relative pb-5
-        w-full
-        md:max-w-6xl md:mx-auto
-        px-0 sm:px-0 md:px-4
-        "
-        >
-      {/* Desktop grid */}
+    <section
+      id="servicessection"
+      className="relative w-full md:max-w-6xl md:mx-auto px-0 sm:px-0 md:px-4
+                 pt-0 mt-0 border-t-0"
+    >
+      {/* Grid Desktop */}
       <div className="hidden md:grid grid-cols-2 lg:grid-cols-4">
         {services.map((item, i) => (
           <ServiceCard key={i} {...item} index={i} />
         ))}
       </div>
 
-      {/* Mobile slider */}
+      {/* Slider Mobile */}
       <div className="block md:hidden relative">
         <Swiper
           modules={[Navigation]}
@@ -130,25 +127,27 @@ export default function ServicesSection() {
           ))}
         </Swiper>
 
-        {/* Nút điều hướng */}
-       <button
-  className="service-prev absolute top-1/2 left-0 z-20 -translate-y-1/2
-             w-9 h-9 flex items-center justify-center rounded-full
-             bg-white/90 text-[#00377B] shadow-md
-             hover:scale-110 transition"
->
-  <ChevronLeft className="w-5 h-5" />
-</button>
+        {/* Nút điều hướng — cố định, không bị cuộn theo Swiper */}
+        <div className="pointer-events-none">
+          <button
+            className="service-prev pointer-events-auto absolute top-1/2 left-0 z-20 -translate-y-1/2
+                       w-9 h-9 flex items-center justify-center rounded-full
+                       bg-white/90 text-[#00377B] shadow-md
+                       hover:scale-110 transition"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-<button
-  className="service-next absolute top-1/2 right-0 z-20 -translate-y-1/2
-             w-9 h-9 flex items-center justify-center rounded-full
-             bg-white/90 text-[#00377B] shadow-md
-             hover:scale-110 transition"
->
-  <ChevronRight className="w-5 h-5" />
-</button>
+          <button
+            className="service-next pointer-events-auto absolute top-1/2 right-0 z-20 -translate-y-1/2
+                       w-9 h-9 flex items-center justify-center rounded-full
+                       bg-white/90 text-[#00377B] shadow-md
+                       hover:scale-110 transition"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

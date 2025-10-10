@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-[9999]">
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-15 px-4 lg:px-10">
         {/* Logo - luôn hiện cả mobile & desktop */}
         <Link href="/" className="flex-shrink-0">
           <Image

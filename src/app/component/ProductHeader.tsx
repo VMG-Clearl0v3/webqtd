@@ -20,7 +20,7 @@ export default function ProductHeader() {
       <Header />
 
       {/* Banner riêng cho trang sản phẩm */}
-       <div className="w-full relative h-80">
+       <div className="w-full relative h-100">
         <Image
           src={bannerSrc}
           alt="Trang sản phẩm"         

@@ -3,10 +3,13 @@
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Parallax } from "swiper/modules";
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { useCallback } from "react";
+import "@/app/globals.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/parallax";
-import { motion } from "framer-motion";
 
 export default function HomeBanner() {
   const banners = [
@@ -35,66 +38,83 @@ export default function HomeBanner() {
     },
   ];
 
+  const handleScroll = () => {
+  const section = document.getElementById("servicessection");
+  const header = document.querySelector("header");
+  const headerHeight = header ? header.offsetHeight : 0;
+
+  if (section) {
+    window.scrollTo({
+      top: section.offsetTop - headerHeight,
+      behavior: "smooth",
+    });
+  }
+};
   return (
-    <section className="relative w-full">
-      <Swiper
-        modules={[Pagination, Autoplay, Parallax]}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 6000, disableOnInteraction: false }}
-        parallax={true}
-        speed={1000}
-        loop
-        className="w-full h-full"
-      >
-        {banners.map((banner) => (
-          <SwiperSlide key={banner.id}>
-            <div className="relative w-full h-[650px] overflow-hidden">
-              {/* Background Image with parallax */}
-              <div
-                className="absolute inset-0"
-                data-swiper-parallax="-20%"
+    <section className="relative w-full h-screen overflow-hidden">
+     {/* Swiper */}
+ <div className="relative w-full h-screen overflow-hidden">
+<Swiper
+  modules={[Pagination, Autoplay, Parallax]}
+  pagination={{
+    clickable: true,
+    dynamicBullets: true,
+  }}
+  autoplay={{ delay: 6000, disableOnInteraction: false }}
+  parallax={true}
+  speed={1000}
+  loop
+  className="home-swiper w-full h-full"
+>
+  {banners.map((banner) => (
+    <SwiperSlide key={banner.id}>
+      <div className="relative w-full h-screen overflow-hidden">
+        <div className="absolute inset-0" data-swiper-parallax="-20%">
+          <Image
+            src={banner.img}
+            alt={banner.title}
+            fill
+            className="object-cover object-center"
+            priority
+          />
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/50 via-[#334155]/10 to-transparent" />
+
+        <div className="relative z-10 h-full flex items-center px-6 lg:px-16">
+          <div
+            className="max-w-2xl text-white"
+            data-swiper-parallax="-100"
+          >
+            <h1 className="text-2xl sm:text-5xl font-semibold leading-tight">
+              {banner.title}
+            </h1>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-100">
+              {banner.desc}
+            </p>
+            <div className="mt-5 flex flex-col sm:flex-row gap-3">
+              <a
+                href={banner.url}
+                className="inline-flex self-start px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-[#FF0000] text-white font-semibold text-sm sm:text-base shadow-lg hover:scale-105 transition"
               >
-                <Image
-                  src={banner.img}
-                  alt={banner.title}
-                  fill
-                  className="object-cover object-center"
-                  priority
-                />
-              </div>
-
-              {/* Gradient Overlay (mỏng & tinh tế) */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/50 via-[#334155]/10 to-transparent" />
-
-              {/* Content */}
-              <div className="relative z-10 h-full flex items-center px-6 lg:px-16">
-                <motion.div
-                  initial={{ opacity: 0, x: -40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="max-w-2xl text-white"
-                  data-swiper-parallax="-100"
-                >
-                  <h1 className="text-2xl sm:text-5xl font-semibold leading-tight">
-                    {banner.title}
-                  </h1>
-                  <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-100">
-                    {banner.desc}
-                  </p>
-                  <div className="mt-5 flex flex-col sm:flex-row gap-3">
-                  <a
-                  href={banner.url}
-                  className="inline-flex self-start px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-[#FF0000] text-white font-semibold text-sm sm:text-base shadow-lg hover:scale-105 transition"
-                  >
-                  {banner.btn}
-                  </a>
-                  </div>
-                </motion.div>
-              </div>
+                {banner.btn}
+              </a>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          </div>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
+</div>
+
+      {/* 🔽 Nút cuộn xuống — cố định, không bị kéo theo slide */}
+     <button
+  onClick={handleScroll}
+  className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 flex flex-col items-center justify-center text-white animate-bounce hover:scale-110 transition"
+>
+  <ChevronDown className="w-8 h-8 drop-shadow-lg" />
+</button>
     </section>
   );
 }

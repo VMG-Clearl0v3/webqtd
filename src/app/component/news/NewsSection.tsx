@@ -89,7 +89,7 @@ export default async function NewsSection() {
           >
             <Link
               href={`/tin-tuc/${item.slug}`}
-              className="relative w-full h-50 group overflow-hidden block"
+              className="relative w-full h-60 group overflow-hidden block"
             >
               <Image
                 src={item.image || "/image/noimage.jpg"}

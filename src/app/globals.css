@@ -33,6 +33,45 @@ body {
   height: 100%;
 }
 
+.home-swiper .swiper-pagination {
+  bottom: 20px !important;
+  text-align: center;
+}
+
+.home-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  margin: 0 6px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+/* Khi bullet active */
+.home-swiper .swiper-pagination-bullet-active {
+  background: #ff0000 !important;
+  width: 24px;
+  border: 1px solid white;
+  box-sizing: border-box;
+}
+
+/* Giúp bullet active-main (ở giữa dynamic) cũng đồng màu */
+.home-swiper .swiper-pagination-bullet-active-main {
+  background: #ff0000 !important;
+}
+
+/* Bullet liền kề (next/prev) làm mờ nhẹ để tạo hiệu ứng động */
+.home-swiper .swiper-pagination-bullet-active-prev,
+.home-swiper .swiper-pagination-bullet-active-next {
+  background: rgba(255, 0, 0, 0.7) !important;
+}
+
+/* Hover nhẹ cho đẹp */
+.home-swiper .swiper-pagination-bullet:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   z-index: 50 !important;

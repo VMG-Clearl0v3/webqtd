@@ -32,7 +32,7 @@ export default function AboutUsPage() {
     <div className="max-w-6xl mx-auto px-6 md:px-4">
 
       {/* Heading */}
-      <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 py-6 leading-snug">
+      <h2 className="text-2xl md:text-4xl font-semibold text-gray-900 py-6 leading-snug">
           Về chúng tôi
       </h2>
 
@@ -56,7 +56,7 @@ export default function AboutUsPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <BookOpen className="w-10 h-10 text-blue-900" />
-              <h2 className="text-2xl font-semibold text-gray-900">Giới thiệu chung</h2>
+              <h2 className="text-xl md:text-2xl font-semibold text-gray-900">Giới thiệu chung</h2>
             </div>
             <p className="text-gray-600 leading-relaxed text-lg text-justify">
               Quỹ tín dụng nhân dân Trung Sơn được thành lập năm 1996, chuyển đổi từ mô hình hợp tác xã tín dụng.
@@ -74,7 +74,7 @@ export default function AboutUsPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <Target className="w-10 h-10 text-red-500" />
-              <h2 className="text-2xl font-semibold text-gray-900">Sứ mệnh</h2>
+              <h2 className="text-xl md:text-2xl font-semibold text-gray-900">Sứ mệnh</h2>
             </div>
             <p className="text-gray-700 leading-relaxed text-lg text-justify">
               Mang đến giải pháp tài chính an toàn, minh bạch và hiệu quả, tương trợ thành viên trên địa bàn, góp phần nâng cao đời sống và phát triển kinh tế địa phương.
@@ -171,7 +171,7 @@ export default function AboutUsPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <Rocket className="w-10 h-10 text-green-600" />
-              <h2 className="text-2xl font-semibold text-gray-900">Định hướng tương lai</h2>
+              <h2 className="text-xl md:text-2xlfont-semibold text-gray-900">Định hướng tương lai</h2>
             </div>
             <p className="text-gray-700 leading-relaxed text-lg text-justify">
               Chúng tôi tiếp tục đẩy mạnh chuyển đổi số, mở rộng dịch vụ, 
