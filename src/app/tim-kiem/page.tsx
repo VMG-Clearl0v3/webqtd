@@ -5,17 +5,18 @@ import { News } from "@/types/news";
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q?: string };
+  searchParams: Promise<{ q?: string }>;
 }) {
-  const q = searchParams.q || "";
+  const { q = "" } = await searchParams;
   let products: Product[] = [];
   let news: News[] = [];
 
   try {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
-    const res = await fetch(`${API_URL}/api/search?q=${encodeURIComponent(q)}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/search?q=${encodeURIComponent(q)}`,
+      { cache: "no-store" }
+    );
+
     const data = await res.json();
     products = data.products || [];
     news = data.news || [];
