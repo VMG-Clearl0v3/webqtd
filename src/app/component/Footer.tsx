@@ -20,7 +20,7 @@ export default function Footer() {
             />
             </div>
           <div className="space-y-2">
-            <div className="flex items-start gap-2">
+            <div className="flex items-center gap-2">
               <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
@@ -68,39 +68,36 @@ export default function Footer() {
   <h4 className="font-bold text-lg mb-3">KẾT NỐI</h4>
   <div className="flex gap-4">
     {/* Facebook */}
-    <a
-      href="https://www.facebook.com/truongpv.tdnb"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="relative w-12 h-12 flex items-center justify-center rounded-full 
-                 bg-white shadow-md overflow-hidden transition-all duration-300 
-                 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/40"
-    >
-      <Image
-        src="/image/iconfb.png"
-        alt="Facebook"
-        width={28}
-        height={28}
-        className="object-contain"
-      />
+    <a 
+    href="https://www.facebook.com/truongpv.tdnb"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-12 h-12 rounded-full overflow-hidden transform transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1">
+    <div className="w-full h-full flex items-center justify-center rounded-full shadow-md hover:shadow-[0_0_15px_5px_rgba(24,119,242,0.4)] hover:bg-blue-50/20 transition-all duration-200 ease-out">
+    <Image
+      src="/image/iconfb.png"
+      alt="Facebook"
+      width={50}
+      height={50}
+      className="object-contain"
+    />
+    </div>
     </a>
-
     {/* Zalo */}
-    <a
-      href="#"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="relative w-12 h-12 flex items-center justify-center rounded-full 
-                 bg-white shadow-md overflow-hidden transition-all duration-300 
-                 hover:scale-110 hover:shadow-lg hover:shadow-blue-400/40"
-    >
-      <Image
-        src="/image/iconzalo.png"
-        alt="Zalo"
-        width={28}
-        height={28}
-        className="object-contain"
-      />
+    <a 
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-12 h-12 rounded-full overflow-hidden transform transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1">
+    <div className="w-full h-full flex items-center justify-center rounded-full shadow-md hover:shadow-[0_0_15px_5px_rgba(0,116,217,0.4)] hover:bg-blue-50/20 transition-all duration-200 ease-out">
+    <Image
+      src="/image/iconzalo.png"
+      alt="Zalo"
+      width={50}
+      height={50}
+      className="object-contain"
+    />
+    </div>
     </a>
   </div>
 </div>

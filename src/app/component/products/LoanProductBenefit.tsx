@@ -21,7 +21,7 @@ const reasons = [
 
 export default function LoanProductBenefit() {
   return (
-    <section className="relative w-screen bg-[#f5f6f8] pb-10 left-1/2 right-1/2 -mx-[50vw]">
+    <section className="relative w-screen bg-[#f5f6f8] pb-20 left-1/2 right-1/2 -mx-[50vw]">
       <div className="max-w-6xl mx-auto px-6 md:px-4">
         {/* Tiêu đề */}
         <h2 className="text-2xl md:text-4xl font-semibold text-gray-900 py-10 leading-snug">

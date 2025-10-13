@@ -128,7 +128,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Thành tích */}
-        <section className="relative w-screen bg-gradient-to-r from-indigo-50 to-blue-50 py-10 px-6 left-1/2 right-1/2 -mx-[50vw]">
+        <section className="relative w-screen bg-[#F3F8FF] py-10 px-6 left-1/2 right-1/2 -mx-[50vw]">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-semibold mb-12 text-gray-900 text-center">
               Thành tích đạt được
@@ -153,7 +153,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Định hướng tương lai */}
-        <section className="max-w-6xl mx-auto py-5 flex flex-col md:grid md:grid-cols-2 gap-10 items-center mb-10">
+        <section className="max-w-6xl mx-auto py-5 flex flex-col md:grid md:grid-cols-2 gap-10 items-center pb-20">
           <motion.img
             src="/image/future.jpg"
             alt="Định hướng tương lai"
@@ -171,7 +171,7 @@ export default function AboutUsPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <Rocket className="w-10 h-10 text-green-600" />
-              <h2 className="text-xl md:text-2xlfont-semibold text-gray-900">Định hướng tương lai</h2>
+              <h2 className="text-xl md:text-2xl font-semibold text-gray-900">Định hướng tương lai</h2>
             </div>
             <p className="text-gray-700 leading-relaxed text-lg text-justify">
               Chúng tôi tiếp tục đẩy mạnh chuyển đổi số, mở rộng dịch vụ, 

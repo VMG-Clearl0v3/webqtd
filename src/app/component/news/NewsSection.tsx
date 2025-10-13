@@ -43,47 +43,50 @@ export default async function NewsSection() {
 
       <div
         className="
-         flex gap-5 overflow-x-scroll sm:overflow-x-auto scrollbar-hide snap-x snap-mandatory
-    overscroll-x-none overflow-x-clip
-    lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none
+        flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory 
+scroll-smooth pb-3
+lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none
         "
       >
         {/* === Tin lớn nổi bật === */}
-        <div
-          className="
-            relative min-w-[85%] sm:min-w-[60%] lg:min-w-0 
-            col-span-2 rounded-2xl overflow-hidden bg-white shadow-md
-            hover:shadow-xl transition-all duration-500 snap-start
-          "
-        >
-          <Link href={`/tin-tuc/${first.slug}`} className="block relative h-[320px] lg:h-[420px] group">
-            <Image
-              src={first.image || "/image/noimage.jpg"}
-              alt={first.title}
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            {/*<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-500" />*/}
-        <div className="absolute bottom-0 left-0 w-full px-5 py-4 text-white bg-black/50 backdrop-blur-sm">
-<h3 className="text-lg md:text-xl font-semibold leading-snug line-clamp-2">
-  {first.title}
-</h3>
-<p className="text-sm md:text-base text-gray-200 mt-2 line-clamp-2 hidden sm:block">
-  {first.content}
-</p>
-</div>
-          </Link>
-        </div>
-
-        {/* === Các tin nhỏ còn lại === */}
+<div
+  className="
+    relative min-w-[90%] sm:min-w-[60%] lg:min-w-0 
+    col-span-2 rounded-xl overflow-hidden bg-white shadow-md
+    hover:shadow-xl transition-all duration-500 snap-start
+  "
+>
+  <Link
+    href={`/tin-tuc/${first.slug}`}
+    className="block relative h-full lg:h-[420px] group"
+  >
+    {/* Hình ảnh nền */}
+    <Image
+      src={first.image || "/image/noimage.jpg"}
+      alt={first.title}
+      fill
+      priority
+      className="object-cover transition-transform duration-700 group-hover:scale-110"
+    />
+    {/* Phần tiêu đề nằm ở đáy, đè lên ảnh */}
+    <div className="absolute bottom-0 left-0 w-full z-10">
+      <div className="bg-[#00377B] backdrop-blur-sm p-4 md:p-5">
+        <h3 className="text-base md:text-lg font-semibold text-white leading-snug line-clamp-2">
+          {first.title}
+        </h3>
+        <p className="hidden sm:block text-sm text-gray-100 mt-2 line-clamp-2">
+          {first.content}
+        </p>
+      </div>
+    </div>
+  </Link>
+</div> {/* === Các tin nhỏ còn lại === */}
         {rest.map((item) => (
           <div
             key={item.id}
             className="
-              min-w-[80%] sm:min-w-[50%] lg:min-w-0 
-              flex flex-col bg-white rounded-2xl shadow-md overflow-hidden
+              min-w-[90%] sm:min-w-[50%] lg:min-w-0 
+              flex flex-col bg-white rounded-xl shadow-md overflow-hidden
               hover:shadow-lg transition-all duration-300 snap-start
             "
           >
@@ -98,7 +101,6 @@ export default async function NewsSection() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              {/*<div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition duration-300" />*/}
             </Link>
 
             <div className="flex flex-col flex-1 p-4">

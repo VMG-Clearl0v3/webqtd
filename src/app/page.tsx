@@ -20,7 +20,7 @@ export default function Home() {
       <h2 className="text-2xl md:text-4xl text-center py-10 font-semibold text-[#00377B] tracking-wide">
         Lãi suất & Công cụ tính lãi
       </h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Bảng lãi suất */}
       <div className="bg-white flex flex-col shadow-lg rounded-xl">
           <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white px-6 py-4 border-b-4 border-[#00377B] rounded-t-xl">

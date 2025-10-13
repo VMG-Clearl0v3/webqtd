@@ -118,7 +118,7 @@ export default function NewsDetail({
 
         {/* 🔹 Related News */}
         {relatedNews.length > 0 && (
-     <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#f5f7fb] mt-10 pb-10">
+     <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#F3F8FF] mt-10 pb-20">
     <div className="max-w-4xl mx-auto px-6 lg:px-0">
     {/* Tiêu đề */}
     <h2 className="text-2xl md:text-4xl font-semibold text-gray-900 py-10">

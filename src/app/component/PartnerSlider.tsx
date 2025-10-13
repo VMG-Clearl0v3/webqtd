@@ -19,8 +19,8 @@ const partners = [
 
 export default function PartnerSlider() {
   return (
-    <section className="w-screen bg-[#F3F8FF] py-12 relative">
-    <div className="max-w-6xl mx-auto px-6 md:px-4 pb-10 relative">
+    <section>
+    <div className="max-w-6xl mx-auto px-6 md:px-4 pb-20 relative">
       <h2 className="text-2xl md:text-4xl text-center py-10 font-semibold text-[#00377B] tracking-wide">
         Đối tác của chúng tôi
       </h2>

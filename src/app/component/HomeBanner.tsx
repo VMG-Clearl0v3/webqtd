@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Parallax } from "swiper/modules";
-import { motion } from "framer-motion";
+import { motion, animate } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useCallback } from "react";
 import "@/app/globals.css";
@@ -38,18 +38,19 @@ export default function HomeBanner() {
     },
   ];
 
-  const handleScroll = () => {
+const handleScroll = () => {
   const section = document.getElementById("servicessection");
   const header = document.querySelector("header");
-  const headerHeight = header ? header.offsetHeight : 0;
+  if (!section) return;
 
-  if (section) {
-    window.scrollTo({
-      top: section.offsetTop - headerHeight,
-      behavior: "smooth",
-    });
-  }
+  const targetY = section.offsetTop - (header?.clientHeight || 0);
+  animate(window.scrollY, targetY, {
+    duration: 0.8,
+    ease: [0.25, 0.1, 0.25, 1], // cubic-bezier mềm mượt
+    onUpdate: (value) => window.scrollTo(0, value),
+  });
 };
+
   return (
     <section className="relative w-full h-screen overflow-hidden">
      {/* Swiper */}
