@@ -1,14 +1,15 @@
 import Image from "next/image";
+import { Product } from "@/types/product";
+import { News } from "@/types/news";
 
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: { q?: string };
 }) {
-  const params = await searchParams; // 👈 Bắt buộc phải await ở Next.js 14.2+
-  const q = params.q || "";
-  let products: any[] = [];
-  let news: any[] = [];
+  const q = searchParams.q || "";
+  let products: Product[] = [];
+  let news: News[] = [];
 
   try {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -51,6 +52,7 @@ export default async function SearchPage({
                       : p.type === "deposit"
                       ? "tien-gui"
                       : "";
+
                   return (
                     <a
                       key={p.id}
