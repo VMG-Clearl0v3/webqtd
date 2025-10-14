@@ -19,7 +19,7 @@ export default function DetailProductHeader({ title, image }: DetailProductHeade
           alt="background"
           fill
           priority
-          className="object-cover brightness-[0.9]" // 🌤 Tăng sáng lên
+          className="object-cover brightness-[1.0]" // 🌤 Tăng sáng lên
         />
         {/* Overlay nhẹ để tạo chiều sâu mà không làm tối */}
         <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]" />

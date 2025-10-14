@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import SearchBox from "@/app/component/SearchBox";
 import SearchModal from "@/app/component/SearchModal";
 
 export default function Header() {
@@ -32,7 +33,7 @@ export default function Header() {
           />
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop Menu */}
         <nav className="hidden lg:flex gap-8 text-sm font-medium">
           {menuItems.map((item) => (
             <Link
@@ -47,6 +48,7 @@ export default function Header() {
 
         {/* Desktop Search + CTA */}
         <div className="hidden lg:flex items-center gap-5">
+          {/* Giữ nguyên SearchModal trên desktop */}
           <SearchModal />
           <Link
             href="/lien-he"
@@ -58,10 +60,7 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <div className="lg:hidden flex items-center gap-4">
-          <button
-            className="p-2 text-gray-700"
-            onClick={() => setIsOpen(true)}
-          >
+          <button className="p-2 text-gray-700" onClick={() => setIsOpen(true)}>
             <Menu size={26} />
           </button>
         </div>
@@ -104,6 +103,16 @@ export default function Header() {
                   <X size={28} />
                 </button>
               </div>
+
+              {/* 🔍 Search luôn hiển thị dưới logo */}
+                <div className="px-6 pt-4">
+                <SearchBox
+                onSubmit={(q) => {
+                setIsOpen(false);
+                window.location.href = `/tim-kiem?q=${encodeURIComponent(q)}`;
+                }}
+                />
+                </div>
 
               {/* Menu */}
               <nav className="flex flex-col divide-y divide-gray-100 mt-2">

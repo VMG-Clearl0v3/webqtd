@@ -30,7 +30,7 @@ export default function SearchModal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[10000] flex items-center justify-center bg-white/95 backdrop-blur-sm px-4"
+            className="fixed inset-0 z-[10000] flex items-center justify-center bg-white/95 backdrop-blur-sm px-4 overflow-y-auto"
           >
             <div className="w-full max-w-2xl relative">
               <SearchBox

@@ -17,35 +17,33 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchResults = async () => {
-      if (!query.trim()) {
-        setResults({ products: [], news: [] });
-        return;
-      }
+    if (!query.trim()) {
+      setResults({ products: [], news: [] });
+      return;
+    }
 
+    const timer = setTimeout(async () => {
       setLoading(true);
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
         if (!res.ok) throw new Error("API lỗi");
         const data = await res.json();
         setResults(data || { products: [], news: [] });
-      } catch (error) {
-        console.error("Lỗi khi tìm kiếm:", error);
+      } catch (err) {
+        console.error(err);
         setResults({ products: [], news: [] });
       } finally {
         setLoading(false);
       }
-    };
+    }, 400); // debounce 400ms
 
-    const delay = setTimeout(fetchResults, 400); // debounce 400ms
-    return () => clearTimeout(delay);
+    return () => clearTimeout(timer);
   }, [query]);
 
   const total = results.products.length + results.news.length;
 
   return (
     <div className="relative text-gray-900">
-      {/* Ô nhập tìm kiếm */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -61,53 +59,43 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
         />
       </form>
 
-      {/* Dropdown kết quả */}
       {query.trim() && (
         <div className="absolute bg-white border border-gray-200 rounded-lg mt-2 w-full shadow-lg max-h-80 overflow-y-auto scrollbar-hide z-50">
-          {loading && (
+          {loading && 
             <div className="p-4 text-gray-500 flex items-center gap-2">
-              <span className="animate-spin border-2 border-blue-400 border-t-transparent rounded-full w-4 h-4"></span>
-              Đang tìm kiếm...
+            <span className="animate-spin border-2 border-blue-400 border-t-transparent rounded-full w-4 h-4"></span>
+            Đang tìm kiếm...
             </div>
-          )}
+        }
 
           {!loading && total === 0 && (
             <div className="p-6 flex flex-col items-center text-gray-500">
-              <Image
-                src="/image/no-search-found.png"
-                alt="No results"
-                width={120}
-                height={120}
-              />
+              <Image src="/image/no-search-found.png" alt="No results" width={120} height={120} />
               <p className="mt-2">Không tìm thấy kết quả nào</p>
             </div>
           )}
 
           {!loading && total > 0 && (
             <div className="divide-y divide-gray-100">
-              {/* --- Sản phẩm liên quan --- */}
               {results.products.length > 0 && (
                 <div className="p-3">
-                  <p className="text-sm font-semibold text-gray-600 mb-2">
-                    🛍 Sản phẩm liên quan
-                  </p>
+                  <p className="text-sm font-semibold text-gray-600 mb-2">🛍 Sản phẩm liên quan</p>
                   {results.products.slice(0, 5).map((p) => {
                     const typePath =
                       p.type?.toLowerCase() === "loan"
                         ? "cho-vay"
                         : p.type?.toLowerCase() === "deposit"
                         ? "tien-gui"
-                        : "khac"; // fallback
-
+                        : "khac";
                     return (
                       <Link
                         key={p.id}
                         href={`/san-pham/${typePath}/${p.slug}`}
-                        className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md transition"
-                        onClick={() => onSubmit(p.title)} // để đóng modal
+                        className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
+                        onClick={() => onSubmit(p.title)}
                       >
                         <Image
-                          src={p.image || "/image/default-thumb.jpg"}
+                          src={p.image || "/image/noimage.jpg"}
                           alt={p.title}
                           width={50}
                           height={50}
@@ -120,21 +108,18 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
                 </div>
               )}
 
-              {/* --- Tin tức liên quan --- */}
               {results.news.length > 0 && (
                 <div className="p-3">
-                  <p className="text-sm font-semibold text-gray-600 mb-2">
-                    📰 Tin tức liên quan
-                  </p>
+                  <p className="text-sm font-semibold text-gray-600 mb-2">📰 Tin tức liên quan</p>
                   {results.news.slice(0, 5).map((n) => (
                     <Link
                       key={n.id}
                       href={`/tin-tuc/${n.slug}`}
-                      className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md transition"
+                      className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
                       onClick={() => onSubmit(n.title)}
                     >
                       <Image
-                        src={n.image || "/image/default-thumb.jpg"}
+                        src={n.image || "/image/noimage.jpg"}
                         alt={n.title}
                         width={50}
                         height={50}
@@ -146,11 +131,10 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
                 </div>
               )}
 
-              {/* --- Xem tất cả --- */}
               <button
                 type="button"
                 onClick={() => onSubmit(query)}
-                className="block w-full text-center text-blue-600 font-medium py-3 hover:bg-gray-50 transition"
+                className="block w-full text-center text-blue-600 font-medium py-3 hover:bg-gray-50"
               >
                 Xem tất cả kết quả →
               </button>

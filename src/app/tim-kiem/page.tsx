@@ -1,22 +1,20 @@
 import Image from "next/image";
-import { Product } from "@/types/product";
-import { News } from "@/types/news";
 
 export default async function SearchPage({
   searchParams,
 }: {
   searchParams: Promise<{ q?: string }>;
 }) {
-  const { q = "" } = await searchParams;
-  let products: Product[] = [];
-  let news: News[] = [];
+  const params = await searchParams; 
+  const q = params.q || "";
+  let products: any[] = [];
+  let news: any[] = [];
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/search?q=${encodeURIComponent(q)}`,
-      { cache: "no-store" }
-    );
-
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const res = await fetch(`${API_URL}/api/search?q=${encodeURIComponent(q)}`, {
+      cache: "no-store",
+    });
     const data = await res.json();
     products = data.products || [];
     news = data.news || [];
@@ -26,7 +24,7 @@ export default async function SearchPage({
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-semibold mb-6">
+      <h1 className="text-2xl font-semibold mb-6 text-gray-900">
         Kết quả tìm kiếm cho “{q}”
       </h1>
 
@@ -53,7 +51,6 @@ export default async function SearchPage({
                       : p.type === "deposit"
                       ? "tien-gui"
                       : "";
-
                   return (
                     <a
                       key={p.id}
