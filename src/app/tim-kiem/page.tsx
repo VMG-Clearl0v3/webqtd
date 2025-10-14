@@ -1,14 +1,15 @@
 import Image from "next/image";
 
 export default async function SearchPage({
-  searchParams,
+ searchParams,
 }: {
+  searchParams: { q?: string };
   searchParams: Promise<{ q?: string }>;
 }) {
-  const params = await searchParams; 
-  const q = params.q || "";
-  let products: any[] = [];
-  let news: any[] = [];
+  const q = searchParams.q || "";
+  const { q = "" } = await searchParams;
+  let products: Product[] = [];
+  let news: News[] = [];
 
   try {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
