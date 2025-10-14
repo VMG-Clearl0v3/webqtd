@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { Product } from "@/types/product";
+import { News } from "@/types/news";
 
 export default async function SearchPage({
   searchParams,
@@ -9,7 +11,7 @@ export default async function SearchPage({
   const q = params.q || "";
   let products: Product[] = [];
   let news: News[] = [];
-  
+
   try {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     const res = await fetch(`${API_URL}/api/search?q=${encodeURIComponent(q)}`, {
