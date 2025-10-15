@@ -29,7 +29,7 @@ export default function Calculator() {
   <section className="flex justify-center">
   <div className="w-full max-w-[1000px] bg-white shadow-lg rounded-xl border border-gray-200">
     {/* Header */}
-    <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white px-6 py-4 border-b-4 border-[#00377B] rounded-t-xl">
+    <div className="bg-[#00377B] text-white px-6 py-4 rounded-t-xl">
       <h2 className="text-xl md:text-2xl font-semibold text-white">
         Công cụ tính lãi
       </h2>

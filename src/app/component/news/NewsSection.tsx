@@ -70,7 +70,7 @@ lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none
     />
     {/* Phần tiêu đề nằm ở đáy, đè lên ảnh */}
     <div className="absolute bottom-0 left-0 w-full z-10">
-      <div className="bg-[#00377B] backdrop-blur-sm p-4 md:p-5">
+      <div className="bg-[#00377B] md:bg-[#00377B]/30 backdrop-blur-sm p-4 md:p-5">
         <h3 className="text-base md:text-lg font-semibold text-white leading-snug line-clamp-2">
           {first.title}
         </h3>

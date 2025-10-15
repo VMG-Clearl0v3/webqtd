@@ -23,7 +23,7 @@ export default function Home() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Bảng lãi suất */}
       <div className="bg-white flex flex-col shadow-lg rounded-xl">
-          <div className="bg-gradient-to-r from-[#00377B] to-[#0074D9] text-white px-6 py-4 border-b-4 border-[#00377B] rounded-t-xl">
+          <div className="bg-[#00377B] text-white px-6 py-4 rounded-t-xl">
           <h2 className="text-xl md:text-2xl font-semibold text-white">
           Lãi suất tiết kiệm
           </h2>

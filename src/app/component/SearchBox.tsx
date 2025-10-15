@@ -53,9 +53,9 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
         <input
           type="text"
           value={query}
-          placeholder="Nhập từ khóa..."
+          placeholder="Nhập từ khóa tìm kiếm..."
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          className="w-full px-5 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#00377B] shadow-sm"
         />
       </form>
 
@@ -63,7 +63,7 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
         <div className="absolute bg-white border border-gray-200 rounded-lg mt-2 w-full shadow-lg max-h-80 overflow-y-auto scrollbar-hide z-50">
           {loading && 
             <div className="p-4 text-gray-500 flex items-center gap-2">
-            <span className="animate-spin border-2 border-blue-500 border-t-transparent rounded-full w-4 h-4"></span>
+            <span className="animate-spin border-2 border-[#00377B] border-t-transparent rounded-full w-4 h-4"></span>
             Đang tìm kiếm...
             </div>
         }
