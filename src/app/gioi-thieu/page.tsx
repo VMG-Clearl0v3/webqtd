@@ -1,5 +1,7 @@
 "use client";
 
+import { useInView } from "react-intersection-observer";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { Banknote, Trophy, Target, Users, TrendingUp, Rocket, BookOpen } from "lucide-react";
@@ -129,27 +131,12 @@ export default function AboutUsPage() {
 
         {/* Thành tích */}
         <section className="relative w-screen bg-[#F3F8FF] py-10 px-6 left-1/2 right-1/2 -mx-[50vw]">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-semibold mb-12 text-gray-900 text-center">
-              Thành tích đạt được
-            </h2>
-            <div className="grid md:grid-cols-4 gap-10">
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center"
-                >
-                  {stat.icon}
-                  <p className="text-4xl font-bold mt-4 text-[#003776]">
-                    <CountUp end={stat.value} duration={2} separator="," />
-                    {stat.showPlus && "+"}
-                  </p>
-                  <p className="text-gray-600 text-lg">{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+        <div className="max-w-5xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-12 text-gray-900 text-center">
+        Thành tích đạt được
+        </h2>
+        <Achievements stats={stats} />
+        </div>
         </section>
 
         {/* Định hướng tương lai */}
@@ -182,5 +169,39 @@ export default function AboutUsPage() {
       </div>
     </div>
     </>
+  );
+}
+
+function Achievements({ stats }: { stats: any[] }) {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+
+  // Khi xuất hiện thì bật chạy
+  const [startCount, setStartCount] = useState(false);
+
+  useEffect(() => {
+    if (inView) setStartCount(true);
+  }, [inView]);
+
+  return (
+    <div ref={ref} className="grid md:grid-cols-4 gap-10">
+      {stats.map((stat, idx) => (
+        <motion.div
+          key={idx}
+          whileHover={{ scale: 1.05 }}
+          className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center"
+        >
+          {stat.icon}
+          <p className="text-4xl font-bold mt-4 text-[#003776]">
+            {startCount ? (
+              <CountUp end={stat.value} duration={2} separator="," />
+            ) : (
+              0
+            )}
+            {stat.showPlus && "+"}
+          </p>
+          <p className="text-gray-600 text-lg">{stat.label}</p>
+        </motion.div>
+      ))}
+    </div>
   );
 }

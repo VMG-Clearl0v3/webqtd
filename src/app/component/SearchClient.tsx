@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Search, ChevronDown } from "lucide-react";
 import { Product } from "@/types/product";
 import { News } from "@/types/news";
 
@@ -23,6 +23,7 @@ export default function SearchClient() {
   const [visibleNews, setVisibleNews] = useState(3);
   const [loadingMoreProducts, setLoadingMoreProducts] = useState(false);
   const [loadingMoreNews, setLoadingMoreNews] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const totalResults = products.length + news.length;
 
@@ -76,38 +77,59 @@ export default function SearchClient() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 md:px-4 py-10 text-gray-700">
-		<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
-		{/* Nút quay lại */}
-		<button
-		onClick={() => router.back()}
-		className="group flex items-center gap-2 px-4 py-2 rounded-full text-[#00377B] bg-[#00377B]/10 hover:bg-[#00377B]/20 transition-all duration-300"
-		>
-		<ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
-		<span className="font-medium">Quay lại</span>
-		</button>
-
-		{/* Ô tìm kiếm */}
-		<form
-		onSubmit={handleSearch}
-		className="flex w-full sm:w-auto sm:min-w-[400px] items-center bg-white border border-gray-300 rounded-full px-4 py-2 shadow-sm focus-within:ring-2 focus-within:ring-[#00377B] transition-all"
-		>
-		<Search className="w-5 h-5 text-gray-400 mr-2" />
-		<input
-		type="text"
-		placeholder="Nhập từ khóa tìm kiếm..."
-		value={query}
-		onChange={(e) => setQuery(e.target.value)}
-		className="flex-1 outline-none bg-transparent text-gray-700 placeholder-gray-400"
+    <div className="max-w-6xl mx-auto px-6 md:px-4 py-10 text-gray-700 min-h-screen flex flex-col">
+	<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-10">
+  {/* Dropdown điều hướng */}
+  <div className="relative w-full sm:w-100 group">
+     <select
+          onFocus={() => setIsDropdownOpen(true)}
+          onBlur={() => setIsDropdownOpen(false)}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (value) router.push(value);
+          }}
+          className="appearance-none w-full bg-white border border-gray-200 rounded-lg rounded-full px-5 py-4 text-gray-800 shadow-sm 
+                     focus:outline-none focus:ring-2 focus:ring-[#00377B] transition-all cursor-pointer
+                     hover:border-[#00377B]/40 hover:shadow-md pr-10"
+        >
+          <option value="">Chọn trang...</option>
+          <option value="/">🏠 Trang chủ</option>
+          <option value="/tiet-kiem">💰 Tiết kiệm</option>
+          <option value="/cho-vay">💳 Cho vay</option>
+          <option value="/tin-tuc">📰 Tin tức</option>
+          <option value="/gioi-thieu">ℹ️ Giới thiệu</option>
+          <option value="/lien-he">📞 Liên hệ</option>
+        </select>
+    {/* Icon mũi tên xuống */}
+		<ChevronDown
+		  className={`absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 transition-transform duration-300 
+		             ${isDropdownOpen ? "rotate-180 text-[#00377B]" : ""}`}
 		/>
-		<button
-		type="submit"
-		className="ml-3 px-5 py-2 bg-[#00377B] text-white rounded-full font-medium hover:bg-[#004a9f] transition-all duration-300"
-		>
-		Tìm kiếm
-		</button>
-		</form>
-		</div>
+  </div>
+
+  {/* Ô tìm kiếm */}
+  <form
+    onSubmit={handleSearch}
+    className="flex w-full sm:flex-1 items-center bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm 
+               focus-within:ring-2 focus-within:ring-[#00377B] transition-all hover:shadow-md"
+  >
+    <Search className="w-5 h-5 text-gray-400 mr-3 transition-all duration-300 group-hover:text-[#00377B]" />
+    <input
+      type="text"
+      placeholder="Nhập từ khóa tìm kiếm..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      className="flex-1 outline-none bg-transparent text-gray-800 placeholder-gray-400"
+    />
+    <button
+      type="submit"
+      className="ml-3 px-6 py-2 bg-[#00377B] text-white rounded-full font-medium 
+                 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+    >
+      Tìm kiếm
+    </button>
+  </form>
+</div>
       <motion.h1
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -216,7 +238,7 @@ export default function SearchClient() {
                         <span>Đang tải...</span>
                       </div>
                     ) : (
-                      <span>Xem thêm sản phẩm</span>
+                      <span>Xem thêm</span>
                     )}
                   </motion.button>
                   <div className="flex-1 border-t border-dashed border-gray-300"></div>
@@ -282,7 +304,7 @@ export default function SearchClient() {
                         <span>Đang tải...</span>
                       </div>
                     ) : (
-                      <span>Xem thêm tin tức</span>
+                      <span>Xem thêm</span>
                     )}
                   </motion.button>
                   <div className="flex-1 border-t border-dashed border-gray-300"></div>
