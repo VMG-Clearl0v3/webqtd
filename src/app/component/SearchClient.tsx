@@ -102,7 +102,7 @@ export default function SearchClient() {
         </select>
     {/* Icon mũi tên xuống */}
 		<ChevronDown
-		  className={`absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 transition-transform duration-300 
+		  className={`absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 text-[#00377B] transition-transform duration-300 
 		             ${isDropdownOpen ? "rotate-180 text-[#00377B]" : ""}`}
 		/>
   </div>
@@ -113,20 +113,19 @@ export default function SearchClient() {
     className="flex w-full sm:flex-1 items-center bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm 
                focus-within:ring-2 focus-within:ring-[#00377B] transition-all hover:shadow-md"
   >
-    <Search className="w-5 h-5 text-gray-400 mr-3 transition-all duration-300 group-hover:text-[#00377B]" />
     <input
       type="text"
-      placeholder="Nhập từ khóa tìm kiếm..."
+      placeholder="Nhập từ khóa tìm kiếm ..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
       className="flex-1 outline-none bg-transparent text-gray-800 placeholder-gray-400"
     />
     <button
       type="submit"
-      className="ml-3 px-6 py-2 bg-[#00377B] text-white rounded-full font-medium 
-                 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+      className="-mr-2 px-2 py-2 text-[#00377B] rounded-full font-medium 
+                 hover:shadow-lg hover:scale-[1.1] transition-all duration-300"
     >
-      Tìm kiếm
+      <Search className="w-6 h-6" />
     </button>
   </form>
 </div>
@@ -234,7 +233,7 @@ export default function SearchClient() {
                   >
                     {loadingMoreProducts ? (
                       <div className="flex items-center justify-center gap-2">
-                        <span className="inline-block w-5 h-5 border-2 border-[#00377B] border-t-transparent rounded-full animate-spin"></span>
+                        <span className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                         <span>Đang tải...</span>
                       </div>
                     ) : (
@@ -300,7 +299,7 @@ export default function SearchClient() {
                   >
                     {loadingMoreNews ? (
                       <div className="flex items-center justify-center gap-2">
-                        <span className="inline-block w-5 h-5 border-2 border-[#00377B] border-t-transparent rounded-full animate-spin"></span>
+                        <span className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                         <span>Đang tải...</span>
                       </div>
                     ) : (
