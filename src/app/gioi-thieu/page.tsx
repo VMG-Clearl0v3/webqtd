@@ -7,6 +7,13 @@ import CountUp from "react-countup";
 import { Banknote, Trophy, Target, Users, TrendingUp, Rocket, BookOpen } from "lucide-react";
 import Breadcrumb from "@/app/component/Breadcrumb";
 
+type StatItem = {
+  icon: React.ReactNode;
+  value: number;
+  label: string;
+  showPlus?: boolean;
+};
+
 export default function AboutUsPage() {
   const stats = [
     { icon: <Banknote className="w-10 h-10 text-purple-600" />, value: 100, label: "Dư nợ (tỷ đồng)", showPlus: true },
@@ -172,10 +179,8 @@ export default function AboutUsPage() {
   );
 }
 
-function Achievements({ stats }: { stats: any[] }) {
+function Achievements({ stats }: { stats: StatItem[] }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
-
-  // Khi xuất hiện thì bật chạy
   const [startCount, setStartCount] = useState(false);
 
   useEffect(() => {

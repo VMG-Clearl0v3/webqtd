@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Parallax } from "swiper/modules";
-import { motion, animate } from "framer-motion";
+import { animate } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { useCallback } from "react";
+// import { useCallback } from "react";
 import "@/app/globals.css";
 import "swiper/css";
 import "swiper/css/pagination";

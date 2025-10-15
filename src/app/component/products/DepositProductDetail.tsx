@@ -20,8 +20,8 @@ export default function LoanProductDetail({
   product: Product;
   relatedProducts?: Product[];
 }) {
-  const [selectedSection, setSelectedSection] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [setSelectedSection] = useState("");
+  const [setIsOpen] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -33,23 +33,23 @@ export default function LoanProductDetail({
   const featureItems = product.feature?.split("\n").filter(Boolean) || [];
   const documentItems = product.document?.split("\n").filter(Boolean) || [];
 
-  const sections = [
-    { label: "Điều kiện vay vốn", id: "condition" },
-    { label: "Tính năng", id: "feature" },
-    { label: "Hồ sơ thủ tục", id: "document" },
-  ];
+  // const sections = [
+  //   { label: "Điều kiện vay vốn", id: "condition" },
+  //   { label: "Tính năng", id: "feature" },
+  //   { label: "Hồ sơ thủ tục", id: "document" },
+  // ];
 
-  const handleSelect = (id: string) => {
-    setSelectedSection(id);
-    setIsOpen(false);
-    const el = document.getElementById(id);
-    if (el) {
-      const headerOffset = 90;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
-  };
+  // const handleSelect = (id: string) => {
+  //   setSelectedSection(id);
+  //   setIsOpen(false);
+  //   const el = document.getElementById(id);
+  //   if (el) {
+  //     const headerOffset = 90;
+  //     const elementPosition = el.getBoundingClientRect().top;
+  //     const offsetPosition = elementPosition + window.scrollY - headerOffset;
+  //     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+  //   }
+  // };
 
   return (
     <>

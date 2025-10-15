@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+// import Image from "next/image";
+// import Link from "next/link";
 import Header from "@/app/component/Header";
 import Footer from "@/app/component/Footer";
 import PartnerSlider from "@/app/component/PartnerSlider";

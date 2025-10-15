@@ -1,5 +1,5 @@
-import Footer from "@/app/component/Footer";
-import Header from "@/app/component/Header";
+// import Footer from "@/app/component/Footer";
+// import Header from "@/app/component/Header";
 
 export default function SearchLayout({
   children,
