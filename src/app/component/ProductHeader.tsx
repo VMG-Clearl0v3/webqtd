@@ -9,7 +9,7 @@ export default function ProductHeader() {
 
   const bannerMap: Record<string, string> = {
     "tien-gui": "/image/depositbanner.webp",
-    "cho-vay": "/image/loanbanner.jpg",
+    "cho-vay": "/image/loanbanner.svg",
   };
   const bannerSrc =
     Object.entries(bannerMap).find(([key]) => pathname.includes(key))?.[1] ||

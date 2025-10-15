@@ -10,7 +10,7 @@ export default function NewsHeader() {
       {/* Banner riêng cho trang tin tức */}
     <div className="w-full relative h-100">
         <Image
-          src="/image/breakingnews.jpg"
+          src="/image/newsbanner.svg"
           alt="Tin tức"
           fill            
           className="object-cover object-center" 

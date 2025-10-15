@@ -10,7 +10,7 @@ export default function AboutusHeader() {
       {/* Banner riêng cho trang tin tức */}
        <div className="w-full relative h-100">
         <Image
-          src="/image/banner_aboutus.jpg"
+          src="/image/introbanner.svg"
           alt="Về chúng tôi"
           fill            
           className="object-cover object-center" 
