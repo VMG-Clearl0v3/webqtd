@@ -94,8 +94,8 @@ export default function SearchClient() {
         >
           <option value="">Chọn trang...</option>
           <option value="/">🏠 Trang chủ</option>
-          <option value="/tiet-kiem">💰 Tiết kiệm</option>
-          <option value="/cho-vay">💳 Cho vay</option>
+          <option value="/san-pham/tien-gui">💰 Tiết kiệm</option>
+          <option value="/san-pham/cho-vay">💳 Cho vay</option>
           <option value="/tin-tuc">📰 Tin tức</option>
           <option value="/gioi-thieu">ℹ️ Giới thiệu</option>
           <option value="/lien-he">📞 Liên hệ</option>
