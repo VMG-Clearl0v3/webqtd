@@ -55,7 +55,7 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
           value={query}
           placeholder="Nhập từ khóa..."
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+          className="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
         />
       </form>
 
@@ -63,7 +63,7 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
         <div className="absolute bg-white border border-gray-200 rounded-lg mt-2 w-full shadow-lg max-h-80 overflow-y-auto scrollbar-hide z-50">
           {loading && 
             <div className="p-4 text-gray-500 flex items-center gap-2">
-            <span className="animate-spin border-2 border-blue-400 border-t-transparent rounded-full w-4 h-4"></span>
+            <span className="animate-spin border-2 border-blue-500 border-t-transparent rounded-full w-4 h-4"></span>
             Đang tìm kiếm...
             </div>
         }
@@ -79,7 +79,7 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
             <div className="divide-y divide-gray-100">
               {results.products.length > 0 && (
                 <div className="p-3">
-                  <p className="text-sm font-semibold text-gray-600 mb-2">🛍 Sản phẩm liên quan</p>
+                  <p className="text-sm font-semibold text-gray-600 mb-2">Sản phẩm liên quan</p>
                   {results.products.slice(0, 5).map((p) => {
                     const typePath =
                       p.type?.toLowerCase() === "loan"
@@ -110,7 +110,7 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
 
               {results.news.length > 0 && (
                 <div className="p-3">
-                  <p className="text-sm font-semibold text-gray-600 mb-2">📰 Tin tức liên quan</p>
+                  <p className="text-sm font-semibold text-gray-600 mb-2">Tin tức liên quan</p>
                   {results.news.slice(0, 5).map((n) => (
                     <Link
                       key={n.id}
@@ -134,7 +134,7 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
               <button
                 type="button"
                 onClick={() => onSubmit(query)}
-                className="block w-full text-center text-blue-600 font-medium py-3 hover:bg-gray-50"
+                className="block w-full text-center text-[#00377B] font-medium py-3 hover:bg-gray-50"
               >
                 Xem tất cả kết quả →
               </button>
