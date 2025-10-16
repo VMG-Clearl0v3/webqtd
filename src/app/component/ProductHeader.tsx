@@ -8,12 +8,12 @@ export default function ProductHeader() {
 
 
   const bannerMap: Record<string, string> = {
-    "tien-gui": "/image/depositbanner.webp",
+    "tien-gui": "/image/savebanner.svg",
     "cho-vay": "/image/loanbanner.svg",
   };
   const bannerSrc =
     Object.entries(bannerMap).find(([key]) => pathname.includes(key))?.[1] ||
-    "/image/aboutusbanner.jpg";
+    "/image/noimage.jpg";
   return (
     <div className="relative">
       {/* Kế thừa header gốc */}
