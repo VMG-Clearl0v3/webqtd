@@ -94,13 +94,13 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
                         className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
                         onClick={() => onSubmit(p.title)}
                       >
-                        <Image
+                       {/* <Image
                           src={p.image || "/image/noimage.jpg"}
                           alt={p.title}
                           width={50}
                           height={50}
                           className="rounded-md object-cover"
-                        />
+                        />*/}
                         <span className="line-clamp-1">{p.title}</span>
                       </Link>
                     );
@@ -118,13 +118,13 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
                       className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-md"
                       onClick={() => onSubmit(n.title)}
                     >
-                      <Image
+                 {/*     <Image
                         src={n.image || "/image/noimage.jpg"}
                         alt={n.title}
                         width={50}
                         height={50}
                         className="rounded-md object-cover"
-                      />
+                      />*/}
                       <span className="line-clamp-1">{n.title}</span>
                     </Link>
                   ))}

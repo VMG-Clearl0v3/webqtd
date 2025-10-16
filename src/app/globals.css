@@ -51,7 +51,8 @@ body {
 /* Khi bullet active */
 .home-swiper .swiper-pagination-bullet-active {
   background: #ff0000 !important;
-  width: 24px;
+  width: 11px;
+  height: 11px;
   border: 1px solid white;
   box-sizing: border-box;
 }
