@@ -104,56 +104,77 @@ export default function NewsDetail({
           </div>
 
           {/* --- Nội dung bài viết (Markdown) --- */}
-          <div className="prose prose-lg max-w-none text-justify leading-relaxed text-gray-800">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw, rehypeSanitize]}
-              components={{
-                // ✅ Nếu trong <p> có ảnh hoặc block element → không wrap <p>
-                p: ({ node, children }) => {
-                  const hasBlockElement =
-                    node.children?.some(
-                      (child: any) =>
-                        ["img", "iframe", "div", "figure", "table"].includes(
-                          child.tagName
-                        )
-                    ) ?? false;
+         <div className="prose prose-lg max-w-none text-justify leading-relaxed text-gray-800">
+  <ReactMarkdown
+    remarkPlugins={[remarkGfm]}
+    rehypePlugins={[rehypeRaw, rehypeSanitize]}
+    components={{
+      // ✅ Custom <p> — bỏ bọc <p> nếu có block element bên trong
+      p: ({
+        node,
+        children,
+      }: {
+        node: import("hast").Element;
+        children: React.ReactNode;
+      }) => {
+        const hasBlockElement =
+          node.children?.some((child) => {
+            if (
+              child.type === "element" &&
+              ["img", "iframe", "div", "figure", "table"].includes(child.tagName)
+            ) {
+              return true;
+            }
+            return false;
+          }) ?? false;
 
-                  if (hasBlockElement) return <>{children}</>;
-                  return <p className="my-4 leading-relaxed">{children}</p>;
-                },
+        if (hasBlockElement) return <>{children}</>;
+        return <p className="my-4 leading-relaxed">{children}</p>;
+      },
 
-                // ✅ Hình ảnh block, hiển thị đẹp và hợp lệ HTML
-                img: ({ node, ...props }) => (
-                  <figure className="my-8 flex flex-col items-center">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      {...props}
-                      alt={props.alt || ""}
-                      className="rounded-xl shadow-md max-w-full h-auto object-cover"
-                    />
-                    {props.alt && (
-                      <figcaption className="text-sm text-gray-500 italic mt-2 text-center">
-                        {props.alt}
-                      </figcaption>
-                    )}
-                  </figure>
-                ),
+      // ✅ Custom <img> — hiển thị ảnh với caption (alt)
+      img: ({
+        node,
+        ...props
+      }: {
+        node: import("hast").Element;
+        alt?: string;
+        src?: string;
+      }) => (
+        <figure className="my-8 flex flex-col items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            {...props}
+            alt={props.alt || ""}
+            className="rounded-xl shadow-md max-w-full h-auto object-cover"
+          />
+          {props.alt && (
+            <figcaption className="text-sm text-gray-500 italic mt-2 text-center">
+              {props.alt}
+            </figcaption>
+          )}
+        </figure>
+      ),
 
-                // ✅ Table, iframe, video... — tránh wrap sai HTML
-                table: ({ node, ...props }) => (
-                  <div className="overflow-x-auto my-6">
-                    <table
-                      {...props}
-                      className="min-w-full border border-gray-200 text-sm"
-                    />
-                  </div>
-                ),
-              }}
-            >
-              {news.content}
-            </ReactMarkdown>
-          </div>
+      // ✅ Custom <table> — tránh lỗi <div> trong <p>, hỗ trợ cuộn ngang
+      table: ({
+        node,
+        ...props
+      }: {
+        node: import("hast").Element;
+      }) => (
+        <div className="overflow-x-auto my-6">
+          <table
+            {...props}
+            className="min-w-full border border-gray-200 text-sm"
+          />
+        </div>
+      ),
+    }}
+  >
+    {news.content}
+  </ReactMarkdown>
+</div>
         </div>
 
         {/* --- Tin tức liên quan --- */}

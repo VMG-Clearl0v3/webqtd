@@ -1,4 +1,4 @@
-import { LucideIcon, Home, Newspaper, Box, PiggyBank } from "lucide-react";
+import { LucideIcon, Newspaper, Box, PiggyBank } from "lucide-react";
 
 export const breadcrumbLabels: Record<
   string,

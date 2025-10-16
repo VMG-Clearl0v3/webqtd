@@ -36,8 +36,8 @@ export default function LoanProductDetail({
   //   { label: "Hồ sơ thủ tục", id: "document" },
   // ];
 
-  const [setIsOpen] = useState(false);
-  const [setSelected] = useState<string | null>(null);
+  // const [setIsOpen] = useState(false);
+  // const [setSelected] = useState<string | null>(null);
 
   // const handleSelect = (id: string) => {
   //   setSelected(id);

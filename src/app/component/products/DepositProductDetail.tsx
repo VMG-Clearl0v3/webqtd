@@ -20,8 +20,8 @@ export default function LoanProductDetail({
   product: Product;
   relatedProducts?: Product[];
 }) {
-  const [setSelectedSection] = useState("");
-  const [setIsOpen] = useState(false);
+  // const [setSelectedSection] = useState("");
+  // const [setIsOpen] = useState(false);
 
   useEffect(() => {
     if (product) {
