@@ -104,27 +104,28 @@ export default function NewsDetail({
           </div>
 
           {/* --- Nội dung bài viết (Markdown) --- */}
-    <div className="prose prose-lg max-w-none text-justify leading-relaxed text-gray-800">
+   <div className="prose prose-lg max-w-none text-justify leading-relaxed text-gray-800">
   <ReactMarkdown
     remarkPlugins={[remarkGfm]}
     rehypePlugins={[rehypeRaw, rehypeSanitize]}
     components={{
-      // ✅ Custom <p>: không render <p> nếu có block element bên trong
+      // ✅ Custom <p>: bỏ bọc <p> nếu có block element bên trong
       p: ({
         node,
         children,
         ...props
-      }: {
+      }: React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLParagraphElement>,
+        HTMLParagraphElement
+      > & {
         node?: import("hast").Element;
-        children?: React.ReactNode;
       }) => {
         const hasBlockElement =
-          node?.children?.some((child) => {
-            return (
+          node?.children?.some(
+            (child) =>
               child.type === "element" &&
               ["img", "iframe", "div", "figure", "table"].includes(child.tagName)
-            );
-          }) ?? false;
+          ) ?? false;
 
         if (hasBlockElement) return <>{children}</>;
         return (
@@ -134,14 +135,12 @@ export default function NewsDetail({
         );
       },
 
-      // ✅ Custom <img> — có caption (dùng alt làm chú thích)
+      // ✅ Custom <img> có caption, đúng type React
       img: ({
         node,
         ...props
-      }: {
+      }: React.ImgHTMLAttributes<HTMLImageElement> & {
         node?: import("hast").Element;
-        alt?: string;
-        src?: string;
       }) => (
         <figure className="my-8 flex flex-col items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -158,11 +157,11 @@ export default function NewsDetail({
         </figure>
       ),
 
-      // ✅ Custom <table> — thêm overflow để tránh lỗi layout
+      // ✅ Custom table
       table: ({
         node,
         ...props
-      }: {
+      }: React.TableHTMLAttributes<HTMLTableElement> & {
         node?: import("hast").Element;
       }) => (
         <div className="overflow-x-auto my-6">
