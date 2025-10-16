@@ -104,40 +104,42 @@ export default function NewsDetail({
           </div>
 
           {/* --- Nội dung bài viết (Markdown) --- */}
-         <div className="prose prose-lg max-w-none text-justify leading-relaxed text-gray-800">
+    <div className="prose prose-lg max-w-none text-justify leading-relaxed text-gray-800">
   <ReactMarkdown
     remarkPlugins={[remarkGfm]}
     rehypePlugins={[rehypeRaw, rehypeSanitize]}
     components={{
-      // ✅ Custom <p> — bỏ bọc <p> nếu có block element bên trong
+      // ✅ Custom <p>: không render <p> nếu có block element bên trong
       p: ({
         node,
         children,
+        ...props
       }: {
-        node: import("hast").Element;
-        children: React.ReactNode;
+        node?: import("hast").Element;
+        children?: React.ReactNode;
       }) => {
         const hasBlockElement =
-          node.children?.some((child) => {
-            if (
+          node?.children?.some((child) => {
+            return (
               child.type === "element" &&
               ["img", "iframe", "div", "figure", "table"].includes(child.tagName)
-            ) {
-              return true;
-            }
-            return false;
+            );
           }) ?? false;
 
         if (hasBlockElement) return <>{children}</>;
-        return <p className="my-4 leading-relaxed">{children}</p>;
+        return (
+          <p {...props} className="my-4 leading-relaxed">
+            {children}
+          </p>
+        );
       },
 
-      // ✅ Custom <img> — hiển thị ảnh với caption (alt)
+      // ✅ Custom <img> — có caption (dùng alt làm chú thích)
       img: ({
         node,
         ...props
       }: {
-        node: import("hast").Element;
+        node?: import("hast").Element;
         alt?: string;
         src?: string;
       }) => (
@@ -156,12 +158,12 @@ export default function NewsDetail({
         </figure>
       ),
 
-      // ✅ Custom <table> — tránh lỗi <div> trong <p>, hỗ trợ cuộn ngang
+      // ✅ Custom <table> — thêm overflow để tránh lỗi layout
       table: ({
         node,
         ...props
       }: {
-        node: import("hast").Element;
+        node?: import("hast").Element;
       }) => (
         <div className="overflow-x-auto my-6">
           <table
