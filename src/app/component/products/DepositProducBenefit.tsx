@@ -10,12 +10,12 @@ const reasons = [
   {
     icon: Smartphone,
     title: "Trải nghiệm thuận tiện",
-    desc: "Quy trình thủ tục nhanh gọn, đơn giản, dễ dàng",
+    desc: "Gửi và rút gốc, lãi dễ dàng, thuận tiện",
   },
   {
     icon: ShieldCheck,
-    title: "An toàn – Bảo mật",
-    desc: "Công nghệ bảo mật tiên tiến trên thế giới",
+    title: "Được bảo hiểm tiền gửi",
+    desc: "An tâm gửi tiền, bảo mật thông tin, an toàn tuyệt đối",
   },
 ];
 
