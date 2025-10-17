@@ -1,6 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getLastNews } from "@/services/news";
+import ReactMarkdown from "react-markdown";
+
+function stripMarkdown(markdown: string): string {
+  return markdown
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/__(.*?)__/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/_(.*?)_/g, "$1")
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    .replace(/^#+\s*(.*)/gm, "$1")
+    .replace(/^>\s?/gm, "")
+    .replace(/`{1,3}(.*?)`{1,3}/g, "$1")
+    .replace(/\n+/g, " ")
+    .trim();
+}
 
 export default async function NewsSection() {
   const news = await getLastNews(3);
@@ -58,7 +73,7 @@ lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none
 >
   <Link
     href={`/tin-tuc/${first.slug}`}
-    className="block relative h-full lg:h-[420px] group"
+    className="block relative h-full group"
   >
     {/* Hình ảnh nền */}
     <Image
@@ -69,16 +84,18 @@ lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none
       className="object-cover transition-transform duration-700 group-hover:scale-110"
     />
     {/* Phần tiêu đề nằm ở đáy, đè lên ảnh */}
-    <div className="absolute bottom-0 left-0 w-full z-10">
-      <div className="bg-[#00377B] md:bg-[#00377B]/30 backdrop-blur-sm p-4 md:p-5">
-        <h3 className="text-base md:text-lg font-semibold text-white leading-snug line-clamp-2">
-          {first.title}
-        </h3>
-        <p className="hidden sm:block text-sm text-gray-100 mt-2 line-clamp-2">
-          {first.content}
-        </p>
-      </div>
+   <div className="absolute bottom-0 left-0 w-full rounded-b-xl">
+    <div
+      className="
+        bg-[#00377B]
+        px-4 py-3 md:px-6 md:py-4
+      "
+    >
+      <h3 className="text-white font-semibold text-base md:text-lg leading-snug line-clamp-2">
+        {first.title}
+      </h3>
     </div>
+  </div>
   </Link>
 </div> {/* === Các tin nhỏ còn lại === */}
         {rest.map((item) => (
@@ -107,9 +124,9 @@ lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:snap-none
               <h4 className="text-base font-semibold text-gray-900 mb-2 line-clamp-2">
                 {item.title}
               </h4>
-              <p className="text-sm text-gray-600 flex-1 line-clamp-3">
-                {item.content}
-              </p>
+              <div className="text-sm text-gray-600 flex-1 line-clamp-3">
+                 {stripMarkdown(item.content).slice(0, 200) + "..."}              
+               </div>
               <Link
                 href={`/tin-tuc/${item.slug}`}
                 className="text-[#00377B] font-medium mt-3 hover:underline inline-flex items-center gap-1"

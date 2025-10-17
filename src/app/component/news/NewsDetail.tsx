@@ -11,6 +11,20 @@ import Breadcrumb from "@/app/component/Breadcrumb";
 import Link from "next/link";
 import Image from "next/image";
 
+function stripMarkdown(markdown: string): string {
+  return markdown
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/__(.*?)__/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/_(.*?)_/g, "$1")
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    .replace(/^#+\s*(.*)/gm, "$1")
+    .replace(/^>\s?/gm, "")
+    .replace(/`{1,3}(.*?)`{1,3}/g, "$1")
+    .replace(/\n+/g, " ")
+    .trim();
+}
+
 export default function NewsDetail({
   news,
   relatedNews = [],
@@ -180,7 +194,7 @@ export default function NewsDetail({
 
         {/* --- Tin tức liên quan --- */}
         {relatedNews.length > 0 && (
-          <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#F3F8FF] mt-10 pb-20">
+          <section className="relative w-screen left-1/2 right-1/2 -mx-[50vw] bg-[#f5f6f8] mt-10 pb-20">
             <div className="max-w-4xl mx-auto px-6 lg:px-0">
               <h2 className="text-2xl md:text-4xl font-semibold text-gray-900 py-10">
                 Tin tức liên quan
@@ -213,9 +227,9 @@ export default function NewsDetail({
                             {item.title}
                           </h3>
                         </Link>
-                        <p className="text-sm text-gray-600 mt-3 line-clamp-3">
-                          {item.content.slice(0, 180) + "..."}
-                        </p>
+                          <div className="text-sm text-gray-600 mt-3 line-clamp-3">
+                          {stripMarkdown(item.content).slice(0, 200) + "..."}              
+                          </div>
                       </div>
 
                       <div className="mt-5">
