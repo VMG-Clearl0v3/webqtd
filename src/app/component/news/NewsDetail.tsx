@@ -118,7 +118,8 @@ export default function NewsDetail({
           </div>
 
           {/* --- Nội dung bài viết (Markdown) --- */}
-   <div className="prose prose-lg max-w-none text-justify leading-relaxed text-gray-800">
+<div className="prose prose-lg max-w-none leading-relaxed text-gray-800 
+  prose-img:w-full prose-img:h-auto prose-img:object-cover prose-img:rounded-xl prose-img:shadow-md">
   <ReactMarkdown
     remarkPlugins={[remarkGfm]}
     rehypePlugins={[rehypeRaw, rehypeSanitize]}
@@ -143,25 +144,25 @@ export default function NewsDetail({
 
         if (hasBlockElement) return <>{children}</>;
         return (
-          <p {...props} className="my-4 leading-relaxed">
+          <p {...props} className="my-4 text-justify leading-relaxed">
             {children}
           </p>
         );
       },
 
-      // ✅ Custom <img> có caption, đúng type React
-      img: ({
+      // ✅ Custom <img> có caption
+          img: ({
         node,
         ...props
-      }: React.ImgHTMLAttributes<HTMLImageElement> & {
+        }: React.ImgHTMLAttributes<HTMLImageElement> & {
         node?: import("hast").Element;
-      }) => (
+        }) => (
         <figure className="my-8 flex flex-col items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             {...props}
             alt={props.alt || ""}
-            className="rounded-xl shadow-md max-w-full h-auto object-cover"
+            className="w-full h-auto object-cover rounded-xl shadow-md"
           />
           {props.alt && (
             <figcaption className="text-sm text-gray-500 italic mt-2 text-center">
@@ -169,9 +170,9 @@ export default function NewsDetail({
             </figcaption>
           )}
         </figure>
-      ),
+        ),
 
-      // ✅ Custom table
+      // ✅ Custom <table>
       table: ({
         node,
         ...props
@@ -184,6 +185,25 @@ export default function NewsDetail({
             className="min-w-full border border-gray-200 text-sm"
           />
         </div>
+      ),
+
+      // ✅ Custom <ul>, <ol>, <li> để hiển thị danh sách đúng
+      ul: ({ node, ...props }) => (
+        <ul
+          className="list-disc list-inside my-4 space-y-1 marker:text-gray-700"
+          {...props}
+        />
+      ),
+      ol: ({ node, ...props }) => (
+        <ol
+          className="list-decimal list-inside my-4 space-y-1 marker:text-gray-700"
+          {...props}
+        />
+      ),
+      li: ({ node, children, ...props }) => (
+        <li className="ml-4 text-justify" {...props}>
+          {children}
+        </li>
       ),
     }}
   >
