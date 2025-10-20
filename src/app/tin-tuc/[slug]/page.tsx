@@ -2,33 +2,27 @@ import { getNews, getNewsBySlug } from "@/services/news";
 import NewsDetail from "@/app/component/news/NewsDetail";
 import { notFound } from "next/navigation";
 
-type PageProps = {
+// ✅ SEO metadata
+export async function generateMetadata({
+  params,
+}: {
   params: Promise<{ slug: string }>;
-};
-
-// ✅ Metadata động cho từng bài viết
-export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
+}) {
+  const { slug } = await params; // 🚀 PHẢI await trên Next 15
   const news = await getNewsBySlug(slug);
+  if (!news) return {};
 
-  if (!news) {
-    return {
-      title: "Tin không tồn tại",
-      description: "Bài viết bạn tìm kiếm không tồn tại.",
-    };
-  }
-
-  const cleanDescription = news.content
+  const description = news.content
     ?.replace(/[#_*[\]()]/g, "")
     ?.replace(/\n+/g, " ")
     ?.slice(0, 150);
 
   return {
     title: news.title,
-    description: cleanDescription,
+    description,
     openGraph: {
       title: news.title,
-      description: cleanDescription,
+      description,
       url: `https://webqtd.vercel.app/tin-tuc/${slug}`,
       siteName: "Quỹ Tín Dụng Nhân Dân Trung Sơn",
       images: [
@@ -47,7 +41,7 @@ export async function generateMetadata({ params }: PageProps) {
     twitter: {
       card: "summary_large_image",
       title: news.title,
-      description: cleanDescription,
+      description,
       images: [
         news.image?.startsWith("http")
           ? news.image
@@ -57,9 +51,13 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-// ✅ Trang chi tiết tin tức
-export default async function NewsDetailPage({ params }: PageProps) {
-  const { slug } = await params; // ✅ phải await ở Next.js 15
+// ✅ Trang chi tiết tin
+export default async function NewsDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params; // 🚀 phải await
   const news = await getNewsBySlug(slug);
 
   if (!news) notFound();
