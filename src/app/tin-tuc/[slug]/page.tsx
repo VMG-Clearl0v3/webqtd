@@ -5,11 +5,10 @@ import { notFound } from "next/navigation";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const news = await getNewsBySlug(slug);
-
   if (!news) return {};
 
   const description = news.content
