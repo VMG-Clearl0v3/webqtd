@@ -5,14 +5,20 @@ import { notFound } from "next/navigation";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params; 
   const news = await getNewsBySlug(slug);
+
   if (!news) return {};
 
-  const description = news.content.replace(/[#_*[\]()]/g, "").slice(0, 150);
+  // Làm sạch mô tả (bỏ markdown ký tự đặc biệt)
+  const description = news.content
+    ?.replace(/[#_*[\]()]/g, "")
+    .replace(/\n+/g, " ")
+    .slice(0, 150);
 
+  // ✅ Cấu trúc metadata chuẩn SEO
   return {
     title: news.title,
     description,
@@ -20,7 +26,7 @@ export async function generateMetadata({
       title: news.title,
       description,
       url: `https://webqtd.vercel.app/tin-tuc/${slug}`,
-      siteName: "Quỹ tín dụng Trung Sơn",
+      siteName: "Quỹ Tín Dụng Nhân Dân Trung Sơn",
       images: [
         {
           url: news.image?.startsWith("http")
@@ -34,25 +40,36 @@ export async function generateMetadata({
       locale: "vi_VN",
       type: "article",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: news.title,
+      description,
+      images: [
+        news.image?.startsWith("http")
+          ? news.image
+          : `https://webqtd.vercel.app${news.image || "/image/noimage.jpg"}`,
+      ],
+    },
   };
 }
 
+// ✅ Trang chi tiết tin
 export default async function NewsDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
   const news = await getNewsBySlug(slug);
 
   if (!news) notFound();
 
-  // 🔹 Lấy thêm danh sách tin khác để làm "Tin liên quan"
+  // 🔹 Lấy danh sách tin khác để làm “Tin liên quan”
   const { news: allNews } = await getNews(1, 50);
   const relatedNews = allNews
     .filter((item) => item.slug !== news.slug)
     .slice(0, 3);
 
-  // ✅ Truyền relatedNews xuống component
+  // ✅ Trả về component hiển thị chi tiết
   return <NewsDetail news={news} relatedNews={relatedNews} />;
 }
