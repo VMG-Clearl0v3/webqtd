@@ -66,7 +66,7 @@ export default function NewsDetail({
     navigator.clipboard.writeText(shareUrl);
     setCopied(true);
     if (navigator.vibrate) navigator.vibrate(30);
-    setTimeout(() => setCopied(false), 2000);
+    setTimeout(() => setCopied(false), 1500);
   };
 
   // 🟦 Chia sẻ Facebook dạng popup (đẹp hơn)
