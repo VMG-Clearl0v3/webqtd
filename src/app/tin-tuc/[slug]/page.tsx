@@ -11,30 +11,18 @@ export async function generateMetadata({
   const news = await getNewsBySlug(slug);
   if (!news) return {};
 
-  const description = news.content
-    ?.replace(/[#_*[\]()]/g, "")
-    .replace(/\n+/g, " ")
-    .slice(0, 150);
-
   return {
     title: news.title,
-    description,
+    description: news.content.replace(/[#_*[\]()]/g, "").slice(0, 150);
     openGraph: {
       title: news.title,
-      description,
-      url: `https://webqtd.vercel.app/tin-tuc/${slug}`,
-      siteName: "Quỹ Tín Dụng Nhân Dân Trung Sơn",
-      images: [
+      description: news.content.replace(/[#_*[\]()]/g, "").slice(0, 150);
         {
-          url: news.image?.startsWith("http")
-            ? news.image
-            : `https://webqtd.vercel.app${news.image || "/image/noimage.jpg"}`,
-          width: 1200,
-          height: 630,
-          alt: news.title,
+          url: news.image || "/image/noimage.jpg",
         },
       ],
       locale: "vi_VN",
+      url: `https://webqtd.vercel.app/tin-tuc/${slug}`,
       type: "article",
     },
   };
@@ -43,17 +31,19 @@ export async function generateMetadata({
 export default async function NewsDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const news = await getNewsBySlug(slug);
 
   if (!news) notFound();
 
+  // 🔹 Lấy thêm danh sách tin khác để làm "Tin liên quan"
   const { news: allNews } = await getNews(1, 50);
   const relatedNews = allNews
-    .filter((item) => item.slug !== news.slug)
-    .slice(0, 3);
+    .filter((item) => item.slug !== news.slug) // bỏ bài hiện tại
+    .slice(0, 3); // lấy 3 bài đầu
 
+  // ✅ Truyền relatedNews xuống component
   return <NewsDetail news={news} relatedNews={relatedNews} />;
 }
