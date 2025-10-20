@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import type { News } from "@/types/news";
-import { Facebook, Share2 } from "lucide-react";
+import { Facebook, Share2, CheckCircle } from "lucide-react";
 import Breadcrumb from "@/app/component/Breadcrumb";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,12 +36,12 @@ export default function NewsDetail({
   const [shareUrl, setShareUrl] = useState("");
   const [copied, setCopied] = useState(false);
 
-  // Khi thay đổi slug → cuộn lên đầu
+  // 🟦 Khi slug thay đổi → cuộn lên đầu trang
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [news.slug]);
 
-  // Format ngày & URL
+  // 🟩 Format ngày và URL chỉ chạy trên client
   useEffect(() => {
     const date = new Date(news.date);
     const dateStr = `${date.toLocaleDateString("vi-VN", {
@@ -55,14 +55,26 @@ export default function NewsDetail({
       minute: "2-digit",
     })}`;
     setFormattedDate(dateStr);
-    setShareUrl(window.location.href);
-  }, [news.date]);
 
-  // Sao chép link
+    // ✅ Đảm bảo URL đầy đủ (dùng absolute URL)
+    const url = `https://webqtd.vercel.app/tin-tuc/${news.slug}`;
+    setShareUrl(url);
+  }, [news.slug, news.date]);
+
+  // 🟨 Sao chép liên kết
   const handleCopy = () => {
     navigator.clipboard.writeText(shareUrl);
     setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    if (navigator.vibrate) navigator.vibrate(30);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  // 🟦 Chia sẻ Facebook dạng popup (đẹp hơn)
+  const handleShareFacebook = () => {
+    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      shareUrl
+    )}`;
+    window.open(fbUrl, "facebook-share-dialog", "width=800,height=600");
   };
 
   return (
@@ -88,17 +100,13 @@ export default function NewsDetail({
           <div className="flex items-center justify-between text-gray-500 border-b border-gray-200 pb-3 mb-6">
             <p className="text-sm">{formattedDate || "Đang tải…"}</p>
             <div className="flex items-center gap-4">
-              <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                  shareUrl
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleShareFacebook}
                 className="flex items-center gap-1 hover:text-[#0055d6] transition"
                 aria-label="Chia sẻ Facebook"
               >
                 <Facebook size={20} />
-              </a>
+              </button>
 
               <button
                 onClick={handleCopy}
@@ -106,110 +114,96 @@ export default function NewsDetail({
                 aria-label="Sao chép liên kết"
               >
                 <Share2 size={20} />
-                <span
-                  className={`absolute -top-7 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded-md transition-opacity duration-300 ${
-                    copied ? "opacity-100" : "opacity-0"
-                  }`}
-                >
-                  Đã sao chép!
-                </span>
+<span
+  className={`absolute -top-9 left-1/2 -translate-x-1/2
+    flex items-center gap-1.5
+    bg-white text-[#00377B] text-xs font-medium border border-[#00377B]/30
+    px-3 py-1.5 rounded-full shadow-[0_2px_10px_rgba(0,55,123,0.15)]
+    whitespace-nowrap pointer-events-none select-none
+    transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+    ${copied ? "opacity-100 -translate-y-2 scale-105" : "opacity-0 translate-y-0 scale-95"}
+  `}
+>
+  <CheckCircle size={14} className="text-[#00b341]" />
+  <span>Đã sao chép</span>
+</span>
               </button>
             </div>
           </div>
 
-          {/* --- Nội dung bài viết (Markdown) --- */}
-<div className="prose prose-lg max-w-none leading-relaxed text-gray-800 
-  prose-img:w-full prose-img:h-auto prose-img:object-cover prose-img:rounded-xl prose-img:shadow-md">
-  <ReactMarkdown
-    remarkPlugins={[remarkGfm]}
-    rehypePlugins={[rehypeRaw, rehypeSanitize]}
-    components={{
-      // ✅ Custom <p>: bỏ bọc <p> nếu có block element bên trong
-      p: ({
-        node,
-        children,
-        ...props
-      }: React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLParagraphElement>,
-        HTMLParagraphElement
-      > & {
-        node?: import("hast").Element;
-      }) => {
-        const hasBlockElement =
-          node?.children?.some(
-            (child) =>
-              child.type === "element" &&
-              ["img", "iframe", "div", "figure", "table"].includes(child.tagName)
-          ) ?? false;
+          {/* --- Nội dung bài viết --- */}
+          <div
+            className="prose prose-lg max-w-none leading-relaxed text-gray-800 
+              prose-img:w-full prose-img:h-auto prose-img:object-cover prose-img:rounded-xl prose-img:shadow-md"
+          >
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, rehypeSanitize]}
+              components={{
+                p: ({ node, children, ...props }) => {
+                  const hasBlock =
+                    node?.children?.some(
+                      (child) =>
+                        child.type === "element" &&
+                        ["img", "iframe", "div", "figure", "table"].includes(
+                          child.tagName
+                        )
+                    ) ?? false;
+                  if (hasBlock) return <>{children}</>;
+                  return (
+                    <p {...props} className="my-4 text-justify leading-relaxed">
+                      {children}
+                    </p>
+                  );
+                },
 
-        if (hasBlockElement) return <>{children}</>;
-        return (
-          <p {...props} className="my-4 text-justify leading-relaxed">
-            {children}
-          </p>
-        );
-      },
+                img: (props) => (
+                  <figure className="my-8 flex flex-col items-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      {...props}
+                      alt={props.alt || ""}
+                      className="w-full h-auto object-cover rounded-xl shadow-md"
+                    />
+                    {props.alt && (
+                      <figcaption className="text-sm text-gray-500 italic mt-2 text-center">
+                        {props.alt}
+                      </figcaption>
+                    )}
+                  </figure>
+                ),
 
-      // ✅ Custom <img> có caption
-          img: ({
-        node,
-        ...props
-        }: React.ImgHTMLAttributes<HTMLImageElement> & {
-        node?: import("hast").Element;
-        }) => (
-        <figure className="my-8 flex flex-col items-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            {...props}
-            alt={props.alt || ""}
-            className="w-full h-auto object-cover rounded-xl shadow-md"
-          />
-          {props.alt && (
-            <figcaption className="text-sm text-gray-500 italic mt-2 text-center">
-              {props.alt}
-            </figcaption>
-          )}
-        </figure>
-        ),
+                table: (props) => (
+                  <div className="overflow-x-auto my-6">
+                    <table
+                      {...props}
+                      className="min-w-full border border-gray-200 text-sm"
+                    />
+                  </div>
+                ),
 
-      // ✅ Custom <table>
-      table: ({
-        node,
-        ...props
-      }: React.TableHTMLAttributes<HTMLTableElement> & {
-        node?: import("hast").Element;
-      }) => (
-        <div className="overflow-x-auto my-6">
-          <table
-            {...props}
-            className="min-w-full border border-gray-200 text-sm"
-          />
-        </div>
-      ),
-
-      // ✅ Custom <ul>, <ol>, <li> để hiển thị danh sách đúng
-      ul: ({ node, ...props }) => (
-        <ul
-          className="list-disc list-inside my-4 space-y-1 marker:text-gray-700"
-          {...props}
-        />
-      ),
-      ol: ({ node, ...props }) => (
-        <ol
-          className="list-decimal list-inside my-4 space-y-1 marker:text-gray-700"
-          {...props}
-        />
-      ),
-      li: ({ node, children, ...props }) => (
-        <li className="ml-4 text-justify" {...props}>
-          {children}
-        </li>
-      ),
-    }}
-  >
-    {news.content}
-  </ReactMarkdown>
-</div>
+                ul: (props) => (
+                  <ul
+                    className="list-disc list-inside my-4 space-y-1 marker:text-gray-700"
+                    {...props}
+                  />
+                ),
+                ol: (props) => (
+                  <ol
+                    className="list-decimal list-inside my-4 space-y-1 marker:text-gray-700"
+                    {...props}
+                  />
+                ),
+                li: ({ children, ...props }) => (
+                  <li className="ml-4 text-justify" {...props}>
+                    {children}
+                  </li>
+                ),
+              }}
+            >
+              {news.content}
+            </ReactMarkdown>
+          </div>
         </div>
 
         {/* --- Tin tức liên quan --- */}
@@ -247,9 +241,9 @@ export default function NewsDetail({
                             {item.title}
                           </h3>
                         </Link>
-                          <div className="text-sm text-gray-600 mt-3 line-clamp-3">
-                          {stripMarkdown(item.content).slice(0, 200) + "..."}              
-                          </div>
+                        <div className="text-sm text-gray-600 mt-3 line-clamp-3">
+                          {stripMarkdown(item.content).slice(0, 200) + "..."}
+                        </div>
                       </div>
 
                       <div className="mt-5">

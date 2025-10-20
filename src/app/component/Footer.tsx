@@ -68,20 +68,22 @@ export default function Footer() {
   <h4 className="font-bold text-lg mb-3">KẾT NỐI</h4>
   <div className="flex gap-4">
     {/* Facebook */}
-    <a 
-    href="https://www.facebook.com/truongpv.tdnb"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-12 h-12 rounded-full overflow-hidden transform transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1">
-    <div className="w-full h-full flex items-center justify-center rounded-full shadow-md hover:shadow-[0_0_15px_5px_rgba(24,119,242,0.4)] hover:bg-blue-50/20 transition-all duration-200 ease-out">
-    <Image
-      src="/image/iconfb.png"
-      alt="Facebook"
-      width={50}
-      height={50}
-      className="object-contain"
-    />
-    </div>
+    <a
+      href="https://www.facebook.com/QTDTrungSon"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Fanpage Facebook Quỹ tín dụng Trung Sơn"
+      className="w-12 h-12 rounded-full overflow-hidden transform transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1"
+    >
+      <div className="w-full h-full flex items-center justify-center rounded-full shadow-md hover:shadow-[0_0_15px_5px_rgba(24,119,242,0.4)] hover:bg-blue-50/20 transition-all duration-200 ease-out">
+        <Image
+          src="/image/iconfb.png"
+          alt="Facebook"
+          width={50}
+          height={50}
+          className="object-contain"
+        />
+      </div>
     </a>
     {/* Zalo */}
     <a 
