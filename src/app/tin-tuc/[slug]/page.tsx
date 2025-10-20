@@ -2,11 +2,11 @@ import { getNews, getNewsBySlug } from "@/services/news";
 import NewsDetail from "@/app/component/news/NewsDetail";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: { slug: string }; // ✅ KHÔNG phải Promise
-}
-
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
   const news = await getNewsBySlug(slug);
 
@@ -41,7 +41,11 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default async function NewsDetailPage({ params }: PageProps) {
+export default async function NewsDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
   const news = await getNewsBySlug(slug);
 
