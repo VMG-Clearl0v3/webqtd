@@ -2,48 +2,72 @@ import { getNews, getNewsBySlug } from "@/services/news";
 import NewsDetail from "@/app/component/news/NewsDetail";
 import { notFound } from "next/navigation";
 
-export async function generateMetadata({
-  params,
-}: {
+type PageProps = {
   params: Promise<{ slug: string }>;
-}) {
+};
+
+// ✅ Metadata động cho từng bài viết
+export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const news = await getNewsBySlug(slug);
-  if (!news) return {};
+
+  if (!news) {
+    return {
+      title: "Tin không tồn tại",
+      description: "Bài viết bạn tìm kiếm không tồn tại.",
+    };
+  }
+
+  const cleanDescription = news.content
+    ?.replace(/[#_*[\]()]/g, "")
+    ?.replace(/\n+/g, " ")
+    ?.slice(0, 150);
 
   return {
     title: news.title,
-    description: news.content.replace(/[#_*[\]()]/g, "").slice(0, 150);
+    description: cleanDescription,
     openGraph: {
       title: news.title,
-      description: news.content.replace(/[#_*[\]()]/g, "").slice(0, 150);
+      description: cleanDescription,
+      url: `https://webqtd.vercel.app/tin-tuc/${slug}`,
+      siteName: "Quỹ Tín Dụng Nhân Dân Trung Sơn",
+      images: [
         {
-          url: news.image || "/image/noimage.jpg",
+          url: news.image?.startsWith("http")
+            ? news.image
+            : `https://webqtd.vercel.app${news.image || "/image/noimage.jpg"}`,
+          width: 1200,
+          height: 630,
+          alt: news.title,
         },
       ],
       locale: "vi_VN",
-      url: `https://webqtd.vercel.app/tin-tuc/${slug}`,
       type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: news.title,
+      description: cleanDescription,
+      images: [
+        news.image?.startsWith("http")
+          ? news.image
+          : `https://webqtd.vercel.app${news.image || "/image/noimage.jpg"}`,
+      ],
     },
   };
 }
 
-export default async function NewsDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+// ✅ Trang chi tiết tin tức
+export default async function NewsDetailPage({ params }: PageProps) {
+  const { slug } = await params; // ✅ phải await ở Next.js 15
   const news = await getNewsBySlug(slug);
 
   if (!news) notFound();
 
-  // 🔹 Lấy thêm danh sách tin khác để làm "Tin liên quan"
   const { news: allNews } = await getNews(1, 50);
   const relatedNews = allNews
-    .filter((item) => item.slug !== news.slug) // bỏ bài hiện tại
-    .slice(0, 3); // lấy 3 bài đầu
+    .filter((item) => item.slug !== news.slug)
+    .slice(0, 3);
 
-  // ✅ Truyền relatedNews xuống component
   return <NewsDetail news={news} relatedNews={relatedNews} />;
 }
