@@ -141,7 +141,7 @@ export const getImageUrl = (
   return url.startsWith("http") ? url : `${API_URL}${url}`;
 };
 
-export async function getNews(page = 1, pageSize = 6): Promise<{ news: News[]; totalPages: number }> {
+export async function getNews(page = 1, pageSize = 1000): Promise<{ news: News[]; totalPages: number }> {
   const res = await fetch( `${API_URL}/api/news?populate=image&sort[0]=date:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,{next:{revalidate: 60 }});
   if (!res.ok) throw new Error("Lỗi lấy tin tức");
   const json = await res.json();
@@ -258,3 +258,24 @@ export async function getRelatedNews(slug: string): Promise<News[]> {
     category: item.category || null,
   }));
 }
+// export async function searchNews(query: string): Promise<News[]> {
+//   if (!query) return [];
+
+//   const res = await fetch(
+//     `${API_URL}/api/news?filters[$or][0][title][$containsi]=${query}&filters[$or][1][content][$containsi]=${query}&populate=image&sort[0]=date:desc&pagination[pageSize]=1000`,
+//     { next: { revalidate: 30 } }
+//   );
+
+//   if (!res.ok) throw new Error("Lỗi tìm kiếm tin tức");
+
+//   const json = await res.json();
+
+//   return json.data.map((item: RawNews) => ({
+//     id: item.id,
+//     title: item.title,
+//     slug: item.slug,
+//     content: item.content,
+//     image: getImageUrl(item.image),
+//     date: item.date,
+//   }));
+// }
