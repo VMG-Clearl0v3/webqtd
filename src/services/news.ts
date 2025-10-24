@@ -118,7 +118,9 @@
 import { News, RawNews, NewsImage } from "@/types/news";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-export const getImageUrl = (imageData?: NewsImage[] | NewsImage | { data?: NewsImage[] | NewsImage }): string | null => {
+export const getImageUrl = (
+  imageData?: NewsImage[] | NewsImage | { data?: NewsImage[] | NewsImage } | null
+): string | null => {
   if (!imageData) return null;
 
   let imgObj: NewsImage | undefined;
@@ -137,7 +139,7 @@ export const getImageUrl = (imageData?: NewsImage[] | NewsImage | { data?: NewsI
   if (!url) return null;
 
   return url.startsWith("http") ? url : `${API_URL}${url}`;
-}
+};
 
 export async function getNews(page = 1, pageSize = 6): Promise<{ news: News[]; totalPages: number }> {
   const res = await fetch( `${API_URL}/api/news?populate=image&sort[0]=date:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,{next:{revalidate: 60 }});
