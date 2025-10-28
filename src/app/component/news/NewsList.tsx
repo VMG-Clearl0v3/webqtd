@@ -98,28 +98,40 @@ export default function NewsList({
 
         {/* Phân trang */}
 <div className="flex justify-center items-center gap-2 pb-10 overflow-x-auto whitespace-nowrap no-scrollbar">
+  {/* Nút Trước */}
   {currentPage > 1 && (
     <button
       onClick={() => handlePageChange(currentPage - 1)}
-      className="px-4 py-2 bg-white text-[#00377B] font-medium hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
+      className="p-2 rounded-full bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
     >
-     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-</svg>
-
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-5 h-5"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.75 19.5 8.25 12l7.5-7.5"
+        />
+      </svg>
     </button>
   )}
 
+  {/* Hiển thị tối đa 5 nút trang */}
   {pagesToShow.map((p, i) =>
     p === "..." ? (
-      <span key={`dots-${i}`} className="px-2 text-gray-400 shrink-0">
+      <span key={`dots-${i}`} className="px-2 text-gray-400 select-none">
         …
       </span>
     ) : (
       <button
         key={p}
         onClick={() => handlePageChange(Number(p))}
-        className={`px-4 py-2 rounded-full font-medium border transition-colors duration-200 shrink-0 ${
+        className={`w-10 h-10 flex items-center justify-center rounded-full font-medium border transition-colors duration-200 shrink-0 ${
           currentPage === p
             ? "bg-[#00377B] text-white border-[#00377B]"
             : "bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white"
@@ -130,15 +142,26 @@ export default function NewsList({
     )
   )}
 
+  {/* Nút Sau */}
   {currentPage < totalPages && (
     <button
       onClick={() => handlePageChange(currentPage + 1)}
-      className="px-4 py-2 bg-white text-[#00377B] font-medium hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
+      className="p-2 rounded-full bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-</svg>
-
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-5 h-5"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+        />
+      </svg>
     </button>
   )}
 </div>
