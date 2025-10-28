@@ -8,6 +8,7 @@ import { News } from '@/types/news';
 import { getNews } from '@/services/news';
 import { getPageRange } from '@/utils/pagination';
 import Breadcrumb from "@/app/component/Breadcrumb";
+import "@/app/globals.css";
 
 interface NewsListProps {
   initialNews: News[];
@@ -96,68 +97,51 @@ export default function NewsList({
         </AnimatePresence>
 
         {/* Phân trang */}
-        <div className="flex justify-center items-center flex-wrap gap-2 pb-10">
-          {currentPage > 1 && (
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              className="px-4 py-2 rounded-md bg-white text-blue-900 border border-gray-200 font-medium hover:bg-blue-900 hover:text-white transition"
-            >
-              ← Trước
-            </button>
-          )}
+<div className="flex justify-center items-center gap-2 pb-10 overflow-x-auto whitespace-nowrap no-scrollbar">
+  {currentPage > 1 && (
+    <button
+      onClick={() => handlePageChange(currentPage - 1)}
+      className="px-4 py-2 bg-white text-[#00377B] font-medium hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
+    >
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
 
-          {/* Trang đầu + dấu … */}
-          {pagesToShow[0] > 1 && (
-            <>
-              <button
-                onClick={() => handlePageChange(1)}
-                className="px-4 py-2 rounded-md bg-white text-blue-900 border border-gray-200 font-medium hover:bg-blue-900 hover:text-white transition"
-              >
-                1
-              </button>
-              {pagesToShow[0] > 2 && <span className="px-2">…</span>}
-            </>
-          )}
+    </button>
+  )}
 
-          {/* Các trang hiện tại */}
-          {pagesToShow.map((page) => (
-            <button
-              key={page}
-              onClick={() => handlePageChange(page)}
-              className={`px-4 py-2 rounded-md font-medium border transition ${
-                currentPage === page
-                  ? "bg-blue-900 text-white border-blue-900"
-                  : "bg-white text-blue-900 border-gray-200 hover:bg-blue-900 hover:text-white"
-              }`}
-            >
-              {page}
-            </button>
-          ))}
+  {pagesToShow.map((p, i) =>
+    p === "..." ? (
+      <span key={`dots-${i}`} className="px-2 text-gray-400 shrink-0">
+        …
+      </span>
+    ) : (
+      <button
+        key={p}
+        onClick={() => handlePageChange(Number(p))}
+        className={`px-4 py-2 rounded-full font-medium border transition-colors duration-200 shrink-0 ${
+          currentPage === p
+            ? "bg-[#00377B] text-white border-[#00377B]"
+            : "bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white"
+        }`}
+      >
+        {p}
+      </button>
+    )
+  )}
 
-          {/* Trang cuối + dấu … */}
-          {pagesToShow[pagesToShow.length - 1] < totalPages && (
-            <>
-              {pagesToShow[pagesToShow.length - 1] < totalPages - 1 && (
-                <span className="px-2">…</span>
-              )}
-              <button
-                onClick={() => handlePageChange(totalPages)}
-                className="px-4 py-2 rounded-md bg-white text-blue-900 border border-gray-200 font-medium hover:bg-blue-900 hover:text-white transition"
-              >
-                {totalPages}
-              </button>
-            </>
-          )}
+  {currentPage < totalPages && (
+    <button
+      onClick={() => handlePageChange(currentPage + 1)}
+      className="px-4 py-2 bg-white text-[#00377B] font-medium hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+</svg>
 
-          {currentPage < totalPages && (
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              className="px-4 py-2 rounded-md bg-white text-blue-900 border border-gray-200 font-medium hover:bg-blue-900 hover:text-white transition"
-            >
-              Sau →
-            </button>
-          )}
-        </div>
+    </button>
+  )}
+</div>
       </div>
     </>
   );

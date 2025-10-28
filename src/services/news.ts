@@ -1,3 +1,4 @@
+
 // import { News, RawNews, NewsImage } from "@/types/news";
 
 // const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -142,10 +143,15 @@ export const getImageUrl = (
 };
 
 export async function getNews(page = 1, pageSize = 1000): Promise<{ news: News[]; totalPages: number }> {
-  const res = await fetch( `${API_URL}/api/news?populate=image&sort[0]=date:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,{next:{revalidate: 60 }});
+  const res = await fetch(`${API_URL}/api/news?populate=image&sort[0]=date:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+    { next: { revalidate: 60 } }
+  );
+
   if (!res.ok) throw new Error("Lỗi lấy tin tức");
+
   const json = await res.json();
-  const news: News[] = json.data.map((item: RawNews) => ({
+
+  const news: News[] = (json.data || []).map((item: RawNews) => ({
     id: item.id,
     title: item.title,
     slug: item.slug,
@@ -153,7 +159,9 @@ export async function getNews(page = 1, pageSize = 1000): Promise<{ news: News[]
     image: getImageUrl(item.image),
     date: item.date,
   }));
-  const totalPages = json.meta.pagination.pageCount;
+  
+  const totalPages = json?.meta?.pagination?.pageCount ?? 1;
+
   return { news, totalPages };
 }
 export async function getNewsBySlug(slug: string): Promise<News | null> {
