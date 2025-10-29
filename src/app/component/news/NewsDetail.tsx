@@ -134,7 +134,7 @@ export default function NewsDetail({
           {/* --- Nội dung bài viết --- */}
           <div
             className="prose prose-lg max-w-none leading-relaxed text-gray-800 
-              prose-img:w-full prose-img:h-auto prose-img:object-cover prose-img:rounded-xl prose-img:shadow-md"
+              prose-img:w-full prose-img:h-auto prose-img:object-cover prose-img:rounded-xl prose-img:shadow-md text-justify"
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
