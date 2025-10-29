@@ -45,9 +45,9 @@ export default function Footer() {
               </svg>
               <p>Giờ làm việc: Thứ 2 - Thứ 6</p>
             </div>
-            <ul className="list-disc ml-6 text-xs space-y-1">
+            <ul className="list-disc ml-7 space-y-1">
               <li>Mùa hè: 7h00 - 17h30</li>
-              <li>Mùa đông: 7h00 - 17h00</li>
+              <li>Mùa đông: 7h15 - 17h00</li>
             </ul>
           </div>
         </div>

@@ -163,7 +163,7 @@ export default function SearchClient() {
       ) : totalResults === 0 ? (
         <div className="flex flex-col items-center text-gray-500">
           <Image
-            src="/image/no-search-found.png"
+            src="/image/noresult.svg"
             alt="no results"
             width={160}
             height={160}

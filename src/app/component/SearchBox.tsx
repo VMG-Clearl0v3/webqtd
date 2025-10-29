@@ -70,7 +70,7 @@ export default function SearchBox({ onSubmit }: { onSubmit: (q: string) => void 
 
           {!loading && total === 0 && (
             <div className="p-6 flex flex-col items-center text-gray-500">
-              <Image src="/image/no-search-found.png" alt="No results" width={120} height={120} />
+              <Image src="/image/noresult.svg" alt="No results" width={120} height={120} />
               <p className="mt-2">Không tìm thấy kết quả nào</p>
             </div>
           )}
