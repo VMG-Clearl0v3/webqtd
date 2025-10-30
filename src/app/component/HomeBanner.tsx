@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Parallax } from "swiper/modules";
+import { Pagination, Autoplay, Parallax, EffectFade  } from "swiper/modules";
 import { animate } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 // import { useCallback } from "react";
@@ -10,6 +10,7 @@ import "@/app/globals.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/parallax";
+import "swiper/css/effect-fade";
 
 export default function HomeBanner() {
   const banners = [
@@ -56,7 +57,8 @@ const handleScroll = () => {
      {/* Swiper */}
  <div className="relative w-full h-screen overflow-hidden">
 <Swiper
-  modules={[Pagination, Autoplay, Parallax]}
+  modules={[Pagination, Autoplay, Parallax, EffectFade]}
+  effect="fade"
   pagination={{
     clickable: true,
     dynamicBullets: true,

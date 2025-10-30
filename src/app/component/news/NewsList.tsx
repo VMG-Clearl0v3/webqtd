@@ -102,7 +102,7 @@ export default function NewsList({
   {currentPage > 1 && (
     <button
       onClick={() => handlePageChange(currentPage - 1)}
-      className="p-2 rounded-full bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
+      className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@ export default function NewsList({
       <button
         key={p}
         onClick={() => handlePageChange(Number(p))}
-        className={`w-10 h-10 flex items-center justify-center rounded-full font-medium border transition-colors duration-200 shrink-0 ${
+        className={`w-8 h-8 flex items-center justify-center rounded-full font-medium border transition-colors duration-200 shrink-0 ${
           currentPage === p
             ? "bg-[#00377B] text-white border-[#00377B]"
             : "bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white"
@@ -146,7 +146,7 @@ export default function NewsList({
   {currentPage < totalPages && (
     <button
       onClick={() => handlePageChange(currentPage + 1)}
-      className="p-2 rounded-full bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
+      className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#00377B] border border-[#00377B]/30 hover:bg-[#00377B] hover:text-white transition-colors duration-200 shrink-0"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
