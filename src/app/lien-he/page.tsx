@@ -294,36 +294,38 @@ const handleSubmit = async (e: React.FormEvent) => {
 <div className="mt-12 mb-20 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
   <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
     {/* Cột thông tin */}
-    <div className="p-6 flex flex-col justify-center">
-      <h2 className="text-xl sm:text-2xl font-semibold text-[#00377B] mb-4">
+    <div className="p-6 flex flex-col justify-center font-medium">
+      <h2 className="text-lg sm:text-2xl text-[#00377B] mb-4">
         Quỹ Tín Dụng Nhân Dân Trung Sơn
       </h2>
 
-      <div className="space-y-3 text-gray-700 text-sm sm:text-base leading-relaxed">
-        <div className="flex items-start">
-          <span className="text-[#00377B] font-medium mr-2">📍</span>
-          <p><strong>Địa chỉ:</strong> 37 Ngô Thì Nhậm, Trung Sơn, Ninh Bình</p>
-        </div>
+<div className="space-y-4 text-gray-700 text-sm sm:text-base leading-relaxed">
+  {/* Địa chỉ */}
+  <div>
+    <p className="text-gray-500">Địa chỉ</p>
+    <p className="text-gray-800">Số 37, Đ. Ngô Thì Nhậm, P. Trung Sơn, T. Ninh Bình</p>
+  </div>
 
-        <div className="flex items-start">
-          <span className="text-[#00377B] font-medium mr-2">📞</span>
-          <p><strong>Điện thoại:</strong> 02293 864 329</p>
-        </div>
+  {/* Điện thoại & Email */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <p className="text-gray-500">Điện thoại</p>
+      <p className="text-gray-800">02293 864 329</p>
+    </div>
+    <div>
+      <p className="text-gray-500">Email</p>
+      <p className="text-gray-800">qtdndtrungson@gmail.com</p>
+    </div>
+  </div>
 
-        <div className="flex items-start">
-          <span className="text-[#00377B] font-medium mr-2">📧</span>
-          <p><strong>Email:</strong> qtdndtrungson@gmail.com</p>
-        </div>
-      </div>
-
-      <div className="mt-6">
-        <p className="font-semibold mb-2 text-[#00377B]">🕒 Thời gian hoạt động:</p>
-        <ul className="list-disc ml-6 text-gray-700 space-y-1 text-sm sm:text-base">
-          <li>Thứ Hai – Thứ Sáu</li>
-          <li>Mùa hè: 07:00 – 17:30</li>
-          <li>Mùa đông: 07:15 – 17:00</li>
-        </ul>
-      </div>
+  {/* Thời gian giao dịch */}
+  <div>
+  <p className="text-gray-500 mb-1">Thời gian giao dịch</p>
+  <p className="text-gray-800">Từ thứ Hai đến thứ Sáu</p>
+  <p className="text-gray-800">Mùa hè: 07:00 - 17:30</p>
+  <p className="text-gray-800">Mùa đông: 07:15 - 17:00</p>
+  </div>
+</div>
     </div>
 
     {/* Cột bản đồ */}
