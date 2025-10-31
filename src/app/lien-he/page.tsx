@@ -91,7 +91,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             ))}
           </div>
 
-          <div className="p-6">
+          <div className="p-4">
             {/* 📞 Hotline */}
             {activeTab === "hotline" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
@@ -178,29 +178,30 @@ const handleSubmit = async (e: React.FormEvent) => {
             />
           </div>
 
-          {/* Captcha + Gửi cùng hàng */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-              onChange={(token) => setCaptchaToken(token)}
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex items-center justify-center bg-[#00377B] text-white px-6 py-3 rounded-lg hover:bg-[#1E90FF] transition-all font-semibold shadow-sm w-full sm:w-auto"
-            >
-              {loading ? (
-                <span className="animate-pulse">Đang gửi...</span>
-              ) : (
-                <>
-                  <Send className="w-5 h-5 mr-2" /> Gửi
-                </>
-              )}
-            </button>
-          </div>
-        </div>
+{/* Captcha + Nút gửi sát nhau */}
+<div className="flex items-center gap-2 flex-wrap">
+  <div className="flex-shrink-0">
+    <ReCAPTCHA
+      ref={recaptchaRef}
+      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+      onChange={(token) => setCaptchaToken(token)}
+    />
+  </div>
+
+  <button
+    type="submit"
+    disabled={loading}
+    className="flex items-center justify-center bg-[#00377B] text-white text-xl px-5 py-3 rounded-lg hover:bg-[#1E90FF] transition-all font-semibold shadow-sm"
+  >
+    {loading ? (
+      <span className="animate-pulse">Đang gửi...</span>
+    ) : (
+      <>
+        <Send className="w-5 h-5 mr-2" /> Gửi
+      </>
+    )}
+  </button>
+</div>
         </div>
       </form>
             )}
@@ -294,8 +295,8 @@ const handleSubmit = async (e: React.FormEvent) => {
 <div className="mt-12 mb-20 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
   <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
     {/* Cột thông tin */}
-    <div className="p-6 flex flex-col justify-center font-medium">
-      <h2 className="text-lg sm:text-2xl text-[#00377B] mb-4">
+    <div className="p-4 flex flex-col justify-center font-medium">
+      <h2 className="text-xl sm:text-3xl text-[#00377B] mb-4">
         Quỹ Tín Dụng Nhân Dân Trung Sơn
       </h2>
 

@@ -1,5 +1,5 @@
 import Footer from "@/app/component/Footer";
-import AboutusHeader from "@/app/component/AboutusHeader";
+import ContactHeader from "@/app/component/ContactHeader";
 
 export default function ContactLayout({
   children,
@@ -8,7 +8,7 @@ export default function ContactLayout({
 }) {
   return (
     <div className="bg-white min-h-screen">
-      <AboutusHeader />
+      <ContactHeader />
       <main>{children}</main>
       <Footer />
     </div>

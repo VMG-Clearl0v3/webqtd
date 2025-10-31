@@ -20,7 +20,7 @@ export default function Footer() {
             priority
           />
           <p className="text-sm opacity-80 max-w-xs">
-            Quỹ tín dụng nhân dân Trung Sơn - Đồng hành cùng bạn phát triển.
+            Quỹ của mọi nhà - hài hòa lợi ích
           </p>
         </div>
 
